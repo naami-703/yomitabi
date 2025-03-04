@@ -1,4 +1,4 @@
-class SpotsController < ApplicationController
+class Public::BooksController < ApplicationController
   def new
   end
 
