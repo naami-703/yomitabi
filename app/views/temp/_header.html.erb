@@ -1,10 +1,9 @@
-<%# 動的ヘッダーの部分テンプレートファイル %>
 <header>
   <nav class = "navbar navbar-expand-lg bg-custom ">
     <div class = container>
 
       <a class = "navbar-brand" href = "/">
-        読み旅
+        <img src="<%= asset_url('logo.webp') %>" alt="サイトロゴ" class="logo-image">
       </a>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +53,10 @@
 
           <!-- 非ログイン時のヘッダー -->
           <% else %>
+            <li class="nav-item">
+              <%= link_to '読み旅とは？', about_path, class: "nav_button" %>
+            </li>
+
             <li class="nav-item">
               <%= link_to '新規登録', new_user_registration_path, class: "nav_button" %>
             </li>

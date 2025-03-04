@@ -9,7 +9,7 @@
     <!-- for Font Awesome -->
     <script src="https://kit.fontawesome.com/41e38c5826.js" crossorigin="anonymous"></script>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -19,5 +19,6 @@
       <div class="flash-message <%= message_type %>"><%= message %></div>
     <% end %>
     <%= yield %>
+    <%= render "temp/footer" %>
   </body>
 </html>

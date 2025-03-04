@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+ @charset "UTF-8";
+
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ /* ヘッダー・フッター背景色 */
+ .bg-custom {
+   background: #e7e7e6;
+   height :100px;
+ }
+ 
+ /* ヘッダーロゴ */
+ .logo-image {
+   width: 85px;
+   height: 85px;
+   background-size: auto;
+   background-repeat: no-repeat;
+ }
+
+ /* ジャンルサイドバー */
+.bg-custom-sidebar {
+  background: #5d7f90;
+  color: white;
+}
