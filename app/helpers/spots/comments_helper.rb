@@ -1,0 +1,2 @@
+module Spots::CommentsHelper
+end
