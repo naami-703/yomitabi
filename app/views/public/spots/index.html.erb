@@ -1,2 +1,32 @@
-<h1>Spots#index</h1>
-<p>Find me in app/views/spots/index.html.erb</p>
+<div class='container-fluid container-sidebar'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class='col-md-10'>
+      <div class="p-3 mb-2">
+        <h3>書籍一覧</h3>
+      </div>
+
+      <div class="row">
+        <% @spots.each_with_index do |spot, index| %>
+          <div class="col-md-3 mb-5 ">
+            <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+              <div class="card-body py-0">
+                <%= link_to spot_path(spot) do %>
+                  <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
+                <% end %>
+                <p class="card-title"><%= spot.name %></p>
+                <p class="card-title"><%= spot.address %></p>
+              </div>
+            </div>
+            <% if (index + 1) % 4 == 0 %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

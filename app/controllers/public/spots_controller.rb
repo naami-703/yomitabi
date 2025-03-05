@@ -53,7 +53,7 @@ class Public::SpotsController < ApplicationController
 
   def ensure_correct_user
     @spot = Spot.find(params[:id])
-    unless @spotk.user == current_user
+    unless @spot.user == current_user
       redirect_to spots_path
     end
   end

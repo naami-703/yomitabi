@@ -1,2 +1,55 @@
-<h1>Spots#show</h1>
-<p>Find me in app/views/spots/show.html.erb</p>
+<div class='container-fluid container-sidebar'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class="col-md-10 d-flex">
+      <!-- スポット詳細（左側） -->
+      <div class="col-md-5">
+        <h4>スポット詳細</h4>
+        <table class="spot_table">
+          <tr>
+            <td class="title">スポット名</td>
+            <td class="body"><%= link_to @spot.name, spot_path(@spot.id) %></td>
+          </tr>
+          <tr>
+          <td class="title">住所</td>
+          <td class="body"><%= @spot.address %></td>
+        </tr>
+          <tr>
+            <td class="title">スポット画像</td>
+            <td class="body"><%= image_tag @spot.get_spot_image(150,150) %></td>
+          </tr>
+          <% if @spot.user == current_user %>
+            <tr>
+              <td><%= link_to '編集する', edit_spot_path(@spot.id), class: 'btn btn-info mb-3' %></td>
+              <td><%= link_to "削除する", spot_path(@spot.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>
+              <div class="profile_image">
+                <%= image_tag @user.get_profile_image(50,50) %>
+              </div>
+            </td>
+            <td class="title">投稿者</td>
+            <td><%= link_to @spot.user.name, user_path(@user.id) %></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- コメント＆スポット（右側） -->
+      <div class="col-md-8 d-flex flex-column">
+        <div class="col-md-12">
+          <h4>コメント</h4>
+        </div>
+
+        <div class="col-md-12 mt-4">
+          <h4>関連書籍一覧</h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
