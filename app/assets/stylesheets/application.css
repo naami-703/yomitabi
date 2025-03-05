@@ -22,13 +22,13 @@
    box-sizing: border-box;
  }
  
- /* ヘッダー・フッター背景色 */
+/* ヘッダー・フッター背景色 */
  .bg-custom {
    background: #e7e7e6;
    height :100px;
  }
  
- /* ヘッダーロゴ */
+/* ヘッダーロゴ */
  .logo-image {
    width: 85px;
    height: 85px;
@@ -42,12 +42,12 @@
   color: white;
 }
 
- /* サイドバータイトル */
+/* サイドバータイトル */
  .sideber_title {
   padding: 10px 20px;
  }
 
- /* サイドバーリスト */
+/* サイドバーリスト */
  .sidebar_manu {
   padding-top: 5px;
   padding-left: 50px;
@@ -56,7 +56,7 @@
   font-size: medium;
 }
 
-  /* ボタン */
+/* ボタン */
 .nav_button {
   background: #5d7f90;
   text-decoration: none;
@@ -71,7 +71,7 @@
     color: white; /* マウスオーバー時の文字色を白にする */
   }
 
-  /* サイドバーありcontainer背景色 */
+/* サイドバーありcontainer背景色 */
 .container-sidber {
   background: #e7e7e6;
 }
@@ -82,17 +82,22 @@
   height: 614px;
 }
 
-  /* プロフィール画像 */
+/* プロフィール画像 */
 .profile_image img {
   border-radius: 50%;
 }
 
-  /* プロフィール自己紹介、好きな本 */
+/* プロフィール自己紹介、好きな本 */
 .profile_table .title {
   width: 100px;
 }
 
 .profile_table .body {
   width: 300px;
+}
+
+/* 一覧画面画像サイズ */
+.card-img-top {
+  height: 200px;
 }
 

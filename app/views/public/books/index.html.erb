@@ -12,7 +12,7 @@
       <div class="row">
         <% @books.each_with_index do |book, index| %>
           <div class="col-md-3 mb-5 ">
-            <div class="card mx-auto mt-4" style="height: auto;">
+            <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
               <div class="card-body py-0">
                 <%= link_to book_path(book) do %>
                   <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>

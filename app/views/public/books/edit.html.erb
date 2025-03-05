@@ -1,2 +1,29 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<div class='container-fluid container-sidebar'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class='col-md-10'>
+      <div class="p-3 mb-2">
+        <h3>書籍情報編集</h3>
+      </div>
+
+      <div class="row">
+        <div class='col-md-8 mx-auto'>
+          <div class="field">
+          <%= form_with model: @book do |f| %>
+              <%= f.label :タイトル %><br />
+              <%= f.text_field :title, autofocus: true, autocomplete: "title" %><br />
+              <%= f.label :表紙画像 %><br />
+              <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+              <%= f.submit "書籍情報更新" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

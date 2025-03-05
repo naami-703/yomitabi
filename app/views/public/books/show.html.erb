@@ -14,7 +14,7 @@
             <td class="body"><%= link_to @book.title, book_path(@book.id) %></td>
           </tr>
           <tr>
-            <td class="title">表紙</td>
+            <td class="title">表紙画像</td>
             <td class="body"><%= image_tag @book.get_book_image(150,150) %></td>
           </tr>
           <% if @book.user == current_user %>

@@ -1,2 +1,36 @@
-<h1>Spots#new</h1>
-<p>Find me in app/views/spots/new.html.erb</p>
+<div class='container-fluid container-sidber'>
+  <div class='row no-gutters  bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class='col-md-10'>
+      <div class="row">
+        <div class='col-md-12 mx-auto text-center'>
+        <% if @spot.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= pluralize(@spot.errors.count, "error") %> prohibited this obj from being saved:</h3>
+          <ul>
+            <% @spot.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <h4>スポット新規投稿</h4>
+        <%= form_with model: @spot do |f| %>
+            <%= f.label :スポット名 %><br />
+            <%= f.text_field :name %><br /><br />
+            <%= f.label :住所 %><br />
+            <%= f.text_field :address %><br /><br />
+            <%= f.label :スポット画像 %><br />
+            <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
+            <%= f.submit 'スポット新規投稿', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
