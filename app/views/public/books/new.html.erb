@@ -1,2 +1,33 @@
-<h1>Books#new</h1>
-<p>Find me in app/views/books/new.html.erb</p>
+<div class='container-fluid container-sidber'>
+  <div class='row no-gutters  bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class='col-md-10'>
+      <div class="row">
+        <div class='col-md-12 mx-auto text-center'>
+        <% if @book.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= pluralize(@book.errors.count, "error") %> prohibited this obj from being saved:</h3>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+        <%= form_with model: @book do |f| %>
+            <%= f.label :タイトル %><br />
+            <%= f.text_field :title %><br /><br />
+            <%= f.label :表紙%><br />
+            <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+            <%= f.submit '書籍新規投稿', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

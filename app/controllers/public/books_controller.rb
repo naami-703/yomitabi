@@ -18,10 +18,11 @@ class Public::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to book_path(@book), notice: "You have created book successfully."
+      redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
       @books = Book.all
-      render 'index'
+      render "index"
+    end
   end
 
   def edit
@@ -31,7 +32,7 @@ class Public::BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to book_path(@book), notice: "You have updated book successfully."
+      redirect_to book_path(@book), notice: "書籍情報を更新しました。"
     else
       render "edit"
     end
@@ -46,7 +47,7 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :genre)
+    params.require(:book).permit(:title, :book_image)
   end
 
   def ensure_correct_user

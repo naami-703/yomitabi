@@ -1,3 +1,28 @@
-<h1>マイページ</h1>
-<p>ユーザー名: <%= @user.name %></p>
-<p>メール: <%= @user.email %></p>
+<h3>マイページ</h3>
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-2">
+      <div class="profile_image ">
+        <%= image_tag @user.get_profile_image(100, 100) %>
+        <p>ユーザー名: <%= @user.name %></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <table class="profile_table">
+        <tr>
+          <td class="title">自己紹介</td>
+          <td class="body"><%= @user.introduction %></td>
+        </tr>
+        <tr>
+        <td class="title">好きな本</td>
+        <td class="body"><%= @user.favorite_books %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-2 flex-row">
+      <%= link_to '編集する', edit_user_path(current_user) %><br>
+      <%= link_to '退会する', user_path(current_user), method: :destroy, "data-confirm" => "本当に退会しますか？" %>
+    </div>
+  </div>
+</div>

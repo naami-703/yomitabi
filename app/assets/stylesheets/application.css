@@ -41,3 +41,42 @@
   background: #5d7f90;
   color: white;
 }
+
+  /* ボタン */
+.nav_button {
+  background: #5d7f90;
+  text-decoration: none;
+  color: white;
+  border-radius : 10px;
+  padding: 10px;
+  margin: 10px;
+  }
+
+  .nav_button:hover {
+    text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
+    color: white; /* マウスオーバー時の文字色を白にする */
+  }
+
+  /* サイドバーありcontainer背景色 */
+.container-sidber {
+  background: #e7e7e6;
+}
+
+  /* top/about画像サイズ */
+.img-fluid {
+  width: 1093px;
+  height: 614px;
+}
+
+  /* プロフィール画像 */
+.profile_image img {
+  border-radius: 50%;
+}
+
+  /* プロフィール自己紹介、好きな本 */
+.profile_table .title {
+  width: 100px;
+}
+.profile_table .body {
+  width: 300px;
+}
