@@ -11,7 +11,8 @@ class Public::BooksController < ApplicationController
   end
 
   def show
-    @books = Book.all
+    @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def create
@@ -21,7 +22,7 @@ class Public::BooksController < ApplicationController
       redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
       @books = Book.all
-      render "index"
+      render "new"
     end
   end
 

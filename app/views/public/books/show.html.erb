@@ -1,2 +1,51 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class='container-fluid container-sidebar'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+
+    <div class="col-md-10 d-flex">
+      <!-- 書籍詳細（左側） -->
+      <div class="col-md-4">
+        <h4>書籍詳細</h4>
+        <table class="book_table">
+          <tr>
+            <td class="title">タイトル</td>
+            <td class="body"><%= link_to @book.title, book_path(@book.id) %></td>
+          </tr>
+          <tr>
+            <td class="title">表紙</td>
+            <td class="body"><%= image_tag @book.get_book_image(150,150) %></td>
+          </tr>
+          <% if @book.user == current_user %>
+            <tr>
+              <td><%= link_to '編集する', edit_book_path(@book.id), class: 'btn btn-info mb-3' %></td>
+              <td><%= link_to "削除する", book_path(@book.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>
+              <div class="profile_image">
+                <%= image_tag @user.get_profile_image(50,50) %>
+              </div>
+            </td>
+            <td class="title">投稿者</td>
+            <td><%= link_to @book.user.name, user_path(@user.id) %></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- コメント＆スポット（右側） -->
+      <div class="col-md-8 d-flex flex-column">
+        <div class="col-md-12">
+          <h4>コメント</h4>
+        </div>
+
+        <div class="col-md-12 mt-4">
+          <h4>スポット一覧</h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

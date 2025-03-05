@@ -36,10 +36,24 @@
    background-repeat: no-repeat;
  }
 
- /* ジャンルサイドバー */
+ /* サイドバー背景色 */
 .bg-custom-sidebar {
   background: #5d7f90;
   color: white;
+}
+
+ /* サイドバータイトル */
+ .sideber_title {
+  padding: 10px 20px;
+ }
+
+ /* サイドバーリスト */
+ .sidebar_manu {
+  padding-top: 5px;
+  padding-left: 50px;
+  border-top: 1px white solid;
+  font-weight: normal;
+  font-size: medium;
 }
 
   /* ボタン */
@@ -77,6 +91,8 @@
 .profile_table .title {
   width: 100px;
 }
+
 .profile_table .body {
   width: 300px;
 }
+

@@ -16,12 +16,13 @@
             <% end %>
           </ul>
         </div>
-      <% end %>
-      
+        <% end %>
+
+        <h4>書籍新規投稿</h4>
         <%= form_with model: @book do |f| %>
             <%= f.label :タイトル %><br />
             <%= f.text_field :title %><br /><br />
-            <%= f.label :表紙%><br />
+            <%= f.label :表紙 %><br />
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'btn btn-success' %>
           </div>
