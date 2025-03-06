@@ -1,2 +1,101 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-2 p-3">
+      <h3><%= @user.name %>さんの<br>ページ</h3>
+    </div>
+      <div class="col-md-2 p-3">
+        <div class="profile_image">
+          <%= image_tag @user.get_profile_image(150, 150) %>
+        </div>
+      </div>
+      <div class="col-md-5 p-3">
+        <table class="profile_table">
+          <tr>
+            <td class="title">ユーザー名</td>
+            <td class="title"><%= @user.name %></td>
+         </tr>
+          <tr>
+            <td class="title">自己紹介</td>
+            <td class="body"><%= @user.introduction %></td>
+          </tr>
+          <tr>
+          <td class="title">好きな本</td>
+          <td class="body"><%= @user.favorite_books %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-2 p-3">
+        <span>フォローボタン</span><br>
+        <span>フォロー数・一覧</span><br>
+        <span>フォロワー数・一覧</span><br>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 ">
+      
+      <div class="tabs d-flex justify-content-between align-items-center">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#book_index">書籍投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#spot_index">スポット投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#comment_index">コメント投稿</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#bookmar_index">ブックマーク登録</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#want_to_go_index">行きたい！登録</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#went_index">行ったよ！登録</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="tab-content">
+        <div id="book_index" class="tab-pane fade show active">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row"> 
+              <h3><%= @user.name %>さんの書籍投稿一覧</h3>
+                <%= render "temp/book_index", books: @books, user: @user %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="spot_index" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row"> 
+              <h3><%= @user.name %>さんのスポット投稿一覧</h3>
+                <%= render "temp/spot_index", spots: @spots, user: @user %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="comment_index" class="tab-pane fade">
+          <%= render "temp/comment_index" %>
+        </div>
+
+        <div id="bookmark_index" class="tab-pane fade">
+          <%= render "temp/bookmark_index" %>
+        </div>
+
+        <div id="want_to_go_index" class="tab-pane fade">
+          <%= render "temp/want_to_go_index" %>
+        </div>
+
+        <div id="went_index" class="tab-pane fade">
+          <%= render "temp/went_index" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
