@@ -9,23 +9,15 @@
         <h3>書籍一覧</h3>
       </div>
 
-      <div class="row">
-        <% @books.each_with_index do |book, index| %>
-          <div class="col-md-3 mb-5 ">
-            <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-              <div class="card-body py-0">
-                <%= link_to book_path(book) do %>
-                  <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>
-                <% end %>
-                <p class="card-title"><%= book.title %></p>
-              </div>
-            </div>
-            <% if (index + 1) % 4 == 0 %>
-            <% end %>
-          </div>
-        <% end %>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="row"> 
+          <%= render "temp/book_index", books: @books, user: @user %>
+        </div>
       </div>
     </div>
+
 
   </div>
 </div>

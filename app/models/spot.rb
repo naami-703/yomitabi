@@ -3,6 +3,9 @@ class Spot < ApplicationRecord
   belongs_to :user
   #belongs_to :location
 
+  validates :name, presence: true
+  validates :address, presence: true
+
   has_one_attached :spot_image
 
   def get_spot_image(width,height)

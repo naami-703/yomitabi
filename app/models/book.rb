@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   belongs_to :user
   #belongs_to :genre
 
+  validates :title, presence: true
+
   has_one_attached :book_image
 
   def get_book_image(width,height)
