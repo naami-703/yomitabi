@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">.
+   <h3><%= user.name %>さんのスポット投稿一覧</h3>
+    <% spots.each_with_index do |spot, index| %>
+      <div class="col-md-3 mb-5 ">
+        <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+          <div class="card-body py-0">
+            <%= link_to spot_path(spot) do %>
+              <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
+            <% end %>
+            <p class="card-title"><%= spot.name %></p>
+            <p class="card-title"><%= spot.address %></p>
+          </div>
+        </div>
+        <% if (index + 1) % 4 == 0 %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
