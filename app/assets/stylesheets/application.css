@@ -21,42 +21,32 @@
    padding: 0;
    box-sizing: border-box;
  }
+
+header, h3 {
+  font-family: 'Kaushan', cursive, sans-serif;
+}
  
 /* ヘッダー・フッター背景色 */
- .bg-custom {
+ .bg_custom {
    background: #e7e7e6;
    height :100px;
  }
  
 /* ヘッダーロゴ */
- .logo-image {
+ .logo_image {
    width: 85px;
    height: 85px;
    background-size: auto;
    background-repeat: no-repeat;
  }
 
- /* サイドバー背景色 */
-.bg-custom-sidebar {
+/* ヘッダー下段背景色 */
+ .bg_custom_bottom {
   background: #5d7f90;
   color: white;
 }
 
-/* サイドバータイトル */
- .sideber_title {
-  padding: 10px 20px;
- }
-
-/* サイドバーリスト */
- .sidebar_manu {
-  padding-top: 5px;
-  padding-left: 50px;
-  border-top: 1px white solid;
-  font-weight: normal;
-  font-size: medium;
-}
-
-/* ボタン */
+/* ヘッダーボタン */
 .nav_button {
   background: #5d7f90;
   text-decoration: none;
@@ -71,10 +61,6 @@
     color: white; /* マウスオーバー時の文字色を白にする */
   }
 
-/* サイドバーありcontainer背景色 */
-.container-sidber {
-  background: #e7e7e6;
-}
 /* top/about画像サイズ */
 .img-fluid {
   width: 699px;
@@ -95,9 +81,17 @@
   width: 300px;
 }
 
-/* 一覧画面画像サイズ */
+/* 一覧画面カード画像サイズ */
 .card-img-top {
   height: 200px;
+}
+
+/* 一覧画面カードテキスト */
+.card-title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* 書籍詳細情報 */
@@ -117,11 +111,9 @@
   }
 
 /* スポット詳細情報 */
-
 .spot_table {
   border: solid 1px;  /* 枠線指定 */
   margin: 20px;
-
 }
 
 .spot_table .th,td {

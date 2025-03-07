@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to:"public/homes#top"
   get 'about', to: 'public/homes#about'
 
-  resources :users, controller: 'public/users', only:[:show, :edit, :update, :destroy] do
+  resources :users, controller: 'public/users', only:[:index, :show, :edit, :update, :destroy] do
     collection do
       get 'mypage'
     end

@@ -1,8 +1,5 @@
-<div class='container-fluid container-sidebar'>
+<div class='container-fluid'>
   <div class='row no-gutters bg-white'>
-    <div class='col-md-2 bg-custom-sidebar'>
-      <%= render 'temp/sidebar' %>
-    </div>
 
     <div class="col-md-10 d-flex">
       <!-- 書籍詳細（左側） -->
@@ -19,10 +16,12 @@
             </tr>
           </table>
           <table class="element_table">
+            <tr>
+              <td>ブックマークボタン</td>
+            <tr>
             <% if @book.user == current_user %>
               <tr>
-                <td><%= link_to '編集する', edit_book_path(@book.id), class: 'btn btn-info mb-3' %></td>
-                <td><%= link_to "削除する", book_path(@book.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+                <td><%= link_to '編集する', edit_book_path(@book.id),  class: 'nav_button' %></td>
               </tr>
             <% end %>
           <tr>
@@ -31,7 +30,11 @@
                 <%= image_tag @user.get_profile_image(50,50) %>
               </div>
             </td>
+            <% if @book.user == current_user %>
+            <td><%= link_to @book.user.name, mypage_users_path %>さんが登録</td>
+            <% else %>
             <td><%= link_to @book.user.name, user_path(@user.id) %>さんが登録</td>
+            <% end %>
           </tr>
         </table>
       </div>
@@ -39,11 +42,11 @@
       <!-- コメント＆スポット（右側） -->
       <div class="col-md-8 d-flex flex-column">
         <div class="col-md-12">
-          <h4>コメント</h4>
+          <h3>コメント</h3>
         </div>
 
         <div class="col-md-12 mt-4">
-          <h4>スポット一覧</h4>
+          <h3>スポット一覧</h3>
         </div>
       </div>
 

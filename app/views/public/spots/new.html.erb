@@ -1,12 +1,9 @@
 <div class='container-fluid container-sidber'>
   <div class='row no-gutters  bg-white'>
-    <div class='col-md-2 bg-custom-sidebar'>
-      <%= render 'temp/sidebar' %>
-    </div>
 
-    <div class='col-md-10'>
+    <div class='col-md-12 text-center'>
       <div class="row">
-        <div class='col-md-12 mx-auto text-center'>
+        <div class='col-md-12 mx-auto'>
         <% if @spot.errors.any? %>
         <div id="error_explanation">
           <h3><%= pluralize(@spot.errors.count, "error") %> prohibited this obj from being saved:</h3>
@@ -18,7 +15,7 @@
         </div>
         <% end %>
 
-        <h4>スポット新規投稿</h4>
+        <h3>スポット新規投稿</h3>
         <%= form_with model: @spot do |f| %>
             <%= f.label :スポット名 %><br />
             <%= f.text_field :name %><br /><br />
@@ -26,7 +23,7 @@
             <%= f.text_field :address %><br /><br />
             <%= f.label :スポット画像 %><br />
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
-            <%= f.submit 'スポット新規投稿', class: 'btn btn-success' %>
+            <%= f.submit 'スポット新規投稿', class: 'nav_button' %>
           </div>
         <% end %>
         </div>
