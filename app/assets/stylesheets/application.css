@@ -32,10 +32,10 @@ header, h3 {
   margin: 20px;
 }
 
-/* ヘッダー・フッター背景色 */
- .bg_custom {
-   background: #e7e7e6;
-   height :100px;
+/* ヘッダー背景色 */
+.bg_custom {
+  background: #e7e7e6;
+  height :100px;
  }
  
 /* ヘッダーロゴ */
@@ -67,8 +67,33 @@ header, h3 {
     color: white; /* マウスオーバー時の文字色を白にする */
   }
 
-/* top/about画像サイズ */
-.img-fluid {
+/* ヘッダーログイン・ログアウトボタン */
+.nav_button_login_logout {
+  border: 2px solid #5d7f90;
+  background: #e7e7e6;
+  text-decoration: none;
+  color: #5d7f90;
+  border-radius : 10px;
+  padding: 10px;
+  margin: 10px;
+  }
+
+  .nav_button_login_logout:hover {
+    text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
+    color: #5d7f90; /* マウスオーバー時の文字色を白にする */
+  }
+
+
+
+/* top画像サイズ */
+.top_image {
+  margin: 10px;
+  width: 1000px;
+  border-radius: 50%;
+}
+
+/* about画像サイズ */
+.about_image {
   width: 699px;
   height: 392px;
 }
@@ -102,13 +127,13 @@ header, h3 {
 
 /* 書籍詳細情報 */
 .book_table {
-  border: solid 1px;  /* 枠線指定 */
+  border: solid 1px;
   margin: 20px;
 
 }
 
 .book_table .th,td {
-  padding: 15px;      /* 余白指定 */
+  padding: 15px;
   margin: auto;
 }
 
@@ -118,12 +143,12 @@ header, h3 {
 
 /* スポット詳細情報 */
 .spot_table {
-  border: solid 1px;  /* 枠線指定 */
+  border: solid 1px;
   margin: 20px;
 }
 
 .spot_table .th,td {
-  padding: 15px;      /* 余白指定 */
+  padding: 15px;
   margin: auto;
 }
 

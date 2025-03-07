@@ -3,32 +3,32 @@
     <div class="col-md-3 p-3">
       <h3 class="h3_text">マイページ</h3>
     </div>
-      <div class="col-md-2 p-3">
-        <div class="profile_image">
-          <%= image_tag @user.get_profile_image(150, 150) %>
-        </div>
+    <div class="col-md-2 p-3">
+      <div class="profile_image">
+        <%= image_tag @user.get_profile_image(150, 150) %>
       </div>
-      <div class="col-md-5 p-3">
-        <table class="profile_table">
-          <tr>
-            <td class="title">ユーザー名</td>
-            <td class="title"><%= @user.name %></td>
-         </tr>
-          <tr>
-            <td class="title">自己紹介</td>
-            <td class="body"><%= @user.introduction %></td>
-          </tr>
-          <tr>
-          <td class="title">好きな本</td>
-          <td class="body"><%= @user.favorite_books %></td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-2 p-3">
-        <span>フォロー数</span><br>
-        <span>フォロワー数</span><br><br>
-        <%= link_to '編集する', edit_user_path(current_user), class: "nav_button" %><br>
-      </div>
+    </div>
+    <div class="col-md-5 p-3">
+      <table class="profile_table">
+        <tr>
+          <td class="title">ユーザー名</td>
+          <td class="title"><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td class="title">自己紹介</td>
+          <td class="body"><%= @user.introduction %></td>
+        </tr>
+        <tr>
+        <td class="title">好きな本</td>
+        <td class="body"><%= @user.favorite_books %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-2 p-3">
+      <span><i class="fa-solid fa-people-arrows"></i> フォロー数：</span><br>
+      <span><i class="fa-solid fa-people-arrows"></i> フォロワー数：</span><br><br>
+      <%= link_to '編集する', edit_user_path(current_user), class: "nav_button" %><br>
+    </div>
   </div>
 
   <div class="row">
@@ -37,28 +37,28 @@
       <div class="tabs d-flex justify-content-between align-items-center">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#book_index">書籍投稿</a>
+            <a class="nav-link active" data-toggle="tab" href="#book_index"><i class="fa-solid fa-book"></i> 書籍投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#spot_index">スポット投稿</a>
+            <a class="nav-link" data-toggle="tab" href="#spot_index"><i class="fa-solid fa-location-pin"></i> スポット投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#comment_index">コメント投稿</a>
+            <a class="nav-link" data-toggle="tab" href="#comment_index"><i class="fa-solid fa-comment"></i> コメント投稿</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bookmar_index">ブックマーク登録</a>
+            <a class="nav-link" data-toggle="tab" href="#bookmar_index"><i class="fa-solid fa-bookmark"></i> ブックマーク登録</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#want_to_go_index">行きたい！登録</a>
+            <a class="nav-link" data-toggle="tab" href="#want_to_go_index"><i class="fa-solid fa-face-grin-hearts"></i> 行きたい！登録</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#went_index">行ったよ！登録</a>
+            <a class="nav-link" data-toggle="tab" href="#went_index"><i class="fa-solid fa-thumbs-up"></i> 行ったよ！登録</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#follow_index">フォロー一覧</a>
+            <a class="nav-link" data-toggle="tab" href="#follow_index"><i class="fa-solid fa-people-arrows"></i> フォロー一覧</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#follower_index">フォロワー一覧</a>
+            <a class="nav-link" data-toggle="tab" href="#follower_index"><i class="fa-solid fa-people-arrows"></i> フォロワー一覧</a>
           </li>
         </ul>
       </div>
@@ -68,7 +68,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="row"> 
-              <h3><%= @user.name %>さんの書籍投稿一覧</h3>
+                <h3 class="h3_text">書籍投稿一覧</h3>
                 <%= render "temp/book_index", books: @books_new, user: @user %>
               </div>
             </div>
@@ -79,7 +79,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="row"> 
-              <h3><%= @user.name %>さんのスポット投稿一覧</h3>
+                <h3 class="h3_text">スポット投稿一覧</h3>
                 <%= render "temp/spot_index", spots: @spots_new, user: @user %>
               </div>
             </div>

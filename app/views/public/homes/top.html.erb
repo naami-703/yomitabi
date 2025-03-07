@@ -1,14 +1,16 @@
 <div class='container-fluid'>
   <div class='row no-gutters bg-white'>
     <div class='col-md-10 mx-auto'>
+ 
       <div class="row">
-        <div class='col-md-12 mx-auto text-center'>
-        <img src="/assets/main_image.webp" class="img-fluid" alt=""><br>
+        <div class='col-md-12'>
+        <img src="/assets/main_image.webp" class="top_image" alt=""><br>
         </div>
       </div>
 
+
       <div class="row">
-      <h3>新着書籍投稿</h3>
+      <h3 class="h3_text">新着書籍投稿</h3>
         <div class="col-md-12">
           <div class="row">         
             <%= render "temp/book_index", books: @books_new, user: @user %>
@@ -20,7 +22,7 @@
       </div>
 
       <div class="row">
-      <h3>新着スポット投稿</h3>
+      <h3 class="h3_text">新着スポット投稿</h3>
         <div class="col-md-12">
           <div class="row"> 
             <%= render "temp/spot_index", spots: @spots_new, user: @user %>
@@ -33,4 +35,5 @@
 
   </div>
 </div>
+
 
