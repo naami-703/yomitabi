@@ -1,14 +1,15 @@
-
-  <table>
-
+<table>
   <% users.each do |user| %>
     <tr>
-      <td><%= image_tag user.get_profile_image(50,50) %></td>
+      <td>
+        <div class="profile_image">
+        <%= image_tag user.get_profile_image(100,100) %>
+        </div>
+      </td>
       <td><%= link_to user.name, user_path(user.id) %></td>
       <td>フォロー数</td>
       <td>フォロワー数</td>
     </tr>
   <% end %>
-
-  </table>
+</table>
 

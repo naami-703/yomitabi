@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-2 p-3">
-      <h3>マイページ</h3>
+    <div class="col-md-3 p-3">
+      <h3 class="h3_text">マイページ</h3>
     </div>
       <div class="col-md-2 p-3">
         <div class="profile_image">
@@ -26,9 +26,8 @@
       </div>
       <div class="col-md-2 p-3">
         <span>フォロー数</span><br>
-        <span>フォロワー数</span><br>
-          <%= link_to '編集する', edit_user_path(current_user) %><br>
-          <%= link_to '退会する', user_path(current_user), method: :destroy, "data-confirm" => "本当に退会しますか？" %>
+        <span>フォロワー数</span><br><br>
+        <%= link_to '編集する', edit_user_path(current_user), class: "nav_button" %><br>
       </div>
   </div>
 
@@ -47,13 +46,19 @@
             <a class="nav-link" data-toggle="tab" href="#comment_index">コメント投稿</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#bookmar_index">ブックマーク登録</a>
+            <a class="nav-link" data-toggle="tab" href="#bookmar_index">ブックマーク登録</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#want_to_go_index">行きたい！登録</a>
+            <a class="nav-link" data-toggle="tab" href="#want_to_go_index">行きたい！登録</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#went_index">行ったよ！登録</a>
+            <a class="nav-link" data-toggle="tab" href="#went_index">行ったよ！登録</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#follow_index">フォロー一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#follower_index">フォロワー一覧</a>
           </li>
         </ul>
       </div>
@@ -64,7 +69,7 @@
             <div class="col-md-12">
               <div class="row"> 
               <h3><%= @user.name %>さんの書籍投稿一覧</h3>
-                <%= render "temp/book_index", books: @books, user: @user %>
+                <%= render "temp/book_index", books: @books_new, user: @user %>
               </div>
             </div>
           </div>
@@ -75,7 +80,7 @@
             <div class="col-md-12">
               <div class="row"> 
               <h3><%= @user.name %>さんのスポット投稿一覧</h3>
-                <%= render "temp/spot_index", spots: @spots, user: @user %>
+                <%= render "temp/spot_index", spots: @spots_new, user: @user %>
               </div>
             </div>
           </div>
@@ -96,6 +101,15 @@
         <div id="went_index" class="tab-pane fade">
           <%= render "temp/went_index" %>
         </div>
+
+        <div id="follow_index" class="tab-pane fade">
+          フォロー一覧
+        </div>
+
+        <div id="follower_index" class="tab-pane fade">
+          フォロワー一覧
+        </div>
+
       </div>
     </div>
   </div>

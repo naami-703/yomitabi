@@ -5,7 +5,9 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @books = @user.books
+    @books_new = @books.order(created_at: :desc)
     @spots = @user.spots
+    @spots_new = @spots.order(created_at: :desc)
   end
 
   def index
@@ -15,7 +17,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @books = @user.books
+    @books_new = @books.order(created_at: :desc)
     @spots = @user.spots
+    @spots_new = @spots.order(created_at: :desc)
   end
 
   def edit

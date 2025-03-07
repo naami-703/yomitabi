@@ -22,10 +22,16 @@
    box-sizing: border-box;
  }
 
+/* フォント指定 */
 header, h3 {
   font-family: 'Kaushan', cursive, sans-serif;
 }
- 
+
+/* 見出し設定 */
+.h3_text {
+  margin: 20px;
+}
+
 /* ヘッダー・フッター背景色 */
  .bg_custom {
    background: #e7e7e6;
@@ -119,4 +125,9 @@ header, h3 {
 .spot_table .th,td {
   padding: 15px;      /* 余白指定 */
   margin: auto;
+}
+
+/* 画像クリックポインタ */
+.clickable-image {
+  cursor: pointer;
 }

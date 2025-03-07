@@ -4,7 +4,7 @@
     <div class="col-md-10 d-flex">
       <!-- スポット詳細（左側） -->
       <div class="col-md-5">
-        <h3>スポット詳細</h3>
+      <h3 class="h3_text">スポット詳細</h3>
         <table class="spot_table">
           <tr>
             <th>スポット名</th>
@@ -16,7 +16,7 @@
         </tr>
           <tr>
             <th>スポット画像</th>
-            <td><%= image_tag @spot.get_spot_image(200,200) %></td>
+            <td><%= image_tag @spot.get_spot_image(200,200),  { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %></td>
           </tr>
           </table>
           <table class="element_table">
@@ -32,7 +32,7 @@
             <tr>
               <td>
                 <div class="profile_image">
-                  <%= image_tag @user.get_profile_image(50,50) %>
+                  <%= image_tag @user.get_profile_image(100,100) %>
                 </div>
               </td>
               <% if @spot.user == current_user %>
@@ -47,14 +47,58 @@
       <!-- コメント＆スポット（右側） -->
       <div class="col-md-8 d-flex flex-column">
         <div class="col-md-12">
-          <h3>コメント</h3>
-        </div>
+          <div class="tabs d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#comment_index">コメント</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#book_index">関連書籍</a>
+              </li>
+            </ul>
+          </div>
 
-        <div class="col-md-12 mt-4">
-          <h3>関連書籍一覧</h3>
+          <div id="comment_index" class="tab-pane fade show active">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row"> 
+                  コメント
+                  <%= render "temp/comment_index" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="book_index" class="tab-pane fade">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row"> 
+                  関連書籍
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 画像表示Modal -->
+          <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                <%= image_tag @spot.get_spot_image(300,300) %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
     </div>
   </div>
 </div>
