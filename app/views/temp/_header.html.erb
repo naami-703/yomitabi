@@ -17,15 +17,15 @@
           <% if user_signed_in? %>
 
             <li class="nav-item">
-              <%= link_to '書籍投稿', new_book_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-book'></i> 書籍投稿".html_safe, new_book_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'スポット投稿', new_spot_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-location-pin'></i> スポット投稿".html_safe, new_spot_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'マイページ', mypage_users_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-user'></i>マイページ".html_safe, mypage_users_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
@@ -62,36 +62,36 @@
             全件一覧
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li><%= link_to '全書籍一覧', books_path, class:"dropdown-item" %></li>
-            <li><%= link_to '全スポット一覧', spots_path, class:"dropdown-item" %></li>
-            <li><%= link_to '全ユーザー一覧', users_path, class:"dropdown-item" %></li>
+            <li><%= link_to "<i class='fa-solid fa-book'></i> 全書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
+            <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 全スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
+            <li><%= link_to "<i class='fa-solid fa-user'></i> 全ユーザー一覧".html_safe, users_path, class:"dropdown-item" %></li>
           </ul>
         </li>
       </ul>
       <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-          書籍ジャンル別一覧
+        <i class="fa-solid fa-book"></i>書籍ジャンル別一覧
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item" href="#">文芸書</a></li>
-          <li><a class="dropdown-item" href="#">コミック</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> 文芸書</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> コミック</a></li>
         </ul>
       </li>
       </ul>
       <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-          スポット所在地別一覧
+        <i class="fa-solid fa-location-pin"></i>スポット所在地別一覧
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item" href="#">北海道</a></li>
-          <li><a class="dropdown-item" href="#">東北</a></li>
-          <li><a class="dropdown-item" href="#">関東</a></li>
-          <li><a class="dropdown-item" href="#">中部</a></li>
-          <li><a class="dropdown-item" href="#">近畿</a></li>
-          <li><a class="dropdown-item" href="#">中国</a></li>
-          <li><a class="dropdown-item" href="#">九州</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 北海道</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 東北</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 関東</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中部</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 近畿</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中国</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 九州</a></li>
         </ul>
       </li>
       </ul>
