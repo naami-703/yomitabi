@@ -33,4 +33,16 @@
 ​
 ## 使用素材
 アイコンとして以下を使用
-- FontAwesome（https://fontawesome.com/kits/41e38c5826/setup?created=yes&hosting=hosted）
+- FontAwesome
+https://fontawesome.com/icons/bookmark
+https://fontawesome.com/icons/book?f=classic&s=solid
+https://fontawesome.com/icons/location-pin?f=classic&s=solid
+https://fontawesome.com/icons/face-grin-hearts?f=classic&s=solid
+https://fontawesome.com/icons/thumbs-up?f=classic&s=solid
+https://fontawesome.com/icons/people-arrows?f=classic&s=solid
+https://fontawesome.com/icons/user?f=classic&s=solid
+https://fontawesome.com/icons/arrow-right-to-bracket?f=classic&s=solid
+https://fontawesome.com/icons/gears?f=classic&s=solid
+https://fontawesome.com/icons/arrow-right-from-bracket?f=classic&s=solid
+https://fontawesome.com/icons/user-plus?f=classic&s=solid
+https://fontawesome.com/icons/circle-question?f=classic&s=solid
