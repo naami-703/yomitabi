@@ -27,7 +27,7 @@
     <div class="col-md-2 p-3">
       <span><i class="fa-solid fa-people-arrows"></i> フォロー数：</span><br>
       <span><i class="fa-solid fa-people-arrows"></i> フォロワー数：</span><br><br>
-      <%= link_to '編集する', edit_user_path(current_user), class: "nav_button" %><br>
+      <%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_user_path(current_user), class: "nav_button" %><br>
     </div>
   </div>
 

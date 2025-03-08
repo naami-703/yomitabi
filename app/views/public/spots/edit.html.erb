@@ -10,9 +10,9 @@
         <div class="field">
         <%= form_with model: @spot do |f| %>
             <%= f.label :スポット名 %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "title" %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "title", size: "30x1" %><br />
             <%= f.label :住所 %><br />
-            <%= f.text_field :address, autofocus: true, autocomplete: "adderess" %><br />
+            <%= f.text_field :address, autofocus: true, autocomplete: "adderess", size: "40x1" %><br />
             <%= f.label :スポット画像 %><br />
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
             <%= f.submit 'スポット情報更新', class: 'nav_button' %><br />

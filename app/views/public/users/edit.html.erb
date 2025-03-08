@@ -18,15 +18,15 @@
       <div class="field">
       <%= form_with model: @user do |f| %>
           <%= f.label :名前 %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", size: "30x1" %><br />
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30x1" %><br />
           <%= f.label :プロフィール画像 %><br />
           <%= f.file_field :profile_image, accept: "image/*" %><br />
           <%= f.label :自己紹介 %><br />
-          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction," %><br />
+          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",size: "30x3" %><br />
           <%= f.label :好きな本 %><br />
-          <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books" %><br />
+          <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books",size: "30x3" %><br />
           <%= f.submit "プロフィール更新", class: "nav_button"%><br />
           <%= link_to '退会する', user_path(current_user), method: :destroy, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
         <% end %>

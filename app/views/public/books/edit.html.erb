@@ -10,7 +10,7 @@
         <div class="field">
         <%= form_with model: @book do |f| %>
             <%= f.label :タイトル %><br />
-            <%= f.text_field :title, autofocus: true, autocomplete: "title" %><br />
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br />
             <%= f.label :表紙画像 %><br />
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
             <%= f.submit '書籍情報更新', class: 'nav_button' %><br />

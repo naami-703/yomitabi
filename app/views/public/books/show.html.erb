@@ -21,7 +21,7 @@
             <tr>
             <% if @book.user == current_user %>
               <tr>
-                <td><%= link_to '編集する', edit_book_path(@book.id),  class: 'nav_button' %></td>
+                <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_book_path(@book.id),  class: 'nav_button' %></td>
               </tr>
             <% end %>
           <tr>

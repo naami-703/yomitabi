@@ -18,7 +18,7 @@
         <h3 class="h3_text">書籍新規投稿</h3>
         <%= form_with model: @book do |f| %>
             <%= f.label :タイトル %><br />
-            <%= f.text_field :title %><br /><br />
+            <%= f.text_field :title, size: "30x1" %><br /><br />
             <%= f.label :表紙 %><br />
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %>

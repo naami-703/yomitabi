@@ -25,25 +25,25 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to "<i class='fa-solid fa-user'></i>マイページ".html_safe, mypage_users_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-user'></i> マイページ".html_safe, mypage_users_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav_button_login_logout" %>
+              <%= link_to "<i class='fa-solid fa-arrow-right-from-bracket'></i> ログアウト".html_safe, destroy_user_session_path, method: :delete, class: "nav_button_login_logout" %>
             </li>
 
           <!-- 非ログイン時のヘッダー -->
           <% else %>
             <li class="nav-item">
-              <%= link_to '読み旅とは？', about_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-circle-question'></i> 読み旅とは".html_safe, about_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to '新規会員登録', new_user_registration_path, class: "nav_button" %>
+              <%= link_to "<i class='fa-solid fa-user-plus'></i> 新規会員登録".html_safe, new_user_registration_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'ログイン', new_user_session_path, class: "nav_button_login_logout" %>
+              <%= link_to "<i class='fa-solid fa-arrow-right-to-bracket'></i> ログイン".html_safe, new_user_session_path, class: "nav_button_login_logout" %>
             </li>
 
           <% end %>

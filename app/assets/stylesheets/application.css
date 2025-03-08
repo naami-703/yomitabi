@@ -48,13 +48,13 @@ header, h3 {
 
 /* ヘッダー下段背景色 */
  .bg_custom_bottom {
-  background: #5d7f90;
+  background: #4e839d;
   color: white;
 }
 
 /* ヘッダーボタン */
 .nav_button {
-  background: #5d7f90;
+  background: #4e839d;
   text-decoration: none;
   color: white;
   border-radius : 10px;
@@ -64,26 +64,24 @@ header, h3 {
 
   .nav_button:hover {
     text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
-    color: white; /* マウスオーバー時の文字色を白にする */
+    color: white; /* マウスオーバー時の文字色 */
   }
 
 /* ヘッダーログイン・ログアウトボタン */
 .nav_button_login_logout {
-  border: 2px solid #5d7f90;
+  border: 2px solid #4e839d;
   background: #e7e7e6;
   text-decoration: none;
-  color: #5d7f90;
-  border-radius : 10px;
+  color: #4e839d;
+  border-radius: 10px;
   padding: 10px;
   margin: 10px;
   }
 
   .nav_button_login_logout:hover {
     text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
-    color: #5d7f90; /* マウスオーバー時の文字色を白にする */
+    color: #4e839d; /* マウスオーバー時の文字色 */
   }
-
-
 
 /* top画像サイズ */
 .top_image {
