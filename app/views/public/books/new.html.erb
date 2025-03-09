@@ -2,11 +2,11 @@
   <div class='row no-gutters bg-white'>
 
     <div class='col-md-10 mx-auto text-center'>
-      <h3 class="h3_text">書籍情報編集</h3>
+      <h3 class="h3_text">新規書籍投稿</h3>
     </div>
 
     <div class="row">
-      <div class='col-md-12 mx-auto'>
+      <div class='col-md-8 mx-auto text-center'>
         <% if @book.errors.any? %>
           <div id="error_explanation">
               <%= pluralize(@book.errors.count, "error") %> 件のエラーがあります:
