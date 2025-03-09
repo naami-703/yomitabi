@@ -1,18 +1,21 @@
 <div class='container-fluid container-sidber'>
   <div class='row no-gutters  bg-white'>
 
-    <div class='col-md-12 text-center'>
-      <div class="row">
-        <div class='col-md-12 mx-auto'>
+    <div class='col-md-10  mx-auto text-center'>
+      <h3 class="h3_text">スポット情報編集</h3>
+    </div>
+
+    <div class="row">
+      <div class='col-md-12 mx-auto'>
         <% if @spot.errors.any? %>
-        <div id="error_explanation">
-          <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
-          <ul>
-            <% @spot.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+          <div id="error_explanation">
+            <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
+            <ul>
+              <% @spot.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
 
         <h3 class="h3_text">スポット新規投稿</h3>
@@ -24,9 +27,7 @@
             <%= f.label :スポット画像 %><br />
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
             <%= f.submit 'スポット新規投稿', class: 'nav_button' %>
-          </div>
         <% end %>
-        </div>
       </div>
     </div>
   </div>

@@ -42,7 +42,7 @@ class Public::SpotsController < ApplicationController
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy
-    redirect_to spots_path
+    redirect_to mypage_users_path
   end
 
   private

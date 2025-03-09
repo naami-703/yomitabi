@@ -7,19 +7,19 @@
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
-      <% if @spot.errors.any? %>
-        <div id="error_explanation">
-          <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
-          <ul>
-            <% @spot.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+        <% if @spot.errors.any? %>
+          <div id="error_explanation">
+            <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
+            <ul>
+              <% @spot.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
         <div class="field">
-        <%= form_with model: @spot do |f| %>
+          <%= form_with model: @spot do |f| %>
             <%= f.label :スポット名 %><br />
             <%= f.text_field :name, autofocus: true, autocomplete: "title", size: "30x1" %><br />
             <%= f.label :住所 %><br />
@@ -32,7 +32,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 </div>
