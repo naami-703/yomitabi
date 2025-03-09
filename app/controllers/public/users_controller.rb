@@ -37,9 +37,9 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
 
   private
@@ -51,7 +51,7 @@ class Public::UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      redirect_to new_user_session_path
     end
   end
 

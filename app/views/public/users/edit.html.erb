@@ -28,7 +28,7 @@
           <%= f.label :好きな本 %><br />
           <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books",size: "30x3" %><br />
           <%= f.submit "プロフィール更新", class: "nav_button"%><br />
-          <%= link_to '退会する', root_path, method: :destroy, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
+          <%= link_to '退会する', user_path(current_user), method: :delete, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
         <% end %>
       </div>
 

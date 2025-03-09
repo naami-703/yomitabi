@@ -25,7 +25,7 @@
             <%= f.label :表紙画像 %><br />
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
             <%= f.submit '書籍情報更新', class: 'nav_button' %><br />
-            <%= link_to "削除する", mypage_users_path, method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to "削除する", book_path(@book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>
       </div>
