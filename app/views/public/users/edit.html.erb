@@ -4,14 +4,14 @@
 
       <!-- error -->
       <% if @user.errors.any? %>
-        <ul class="alert-error">
-          <h6 class="alert-error">
-            <%= @user.errors.count %>errors prohibited this obj from being saved:
-          </h6>
+        <div id="error_explanation">
+          <%= @user.errors.count %> 件のエラーがあります:
+        <ul>
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
+        </div>
       <% end %>
 
       <h3 class="h3_text">  ユーザー情報編集</h3>
@@ -28,7 +28,7 @@
           <%= f.label :好きな本 %><br />
           <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books",size: "30x3" %><br />
           <%= f.submit "プロフィール更新", class: "nav_button"%><br />
-          <%= link_to '退会する', user_path(current_user), method: :destroy, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
+          <%= link_to '退会する', root_path, method: :destroy, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
         <% end %>
       </div>
 

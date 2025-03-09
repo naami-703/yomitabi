@@ -7,6 +7,17 @@
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
+      <% if @spot.errors.any? %>
+        <div id="error_explanation">
+          <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
+          <ul>
+            <% @spot.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
         <div class="field">
         <%= form_with model: @spot do |f| %>
             <%= f.label :スポット名 %><br />
@@ -16,7 +27,7 @@
             <%= f.label :スポット画像 %><br />
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
             <%= f.submit 'スポット情報更新', class: 'nav_button' %><br />
-            <%= link_to "削除する", spot_path(@spot.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to "削除する", mypage_users_path, method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>
       </div>

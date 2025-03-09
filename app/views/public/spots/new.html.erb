@@ -6,7 +6,7 @@
         <div class='col-md-12 mx-auto'>
         <% if @spot.errors.any? %>
         <div id="error_explanation">
-          <h3><%= pluralize(@spot.errors.count, "error") %> prohibited this obj from being saved:</h3>
+          <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
           <ul>
             <% @spot.errors.full_messages.each do |message| %>
               <li><%= message %></li>
