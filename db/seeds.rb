@@ -37,3 +37,7 @@ Spot.find_or_create_by!(name: "三浦町カトリック教会") do |spot|
   spot.user_id = 佐藤花子.id
   spot.address = "長崎県佐世保市三浦町４−２５"
 end
+
+Admin.find_or_create_by!(email: "admin@admin.co.jp") do |admin|
+  admin.password = "password"
+end
