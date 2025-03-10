@@ -2,34 +2,45 @@
   <nav class = "navbar navbar-expand-lg bg_custom">
     <div class = "container">
 
+    <!-- Adminログイン時のロゴ表示 -->
+    <% if admin_signed_in? %>
+      <a class = "navbar-brand" href = "/admin">
+        <img src="<%= asset_url('logo.webp') %>" alt="サイトロゴ" class="logo_image">
+      </a>
+      管理者ページ
+    <!-- 非ログイン・Userログイン時のロゴ表示 -->
+    <% else %>
       <a class = "navbar-brand" href = "/">
         <img src="<%= asset_url('logo.webp') %>" alt="サイトロゴ" class="logo_image">
       </a>
+    <% end %>
 
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- ヘッダー上段メニュ -->
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
 
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <!-- Customerログイン時のヘッダー -->
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "<i class='fa-solid fa-book'></i> 書籍投稿".html_safe, new_book_path, class: "nav_button" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "<i class='fa-solid fa-location-pin'></i> スポット投稿".html_safe, new_spot_path, class: "nav_button" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "<i class='fa-solid fa-user'></i> マイページ".html_safe, mypage_users_path, class: "nav_button" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "<i class='fa-solid fa-arrow-right-from-bracket'></i> ログアウト".html_safe, destroy_user_session_path, method: :delete, class: "nav_button_login_logout" %>
+          </li>
 
-          <!-- Customerログイン時のヘッダー -->
-          <% if user_signed_in? %>
-
+          <!-- Adminログイン時のヘッダー -->
+          <% elsif admin_signed_in? %>  
             <li class="nav-item">
-              <%= link_to "<i class='fa-solid fa-book'></i> 書籍投稿".html_safe, new_book_path, class: "nav_button" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "<i class='fa-solid fa-location-pin'></i> スポット投稿".html_safe, new_spot_path, class: "nav_button" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "<i class='fa-solid fa-user'></i> マイページ".html_safe, mypage_users_path, class: "nav_button" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "<i class='fa-solid fa-arrow-right-from-bracket'></i> ログアウト".html_safe, destroy_user_session_path, method: :delete, class: "nav_button_login_logout" %>
+              <%= link_to "<i class='fa-solid fa-arrow-right-from-bracket'></i> ログアウト".html_safe, destroy_admin_session_path, method: :delete, class: "nav_button_login_logout" %>
             </li>
 
           <!-- 非ログイン時のヘッダー -->
@@ -37,15 +48,12 @@
             <li class="nav-item">
               <%= link_to "<i class='fa-solid fa-circle-question'></i> 読み旅とは".html_safe, about_path, class: "nav_button" %>
             </li>
-
             <li class="nav-item">
               <%= link_to "<i class='fa-solid fa-user-plus'></i> 新規会員登録".html_safe, new_user_registration_path, class: "nav_button" %>
             </li>
-
             <li class="nav-item">
               <%= link_to "<i class='fa-solid fa-arrow-right-to-bracket'></i> ログイン".html_safe, new_user_session_path, class: "nav_button_login_logout" %>
             </li>
-
           <% end %>
         </ul>
       </div>
@@ -53,53 +61,73 @@
   </nav>
 
   <!-- ヘッダー下段メニュ -->
-  <nav class = "navbar navbar-expand-lg bg_custom_bottom">
-    <div class = "container">
-      <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-            全件一覧
-          </button>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><%= link_to "<i class='fa-solid fa-book'></i> 全書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
-            <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 全スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
-            <li><%= link_to "<i class='fa-solid fa-user'></i> 全ユーザー一覧".html_safe, users_path, class:"dropdown-item" %></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-book"></i> 書籍ジャンル別一覧
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> 文芸書</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> コミック</a></li>
-        </ul>
-      </li>
-      </ul>
-      <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-location-pin"></i> スポット所在地別一覧
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 北海道</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 東北</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 関東</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中部</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 近畿</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中国</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 九州</a></li>
-        </ul>
-      </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="タイトル、スポット、ユーザー" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+  <!-- Adminログイン時のヘッダー -->
+  <% if admin_signed_in? %>  
+    <nav class = "navbar navbar-expand-lg bg_admin_bottom">
+      <div class = "container">
+        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+          <li>
+          管理者メニュー
+          </li>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="タイトル、スポット、ユーザー" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+
+  <% else %>
+    <nav class = "navbar navbar-expand-lg bg_user_bottom">
+      <div class = "container">
+        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                全件一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><%= link_to "<i class='fa-solid fa-book'></i> 全書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 全スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-user'></i> 全ユーザー一覧".html_safe, users_path, class:"dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-book"></i> 書籍ジャンル別一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> 文芸書</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> コミック</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-location-pin"></i> スポット所在地別一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 北海道</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 東北</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 関東</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中部</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 近畿</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中国</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 九州</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="タイトル、スポット、ユーザー" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  <% end %>
 </header>

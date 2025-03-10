@@ -46,12 +46,17 @@ header, h3 {
    background-repeat: no-repeat;
  }
 
-/* ヘッダー下段背景色 */
- .bg_custom_bottom {
+/* ヘッダーUserログイン時下段背景色 */
+ .bg_user_bottom {
   background: #4e839d;
   color: white;
 }
 
+/* ヘッダーadminログイン時下段背景色 */
+.bg_admin_bottom {
+  background: #bc8f8f;
+  color: white;
+}
 /* ヘッダーボタン */
 .nav_button {
   background: #4e839d;
