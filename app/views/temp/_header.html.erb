@@ -67,9 +67,38 @@
       <div class = "container">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
-          <li>
-          管理者メニュー
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                投稿情報編集
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><%= link_to "<i class='fa-solid fa-book'></i> 書籍一覧".html_safe, admin_books_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> スポット一覧".html_safe, admin_spots_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-comment'></i> コメント一覧".html_safe, admin_comments_path, class:"dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                会員情報編集
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><%= link_to "<i class='fa-solid fa-user'></i> 会員一覧".html_safe, admin_users_path, class:"dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+              分類情報編集
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><%= link_to "<i class='fa-solid fa-book'></i> ジャンル一覧".html_safe, admin_genres_path, class:"dropdown-item" %></li>
+              <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 所在地一覧".html_safe, admin_locations_path, class:"dropdown-item" %></li>
+            </ul>
           </li>
+        </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="タイトル、スポット、ユーザー" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
@@ -88,9 +117,9 @@
                 全件一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><%= link_to "<i class='fa-solid fa-book'></i> 全書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
-                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 全スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
-                <li><%= link_to "<i class='fa-solid fa-user'></i> 全ユーザー一覧".html_safe, users_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-book'></i> 書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-user'></i> 会員一覧".html_safe, users_path, class:"dropdown-item" %></li>
               </ul>
             </li>
           </ul>
