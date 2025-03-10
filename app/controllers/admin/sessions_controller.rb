@@ -25,6 +25,13 @@ class Admin::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def new
+    @admin = Admin.new
+    if user_signed_in? && !admin_signed_in?
+      @user = current_user
+    end
+  end
+
   def after_sign_in_path_for(resource)
     admin_top_path
   end

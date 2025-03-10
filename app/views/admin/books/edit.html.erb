@@ -1,0 +1,31 @@
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto text-center'>
+      <h3 class="h3_text">書籍情報編集</h3>
+    </div>
+    <div class="row">
+      <div class='col-md-10 mx-auto text-center'>
+      <% if @book.errors.any? %>
+        <div id="error_explanation">
+          <%= pluralize(@book.errors.count, "error") %> 件のエラーがあります:
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+        <div class="field">
+          <%= form_with model: @book, url: admin_book_path(@book.id) do |f| %>
+            <%= f.label :タイトル %><br />
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br />
+            <%= f.label :表紙画像 %><br />
+            <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+            <%= f.submit '書籍情報更新', class: 'nav_button' %><br />
+            <%= link_to "削除する", admin_book_path(@book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

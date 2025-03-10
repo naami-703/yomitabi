@@ -1,10 +1,8 @@
 <div class='container-fluid'>
   <div class='row no-gutters bg-white'>
-
     <div class='col-md-10 mx-auto text-center'>
       <h3 class="h3_text">書籍情報編集</h3>
     </div>
-
     <div class="row">
       <div class='col-md-10 mx-auto text-center'>
       <% if @book.errors.any? %>
@@ -17,7 +15,6 @@
           </ul>
         </div>
       <% end %>
-
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.label :タイトル %><br />
@@ -30,7 +27,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

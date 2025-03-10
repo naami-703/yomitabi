@@ -35,8 +35,8 @@ Rails.application.routes.draw do
   get "/admin", to: "admin/homes#top", as: "admin/top"
 
   namespace :admin do
-    resources :books, only: [:index, :show, :edit, :update, :destroy]
-    resources :spots, only: [:index, :show, :edit, :update, :destroy]
+    resources :books, only: [:index, :edit, :update, :destroy]
+    resources :spots, only: [:index, :edit, :update, :destroy]
     resources :locations, only: [:index, :create]
     resources :genres, only: [:index, :create]
     resources :users, only: [:index, :show, :edit, :update, :destroy] 
