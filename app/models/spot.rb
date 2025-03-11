@@ -1,12 +1,13 @@
 class Spot < ApplicationRecord
 
   belongs_to :user
-  #belongs_to :location
+  belongs_to :location, optional: true
+  has_many :post_managements,  dependent: :destroy, as: :postable
 
   validates :name, presence: true
   validates :address, presence: true
 
-  has_one_attached :spot_image
+  has_one_attached :spot_image, dependent: :destroy
 
   def get_spot_image(width,height)
     unless spot_image.attached?

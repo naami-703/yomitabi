@@ -3,8 +3,10 @@ class CreateSpots < ActiveRecord::Migration[6.1]
     create_table :spots do |t|
       t.integer "user_id"
       t.integer "location_id"
+      t.integer "book_id"
       t.string "name", null: false
       t.string "address", null: false
+      t.string "post_type", null: false
       t.timestamps
     end
   end

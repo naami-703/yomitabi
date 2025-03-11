@@ -2,10 +2,11 @@ class Book < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
+  has_many :post_managements,  dependent: :destroy, as: :postable
 
   validates :title, presence: true
 
-  has_one_attached :book_image
+  has_one_attached :book_image, dependent: :destroy
 
   def get_book_image(width,height)
     unless book_image.attached?

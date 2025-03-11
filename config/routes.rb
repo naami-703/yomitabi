@@ -17,16 +17,17 @@ Rails.application.routes.draw do
       end
     end
     resources :books do
-      resources:comments, only:[:create, :destroy]
-      resource:bookmarks, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy]
+      resource :bookmarks, only:[:create, :destroy]
     end
     resources :spots do
-      resources:comments, only:[:create, :destroy]
-      resource:went, only:[:create, :destroy]
-      resource:want_to_gos, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy]
+      resource :went, only:[:create, :destroy]
+      resource :want_to_gos, only:[:create, :destroy]
     end
     resources :genres, only: [:show]
     resources :locations, only: [:show]
+    resources :post_managements, only: [:show, :create, :update, :destroy]
   end
 
   #管理者側設定

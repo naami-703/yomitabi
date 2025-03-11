@@ -48,7 +48,7 @@ class Public::SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :spot_image, :address)
+    params.require(:spot).permit(:name, :spot_image, :address, :book_id, :post_type)
   end
 
   def ensure_correct_user
