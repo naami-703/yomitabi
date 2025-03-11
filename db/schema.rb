@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2025_03_11_052841) do
   create_table "post_managements", force: :cascade do |t|
     t.integer "book_id"
     t.integer "spot_id"
+    t.string "post_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
