@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       resource:went, only:[:create, :destroy]
       resource:want_to_gos, only:[:create, :destroy]
     end
+    resources :genres, only: [:show]
+    resources :locations, only: [:show]
   end
 
   #管理者側設定
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
     resources :spots, only: [:index, :edit, :update, :destroy]
     resources :locations, only: [:index, :create]
     resources :genres, only: [:index, :create]
-    resources :users, only: [:index, :show, :edit, :update, :destroy] 
+    resources :users, only: [:index, :edit, :update, :destroy] 
     resources :comments, only: [:index, :destroy] 
   end
 

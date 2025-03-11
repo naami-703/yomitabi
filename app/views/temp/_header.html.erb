@@ -129,8 +129,9 @@
               <i class="fa-solid fa-book"></i> 書籍ジャンル別一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> 文芸書</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-book"></i> コミック</a></li>
+                <% @genres.each do |genre| %>
+                  <li><a class="dropdown-item" href="<%= genre_path(genre) %>" ><i class="fa-solid fa-book"></i> <%= genre.name %></a></li>
+                <% end %>
               </ul>
             </li>
           </ul>

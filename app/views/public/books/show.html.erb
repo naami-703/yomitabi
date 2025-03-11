@@ -4,7 +4,7 @@
     <div class="col-md-10 d-flex">
       <!-- 書籍詳細（左側） -->
       <div class="col-md-5">
-      <h3 class="h3_text">書籍詳細</h3>
+        <h3 class="h3_text">書籍詳細</h3>
           <table class="book_table">
             <tr>
               <th>タイトル</th>
@@ -14,6 +14,10 @@
               <th>表紙画像</th>
               <td><%= image_tag @book.get_book_image(200,200), { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" }  %></td>
             </tr>
+            <tr>
+            <th>ジャンル</th>
+            <td><%= link_to @book.genre.name, genre_path(@genre) %></td>
+          </tr>
           </table>
           <table class="element_table">
             <tr>

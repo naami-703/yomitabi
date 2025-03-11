@@ -2,7 +2,7 @@
   <div class='row no-gutters bg-white'>
 
     <div class='col-md-10 mx-auto text-center'>
-      <h3 class="h3_text">新規書籍投稿</h3>
+      <h4 class="h4_text">新規書籍投稿</h4>
     </div>
 
     <div class="row">
@@ -20,10 +20,12 @@
          
         <div class="field">
           <%= form_with model: @book do |f| %>
-            <%= f.label :タイトル %><br />
+            <%= f.label :タイトル %>
             <%= f.text_field :title, size: "30x1" %><br /><br />
-            <%= f.label :表紙 %><br />
+            <%= f.label :表紙 %>
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+            <%= f.label :ジャンル選択 %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %>
           <% end %>
         </div>

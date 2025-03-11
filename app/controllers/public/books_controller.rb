@@ -13,6 +13,7 @@ class Public::BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    @genre = @book.genre
   end
 
   def create
@@ -21,7 +22,6 @@ class Public::BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
-      @books = Book.all
       render "new"
     end
   end
@@ -48,12 +48,13 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :book_image)
+    params.require(:book).permit(:title, :book_image, :genre_id)
   end
 
   def ensure_correct_user
     @book = Book.find(params[:id])
-    unless @book.user == current_user
+    unless 
+      @book.user == current_user
       redirect_to mypage_users_path
     end
   end

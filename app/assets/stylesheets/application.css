@@ -22,13 +22,9 @@
    box-sizing: border-box;
  }
 
-/* フォント指定 */
-header, h3 {
-  font-family: 'Kaushan', cursive, sans-serif;
-}
-
 /* 見出し設定 */
-.h3_text {
+.h4_text {
+  font-family: 'Kaushan', cursive, sans-serif;;
   margin: 20px;
 }
 

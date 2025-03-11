@@ -1,1 +1,41 @@
-会員一覧
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto'>
+      <div class="p-3 mb-2">
+        <h4 class="h4_text">会員一覧</h4>
+      </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="row"> 
+          <table>
+            <tr>
+              <th></th>
+              <th>名前</th>
+              <th>自己紹介</th>
+              <th>好きな本</th>
+              <th>登録日</th>
+              <th></th>
+              <th></th>
+            <tr>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <div class="user_image">
+                  <%= image_tag user.get_profile_image(100,100) %>
+                  </div>
+                </td>
+                <td><%= user.name %></td>
+                <td><%= user.introduction %></td>
+                <td><%= user.favorite_books %></td>
+                <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= link_to "編集する",  edit_admin_user_path(user), class: 'btn btn-success mb-3', role: 'button' %></td>
+                <td><%= link_to "削除する", admin_user_path(user), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

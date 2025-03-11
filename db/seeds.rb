@@ -20,14 +20,6 @@ end
   user.favorite_books = "十二国記"
 end
 
-Book.find_or_create_by!(title: "四畳半神話大系") do |book|
-  book.user_id = 山田太郎.id
-end
-
-Book.find_or_create_by!(title: "坂道のアポロン") do |book|
-  book.user_id = 佐藤花子.id
-end
-
 Spot.find_or_create_by!(name: "鴨川デルタ") do |spot|
   spot.user_id = 山田太郎.id
   spot.address = "京都府京都市左京区下鴨宮河町"
@@ -40,4 +32,17 @@ end
 
 Admin.find_or_create_by!(email: "admin@admin.co.jp") do |admin|
   admin.password = "password"
+
+Genre.find_or_create_by!(name: "コミック")
+  Book.find_or_create_by!(title: "坂道のアポロン") do |book|
+  book.user_id = 佐藤花子.id
+  book.genre_id = 1
+end
+
+Genre.find_or_create_by!(name: "小説")
+  Book.find_or_create_by!(title: "四畳半神話大系") do |book|
+  book.user_id = 山田太郎.id
+  book.genre_id = 2
+end
+
 end
