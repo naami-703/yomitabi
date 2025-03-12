@@ -12,8 +12,8 @@ class Public::SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
-    spot_post_management = PostManagement.find_by(spot_id: @spot.id)
-    @books = @spot.post_managements.where(post_type: "book").map { |pm| pm.book }
+    post_managements = PostManagement.where(spot_id: @spot.id)
+    @books = post_managements.where(post_type: "spot")
     @user = @spot.user
   end
 
@@ -21,7 +21,7 @@ class Public::SpotsController < ApplicationController
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
     if @spot.save
-      PostManagement.create(spot_id: @spot.id, post_type: "spot")
+      PostManagement.create(book_id: @spot.book_id, spot_id: @spot.id, post_type: @spot.post_type)
       redirect_to spot_path(@spot), notice: "スポットを新規登録しました。"
     else
       @spots = Spot.all

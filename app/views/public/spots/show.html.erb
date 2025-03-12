@@ -1,10 +1,10 @@
 <div class='container-fluid'>
   <div class='row no-gutters bg-white'>
-
     <div class="col-md-10 d-flex">
+
       <!-- スポット詳細（左側） -->
       <div class="col-md-5">
-      <h3 class="h3_text">スポット詳細</h3>
+      <h4 class="h4_text">スポット詳細</h4>
         <table class="spot_table">
           <tr>
             <th>スポット名</th>
@@ -73,7 +73,28 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row"> 
-                  <%= render "temp/book_index", books: @books %>
+                  <h4 class="h4_text">関連書籍</h4>
+                  <div class="col-md-4 mb-4">
+                    <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+                      <div class="card-body py-0">
+                        <% if @books.present? %>
+                          <% @books.each do |book| %>
+                            <% book = book.book %>
+                            <% if book %>
+                              <%= link_to book_path(book) do %>
+                                <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>
+                                <p class="card-title"><%= book.title %></p>
+                              <% end %>
+                            <% else %>
+                              <p>関連書籍がありません</p>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <p>関連書籍がありません</p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,7 +109,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                 </div>
                 <div class="modal-body">
-                <%= image_tag @spot.get_spot_image(300,300) %>
+                  <%= image_tag @spot.get_spot_image(300,300) %>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
@@ -96,9 +117,9 @@
               </div>
             </div>
           </div>
-
-        </div>
+        </div>      
       </div>
+
     </div>
   </div>
 </div>
