@@ -13,7 +13,7 @@ class Public::BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     post_managements = PostManagement.where(book_id: @book.id)
-    @spots = post_managements.where(post_type: "book")
+    @spots = post_managements.where(post_type: "spot")
     @user = @book.user
     @genre = @book.genre
   end

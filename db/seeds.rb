@@ -24,9 +24,6 @@ Admin.find_or_create_by!(email: "admin@admin.co.jp") do |admin|
   admin.password = "password"
 end
 
-Spot.create!(name: "鴨川デルタ", user_id: 山田太郎.id, address: "京都府京都市左京区下鴨宮河町", post_type: "spot")
-Spot.create!(name: "三浦町カトリック教会", user_id: 佐藤花子.id, address: "長崎県佐世保市三浦町４−２５", post_type: "spot")
-
 コミック = Genre.find_or_create_by!(name: "コミック")
 小説 = Genre.find_or_create_by!(name: "小説")
 
@@ -41,5 +38,18 @@ Book.find_or_create_by!(title: "四畳半神話大系") do |book|
   book.genre_id = 小説.id
   book.post_type = "book"
 end
+
+Spot.create!(name: "鴨川デルタ", user_id: 山田太郎.id, address: "京都府京都市左京区下鴨宮河町", post_type: "spot")
+Spot.create!(name: "三浦町カトリック教会", user_id: 佐藤花子.id, address: "長崎県佐世保市三浦町４−２５", post_type: "spot")
+
+apollo_book = Book.find_by(title: "坂道のアポロン")
+miura_spot = Spot.find_by(name: "三浦町カトリック教会")
+PostManagement.create!(book_id: apollo_book.id, spot_id: miura_spot.id, post_type: "spot")
+
+yojohan_book = Book.find_by(title: "四畳半神話体系")
+kamogawa_spot = Spot.find_by(name: "鴨川デルタ")
+PostManagement.create!(book_id: yojohan_book.id, spot_id: kamogawa_spot.id, post_type: "book")
+
+
 
 
