@@ -12,7 +12,8 @@ class Public::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    book_post_management = PostManagement.find_by(book_id: @book.id)
+    post_managements = PostManagement.where(book_id: @book.id)
+    @spots = post_managements.where(post_type: "book")
     @user = @book.user
     @genre = @book.genre
   end
@@ -21,7 +22,7 @@ class Public::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      PostManagement.create(book_id: @book.id, post_type: "book")
+      PostManagement.create(post_type: @book.post_type)
       redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
       render "new"
@@ -35,10 +36,15 @@ class Public::BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      PostManagement.update(book_id: @book.id, post_type: "book")
-      redirect_to book_path(@book), notice: "書籍情報を更新しました。"
+      post_management = PostManagement.find_by(book_id: @book.id)
+      if post_management
+        post_management.update(book_id: @book.id, post_type: @book.post_type)
+      else
+        PostManagement.create(book_id: @book.id, post_type: @book.post_type)
+      end
+        redirect_to book_path(@book), notice: "書籍情報を更新しました。"
     else
-      render "edit"
+      rend
     end
   end
 

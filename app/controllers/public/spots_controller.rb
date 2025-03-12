@@ -36,10 +36,15 @@ class Public::SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     if @spot.update(spot_params)
-      PostManagement.update(spot_id: @spot.id, post_type: "spot")
+      post_management = PostManagement.find_by(spot_id: @spot.id)
+      if post_management
+        post_management.update(book_id: @spot.book_id, post_type: @spot.post_type)
+      else
+        PostManagement.create(book_id: @spot.book_id, spot_id: @spot.id, post_type: @spot.post_type)
+      end
       redirect_to spot_path(@spot), notice: "スポット情報を更新しました。"
     else
-      render "edit"
+      rend
     end
   end
 
