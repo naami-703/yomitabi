@@ -62,32 +62,32 @@
           </li>
         </ul>
       </div>
-      
+
+      <!-- 書籍投稿一覧 -->
       <div class="tab-content">
         <div id="book_index" class="tab-pane fade show active">
           <div class="row">
             <div class="col-md-12">
               <div class="row"> 
-                <h3 class="h3_text">書籍投稿一覧</h3>
-                <%= render "temp/book_index", books: @books_new, user: @user %>
+                <%= render "temp/book_list", books: @books_new %>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- スポット投稿一覧 -->
         <div id="spot_index" class="tab-pane fade">
           <div class="row">
             <div class="col-md-12">
               <div class="row"> 
-                <h3 class="h3_text">スポット投稿一覧</h3>
-                <%= render "temp/spot_index", spots: @spots_new, user: @user %>
+                <%= render "temp/spot_list", spots: @spots_new %>
               </div>
             </div>
           </div>
         </div>
 
         <div id="comment_index" class="tab-pane fade">
-          <%= render "temp/comment_index" %>
+          コメント一覧
         </div>
 
         <div id="bookmark_index" class="tab-pane fade">

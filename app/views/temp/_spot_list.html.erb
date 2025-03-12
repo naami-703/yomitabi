@@ -1,0 +1,37 @@
+<table>
+  <tr>
+    <th></th>
+    <th>スポット名</th>
+    <th>住所</th>
+    <th>所在地</th>
+    <th>登録日</th>
+    <th></th>
+  <tr>
+  <% spots.each do |spot| %>
+    <tr>
+      <td>
+        <div class="spot_image">
+        <% if admin_signed_in? %>
+          <%= image_tag spot.get_spot_image(100,100) %>
+        <% else %>
+          <%= link_to spot_path(spot) do %>
+            <%= image_tag spot.get_spot_image(100,100) %>
+        <% end %>
+      <% end %>
+        </div>
+      </td>
+      <td><%= spot.name %></td>
+      <td><%= spot.address %></td>
+      <td>所在地名</td>
+      <td><%= spot.created_at.strftime('%Y/%m/%d') %></td>
+      <% if admin_signed_in? %>
+        <td><%= link_to "編集する",  edit_admin_spot_path(spot), class: 'btn btn-success mb-3', role: 'button' %></td>
+        <td><%= link_to "削除する", admin_spot_path(spot), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+      <% elsif user_signed_in? && current_user == spot.user %>
+        <td><%= link_to "編集する",  edit_spot_path(spot), class: 'btn btn-success mb-3', role: 'button' %></td>
+        <td><%= link_to "削除する", spot_path(spot), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+      <% else %>
+      <% end %>
+      </tr>
+    <% end %>
+</table>

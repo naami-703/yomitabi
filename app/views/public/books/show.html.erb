@@ -57,49 +57,60 @@
             </ul>
           </div>
 
+          <!-- コメント投稿・一覧 -->
           <div id="comment_index" class="tab-pane fade show active">
             <div class="row">
               <div class="col-md-12">
                 <div class="row"> 
-                  コメント
-                  <%= render "temp/comment_index" %>
+                <div>
+                <% if user_signed_in? %>
+                 <h4 class="h4_text">コメント投稿</h4>
+                  <%= form_with model: [@book, @comment] do |f| %>
+                    <%= f.label :コメント： %>
+                    <%= f.text_area :comment, size: "60x2", placeholder: "コメントを入力" %><br />
+                    <%= f.label :スポット画像： %>
+                    <%= f.file_field :comment_image, accept: "image/*" %>
+                    <%= f.submit "コメントする", class: 'nav_button' %>
+                  <% end %>
+                <% else %>
+                <% end %>
+                </div>
+                  <h4 class="h4_text">コメント一覧</h4>
+                  <%= render "temp/comment_index", post_model: @book, comments: @comments %>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- 関連スポット一覧 -->
           <div id="spot_index" class="tab-pane fade">
             <div class="row">
               <div class="col-md-12">
-                <div class="row"> 
-                <h4 class="h4_text">関連スポット</h4>
-                <div class="col-md-4 mb-4">
-                  <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-                    <div class="card-body py-0">
-                      <% if @spots.present? %>
-                        <% @spots.each do |spot| %>
-                          <% spot = spot.spot %>
-                          <% if spot %>
-                            <%= link_to spot_path(spot) do %>
-                              <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
-                            <% end %>
-                              <p class="card-title"><%= spot.name %></p>
-                              <p class="card-title"><%= spot.address %></p>
-                          <% else %>
-                            <p>関連スポットがありません</p>
+                <div class="row">
+                  <% if @spots.present? %>
+                    <% @spots.each do |spot| %>
+                      <% spot = spot.spot %>
+                        <div class="col-md-4 mb-4">
+                          <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+                            <div class="card-body py-0">
+                            <% if spot %>
+                              <%= link_to spot_path(spot) do %>
+                                <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
+                              <% end %>
+                                <p class="card-title"><%= spot.name %></p>
+                                <p class="card-title"><%= spot.address %></p>
+                              <% else %>
+                                <p>関連スポットがありません</p>
                           <% end %>
-                        <% end %>
-                      <% else %>
-                        <p>関連スポットがありません</p>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>関連スポットがありません</p>
+                  <% end %>
                 </div>
               </div>
-            </div>
-          </div>
 
           <!-- 画像表示Modal -->
           <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

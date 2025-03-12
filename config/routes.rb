@@ -17,11 +17,11 @@ Rails.application.routes.draw do
       end
     end
     resources :books do
-      resources :comments, only:[:create, :destroy]
+      resources :comments, controller: 'books/comments',only:[:index, :create, :destroy]
       resource :bookmarks, only:[:create, :destroy]
     end
     resources :spots do
-      resources :comments, only:[:create, :destroy]
+      resources :comments,  controller: 'spots/comments', only:[:index, :create, :destroy]
       resource :went, only:[:create, :destroy]
       resource :want_to_gos, only:[:create, :destroy]
     end

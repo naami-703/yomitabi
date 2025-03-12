@@ -2,6 +2,7 @@ class Spot < ApplicationRecord
 
   belongs_to :user
   belongs_to :location, optional: true
+  has_many :comments, dependent: :destroy
   has_many :post_managements,  dependent: :destroy
 
   validates :name, presence: true

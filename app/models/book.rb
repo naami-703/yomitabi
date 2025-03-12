@@ -2,6 +2,7 @@ class Book < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
+  has_many :comments, dependent: :destroy
   has_many :post_managements,  dependent: :destroy
 
   validates :title, presence: true
