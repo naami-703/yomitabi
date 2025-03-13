@@ -45,53 +45,74 @@
       </div>
 
       <!-- コメント＆スポット（右側） -->
-      <div class="col-md-8 d-flex flex-column">
+      <div class="col-md-10 d-flex flex-column">
         <div class="col-md-12">
+
+          <!-- タブ表示 -->
           <div class="tabs d-flex justify-content-between align-items-center">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#comment_index">コメント</a>
+                <a class="nav-link active" data-toggle="tab" href="#comment_index">コメント</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#book_index">関連書籍</a>
+                <a class="nav-link" data-toggle="tab" href="#book_index">関連書籍</a>
               </li>
             </ul>
           </div>
 
-          <div id="comment_index" class="tab-pane fade show active">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row"> 
-                  コメント
-                  <%= render "temp/comment_index" %>
+          <!-- コメント投稿・一覧 -->
+          <div class="tab-content">
+            <div id="comment_index" class="tab-pane fade show active">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row"> 
+                    <div>
+                    <% if user_signed_in? %>
+                    <h4 class="h4_text">コメント投稿</h4>
+                      <%= form_with model: [@spot, @comment], local: false do |f| %>
+                        <%= f.label :コメント： %>
+                        <%= f.text_area :comment, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
+                        <%= f.label :スポット画像： %>
+                        <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %><br />
+                        <%= f.label :関連書籍選択： %>
+                        <%= f.collection_select :book_id, @select_books, :id, :title, prompt: "選択して下さい" %>
+                        <%= f.submit "コメントする", class: 'nav_button' %>
+                      <% end %>
+                    <% else %>
+                    <% end %>
+                  </div>
+                    <h4 class="h4_text">コメント一覧</h4>
+                      <div id="comment_list">
+                        <%= render "temp/spot_comment_index", spot: @spot, comments: @comments, user: @comments_users, book: @books %>
+                      </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div id="book_index" class="tab-pane fade">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row"> 
-                  <h4 class="h4_text">関連書籍</h4>
-                  <div class="col-md-4 mb-4">
-                    <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-                      <div class="card-body py-0">
-                        <% if @books.present? %>
-                          <% @books.each do |book| %>
-                            <% book = book.book %>
-                            <% if book %>
-                              <%= link_to book_path(book) do %>
-                                <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>
-                                <p class="card-title"><%= book.title %></p>
+            <div id="book_index" class="tab-pane fade">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row"> 
+                    <h4 class="h4_text">関連書籍</h4>
+                    <div class="col-md-4 mb-4">
+                      <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+                        <div class="card-body py-0">
+                          <% if @books.present? %>
+                            <% @books.each do |book| %>
+                              <% book = book.book %>
+                              <% if book %>
+                                <%= link_to book_path(book) do %>
+                                  <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>
+                                  <p class="card-title"><%= book.title %></p>
+                                <% end %>
+                              <% else %>
+                                <p>関連書籍がありません</p>
                               <% end %>
-                            <% else %>
-                              <p>関連書籍がありません</p>
                             <% end %>
+                          <% else %>
                           <% end %>
-                        <% else %>
-                          <p>関連書籍がありません</p>
-                        <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -117,6 +138,7 @@
               </div>
             </div>
           </div>
+          
         </div>      
       </div>
 

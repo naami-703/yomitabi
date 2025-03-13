@@ -49,7 +49,7 @@
           <div class="tabs d-flex justify-content-between align-items-center">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#comment_index">コメント</a>
+              <a class="nav-link active" data-toggle="tab" href="#comment_index">感想</a>
               </li>
               <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#spot_index">関連スポット</a>
@@ -57,62 +57,67 @@
             </ul>
           </div>
 
-          <!-- コメント投稿・一覧 -->
-          <div id="comment_index" class="tab-pane fade show active">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row"> 
-                <div>
-                <% if user_signed_in? %>
-                 <h4 class="h4_text">コメント投稿</h4>
-                  <%= form_with model: [@book, @comment], local: false do |f| %>
-                    <%= f.label :コメント： %>
-                    <%= f.text_area :comment, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
-                    <%= f.label :スポット画像： %>
-                    <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %>
-                    <%= f.submit "コメントする", class: 'nav_button' %>
+          <!-- 感想コメント投稿・一覧 -->
+          <div class="tab-content">
+            <div id="comment_index" class="tab-pane fade show active">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row"> 
+                  <div>
+                  <% if user_signed_in? %>
+                  <h4 class="h4_text">感想投稿</h4>
+                    <%= form_with model: [@book, @comment], local: false do |f| %>
+                      <div style="display: flex; align-items: center;">
+                        <%= f.text_area :comment, size: "60x2", placeholder: "感想を入力", id: "comment_textarea" %>
+                        <div style="margin-bottom: 5px;">
+                          <%= f.submit "投稿する", class: 'nav_button' %>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% else %>
                   <% end %>
-                <% else %>
-                <% end %>
+                  </div>
+                    <h4 class="h4_text">感想一覧</h4>
+                    <div id="comment_list">
+                      <%= render "temp/book_comment_index", book: @book, comments: @comments, user: @user %>
+                    </div>
+                  </div>
                 </div>
-                  <h4 class="h4_text">コメント一覧</h4>
-                  <div id="comment_list">
-                    <%= render "temp/book_comment_index", book: @book, comments: @comments, user: @user %>
+              </div>
+            </div>
+
+            <!-- 関連スポット一覧 -->
+            <div id="spot_index" class="tab-pane fade">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                    <% if @spots.present? %>
+                      <% @spots.each do |spot| %>
+                        <% spot = spot.spot %>
+                          <div class="col-md-4 mb-4">
+                            <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+                              <div class="card-body py-0">
+                              <% if spot %>
+                                <%= link_to spot_path(spot) do %>
+                                  <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
+                                <% end %>
+                                  <p class="card-title"><%= spot.name %></p>
+                                  <p class="card-title"><%= spot.address %></p>
+                                <% else %>
+                                  <p>関連スポットがありません</p>
+                            <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <p>関連スポットがありません</p>
+                    <% end %>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- 関連スポット一覧 -->
-          <div id="spot_index" class="tab-pane fade">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                  <% if @spots.present? %>
-                    <% @spots.each do |spot| %>
-                      <% spot = spot.spot %>
-                        <div class="col-md-4 mb-4">
-                          <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-                            <div class="card-body py-0">
-                            <% if spot %>
-                              <%= link_to spot_path(spot) do %>
-                                <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
-                              <% end %>
-                                <p class="card-title"><%= spot.name %></p>
-                                <p class="card-title"><%= spot.address %></p>
-                              <% else %>
-                                <p>関連スポットがありません</p>
-                          <% end %>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% else %>
-                    <p>関連スポットがありません</p>
-                  <% end %>
-                </div>
-              </div>
 
           <!-- 画像表示Modal -->
           <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

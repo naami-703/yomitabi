@@ -14,6 +14,10 @@ class Public::SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     post_managements = PostManagement.where(spot_id: @spot.id)
     @books = post_managements.where(post_type: "spot")
+    book_ids = @books.pluck(:book_id)
+    @select_books = Book.where(id: book_ids)
+    @comment = Comment.new
+    @comments = Comment.where(spot_id: @spot.id)
     @user = @spot.user
   end
 
@@ -57,7 +61,7 @@ class Public::SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :spot_image, :address, :book_id, :post_type)
+    params.require(:spot).permit(:name, :spot_image, :address, :post_type, :book_id)
   end
 
   def ensure_correct_user

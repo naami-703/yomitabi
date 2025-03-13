@@ -1,5 +1,5 @@
 // コメント一覧を再描画
-$("#comment_list").html("<%= escape_javascript(render 'temp/book_comment_index', book: @book) %>");
+$("#comment_list").html("<%= escape_javascript(render 'temp/spot_comment_index', spot: @spot) %>");
 
 // 投稿フォームを空にする
 $('#comment_textarea').val('');

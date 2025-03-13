@@ -1,0 +1,10 @@
+<% if @comment.present? %>
+  // コメント削除
+  $("#comment_<%= @comment.id %>").remove();
+
+  // コメント一覧のみを更新（投稿フォームは保持）
+  $("#comment_list").html("<%= escape_javascript(render 'temp/spot_comment_index', spot: @spot, comments: @comments, user: @comments_users, book: @books) %>");
+<% else %>
+  // コメントが見つからなかった場合のエラーメッセージ
+  alert("コメントの削除に失敗しました。");
+<% end %>

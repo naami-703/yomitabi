@@ -7,6 +7,7 @@ class Spot < ApplicationRecord
 
   validates :name, presence: true
   validates :address, presence: true
+  validates :book_id, presence: true
 
   # すべての投稿関連設定がすんだら削除
   has_one_attached :spot_image, dependent: :destroy
