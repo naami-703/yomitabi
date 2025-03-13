@@ -14,4 +14,13 @@ class Comment < ApplicationRecord
       comment_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  before_destroy :delete_image
+
+  private
+
+  def delete_image
+    # 画像が関連付けられていれば削除
+    comment_image.purge if comment_image.attached?
+  end
+
 end

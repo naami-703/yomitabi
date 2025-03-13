@@ -5,13 +5,22 @@ class Public::Books::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.book_id = book.id
     comment.save
-    redirect_to request.referrer
+    redirect_to request.referer
   end
   
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    redirect_to request.referrer
+    @comment = Comment.find_by(id: params[:id])
+    if @comment.present?
+      @comment.destroy
+      @book = @comment.book
+      @comments = @book.comments
+    else
+      flash[:error] = "コメントが見つかりませんでした"
+    end
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 
