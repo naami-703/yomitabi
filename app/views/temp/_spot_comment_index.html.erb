@@ -15,25 +15,23 @@
             <div class="profile_image">
               <% if comment.user == current_user %>
                 <%= link_to mypage_users_path do %>
-                  <%= image_tag comment.user.get_profile_image(80,80) %><br>
                   <%= comment.user.name %>
                 <% end %>
               <% else %>
                 <%= link_to user_path(comment.user) do %>
-                  <%= image_tag comment.user.get_profile_image(80,80) %><br>
                   <%= comment.user.name %>
                 <% end %>
               <% end %>
             </div>
           </td>
             <% if comment.book %>
-              <td>
+              <td width="200">
                 <%= link_to book_path(comment.book) do %>
                   <%= comment.book.title %>
                 <% end %>
               </td>
             <% end %>
-            <td><%= comment.comment %></td>
+            <td width="230"><%= comment.comment %></td>
           <div class="comment_image">
             <td><%= image_tag comment.get_comment_image(80,80), { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %></td>
             <!-- スポット画像表示Modal -->

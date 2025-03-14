@@ -49,7 +49,7 @@
             <a class="nav-link" data-toggle="tab" href="#spot_comment_index"><i class="fa-solid fa-comment"></i> コメント</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#bookmar_index"><i class="fa-solid fa-bookmark"></i> ブックマーク</a>
+            <a class="nav-link" data-toggle="tab" href="#bookmark_index"><i class="fa-solid fa-bookmark"></i> ブックマーク</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#want_to_go_index"><i class="fa-solid fa-face-grin-hearts"></i> 行きたい！</a>
@@ -89,16 +89,19 @@
           </div>
         </div>
 
+        <!-- 感想投稿一覧 -->
         <div id="book_comment_index" class="tab-pane fade">
-        <% @comments_book.each do |comment| %>
-          <%= render partial: "temp/book_comment_index", locals: { book: comment.book, comment: comment, user: @user, context: "mypage" } %>
-        <% end %>
+          <% @comments_book.each do |comment| %>
+            <%= render partial: "temp/book_comment_index", locals: { book: comment.book, comments: [comment], user: @user} %>
+          <% end %>
         </div>
         
-        <div id="sopt_comment_index" class="tab-pane fade">
-          コメント一覧
+        <!-- コメント投稿一覧 -->
+        <div id="spot_comment_index" class="tab-pane fade">
+          <% @comments_spot.each do |comment| %>
+            <%= render partial: "temp/spot_comment_index", locals: { spot: comment.spot, comments: [comment], user: @user} %>
+          <% end %>
         </div>
-
 
         <div id="bookmark_index" class="tab-pane fade">
           <%= render "temp/bookmark_index" %>

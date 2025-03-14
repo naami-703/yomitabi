@@ -8,7 +8,8 @@ class Public::UsersController < ApplicationController
     @books_new = @books.order(created_at: :desc)
     @spots = @user.spots
     @spots_new = @spots.order(created_at: :desc)
-    @comments_book = @user.comments.where.not(book_id: nil).includes(:book)
+    @comments_book = @user.comments.where.not(book_id: nil).includes(:book).order(created_at: :desc)
+    @comments_spot = @user.comments.where.not(spot_id: nil).includes(:spot).order(created_at: :desc)
   end
 
   def index
@@ -21,8 +22,10 @@ class Public::UsersController < ApplicationController
     @books_new = @books.order(created_at: :desc)
     @spots = @user.spots
     @spots_new = @spots.order(created_at: :desc)
+    @comments_book = @user.comments.where.not(book_id: nil).includes(:book).order(created_at: :desc)
+    @comments_spot = @user.comments.where.not(spot_id: nil).includes(:spot).order(created_at: :desc)
   end
-
+  
   def edit
     @user = current_user
   end
