@@ -79,7 +79,9 @@
                   </div>
                     <h4 class="h4_text">感想一覧</h4>
                     <div id="comment_list">
-                      <%= render "temp/book_comment_index", book: @book, comments: @comments, user: @user %>
+                      <% @book.comments.order(created_at: :desc).each do |comment| %>
+                        <%= render partial: "temp/book_comment_index", locals: { comments: [comment], user: current_user, context: "book_show" } %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -111,7 +113,6 @@
                         </div>
                       <% end %>
                     <% else %>
-                      <p>関連スポットがありません</p>
                     <% end %>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ class Public::UsersController < ApplicationController
     @books_new = @books.order(created_at: :desc)
     @spots = @user.spots
     @spots_new = @spots.order(created_at: :desc)
+    @comments_book = @user.comments.where.not(book_id: nil).includes(:book)
   end
 
   def index

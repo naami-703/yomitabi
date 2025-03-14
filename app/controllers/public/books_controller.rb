@@ -15,7 +15,7 @@ class Public::BooksController < ApplicationController
     post_managements = PostManagement.where(book_id: @book.id)
     @spots = post_managements.where(post_type: "spot")
     @comment = Comment.new
-    @comments = Comment.where(book_id: @book.id)
+    @comments = Comment.where(book_id: @book.id).order(created_at: :desc) 
     @comments_users = @comments.map { |comment| comment.user }
     @user = @book.user
     @genre = @book.genre
