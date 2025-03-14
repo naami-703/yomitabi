@@ -42,8 +42,8 @@ Rails.application.routes.draw do
     resources :spots, only: [:index, :edit, :update, :destroy]
     resources :locations, only: [:index, :create]
     resources :genres, only: [:index, :create]
-    resources :users, only: [:index, :edit, :update, :destroy] 
-    resources :comments, only: [:index, :destroy] 
+    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :comments, only:[:index, :destroy]
   end
 
 end

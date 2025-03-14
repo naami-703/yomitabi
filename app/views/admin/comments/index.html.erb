@@ -1,1 +1,38 @@
-コメント一覧
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto'>
+      <div class="p-3 mb-2">
+        <h4 class="h4_text">感想・コメント一覧</h4>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="d-flex flex-wrap">
+            <% @book_comments.each do |comment| %>
+              <table>
+                <td>投稿タイプ：感想</td>
+                <td>投稿者：<%= comment.user.name %></td>
+                <td>タイトル：<%= comment.book.title %></td>
+                <td>コメント：<%= comment.comment %></td>
+                <td>投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
+              </table>
+            <% end %>
+
+            <% @spot_comments.each do |comment| %>
+              <table>
+                <td>投稿タイプ：コメント</td>
+                <td>投稿者：<%= comment.user.name %></td>
+                <td>スポット名：<%= comment.spot.name %></td>
+                <td>コメント：<%= comment.comment %></td>
+                <td>投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
