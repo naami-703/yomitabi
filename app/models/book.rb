@@ -6,6 +6,10 @@ class Book < ApplicationRecord
   has_many :post_managements,  dependent: :destroy
 
   validates :title, presence: true
+
+  def self.looks(search, word)
+    search == "partial_match" ? Book.where("title LIKE ?", "%#{word}%") : Book.all
+  end
   
   # すべての投稿関連設定がすんだら削除
   has_one_attached :book_image, dependent: :destroy

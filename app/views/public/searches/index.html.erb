@@ -1,0 +1,94 @@
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto text-center'>
+      <table class="table table-hover table-inverse">
+      
+      <!--検索対象モデルがUserの時 -->
+      <% if @range == "user" %>
+      <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+        <thead>
+          <tr>
+            <th></th>
+            <th>名前</th>
+            <th>自己紹介</th>
+            <th>好きな本</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <div class="profile_image">
+                  <% link_to user_path(user) do %> 
+                    <%= image_tag user.get_profile_image(50, 50) %>
+                  <% end %>
+                </div>
+              </td>
+              <td><%= user.name %></td>
+              <td><%= user.introduction %></td>
+              <td><%= user.favorite_books %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+    
+      <!--検索対象モデルがBookの時 -->
+      <% if @range == "book" %>
+      <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+        <thead>
+          <tr>
+            <th>表紙</th>
+            <th>タイトル</th>
+            <th>ブックマーク</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <% link_to book_path(book) do %> 
+                  <%= image_tag book.get_book_image(50, 50) %>
+                <% end %>
+              </td>
+              <td><%= book.title %></td>
+              <td>ブックマーク数</td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+    
+      <!--検索対象モデルがSpotの時 -->
+      <% if @range == "spot" %>
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <thead>
+            <tr>
+              <th>スポット画像</th>
+              <th>スポット名</th>
+              <th>住所</th>
+              <th>行きたい！</th>
+              <th>行ったよ！</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @spots.each do |spot| %>
+              <tr>
+                <td>
+                  <div class="profile_image">
+                    <% link_to spot_path(spot) do %> 
+                      <%= image_tag spot.get_spot_image(50, 50) %>
+                    <% end %>
+                  </div>
+                </td>
+                <td><%= spot.name %></td>
+                <td><%= spot.address %></td>
+                <td>行きたい！数</td>
+                <td>行ったよ！数</td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %> 
+
+      </table>
+    </div>
+  </div>
+</div>

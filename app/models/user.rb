@@ -14,16 +14,9 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :want_to_gos, dependent: :destroy
   has_many :wents, dependent: :destroy
-
-  # フォローした関係
-  # アソシエーションが繋がっているテーブル名、class_nameは実際のモデルの名前、foreign_keyは外部キー
   has_many :relations, class_name: "Relation", foreign_key: "follower_id", dependent: :destroy
-  # フォローされた関係
   has_many :reverse_of_relations, class_name: "Relation", foreign_key: "follow_id", dependent: :destroy
-  # フォロー一覧
-  # has_many :テーブル名, through: :中間テーブル名, source: :参照するカラム
   has_many :followings, through: :relations, source: :follow
-  # フォロワー一覧
   has_many :followers, through: :reverse_of_relations, source: :follower
 
   # フォローしたときの処理
@@ -43,12 +36,16 @@ class User < ApplicationRecord
     bookmarks.where(book_id: book_id).exists?
   end
 
-    def get_profile_image(width,height)
-      unless profile_image.attached?
-        file_path = Rails.root.join('app/assets/images/no_image.jpg')
-        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-      end
-        profile_image.variant(resize_to_limit: [width, height]).processed
+  def get_profile_image(width,height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
+      profile_image.variant(resize_to_limit: [width, height]).processed
+  end
 
+  def self.looks(search, word)
+    search == "partial_match" ? User.where("name LIKE ?", "%#{word}%") : User.all
+  end
+  
 end

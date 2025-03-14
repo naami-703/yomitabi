@@ -9,6 +9,10 @@ class Spot < ApplicationRecord
   validates :address, presence: true
   validates :book_id, presence: true
 
+  def self.looks(search, word)
+    search == "partial_match" ? Spot.where("name LIKE ?", "%#{word}%") : Spot.all
+  end
+
   # すべての投稿関連設定がすんだら削除
   has_one_attached :spot_image, dependent: :destroy
 
