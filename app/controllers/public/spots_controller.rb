@@ -12,13 +12,15 @@ class Public::SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.where(spot_id: @spot.id).order(created_at: :desc)
+    @user = @spot.user
+
+    # 関連書籍プルダウン
     post_managements = PostManagement.where(spot_id: @spot.id)
     @books = post_managements.where(post_type: "spot")
     book_ids = @books.pluck(:book_id)
     @select_books = Book.where(id: book_ids)
-    @comment = Comment.new
-    @comments = Comment.where(spot_id: @spot.id)
-    @user = @spot.user
   end
 
   def create

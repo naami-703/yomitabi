@@ -1,0 +1,51 @@
+<tr id="spot_comment_<%= comment.id %>">
+  <td>
+    <div class="profile_image">
+      <% if comment.user == current_user %>
+        <%= link_to mypage_users_path do %>
+          <%= comment.user.name %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(comment.user) do %>
+          <%= comment.user.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td width="150">
+    <%= link_to book_path(comment.book) do %>
+      <%= comment.book.title %>
+    <% end %>
+  </td>
+  <td width="180"><%= comment.comment %></td>
+  <td>
+    <div class="comment_image">
+      <%= image_tag comment.get_comment_image(80,80), { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %>
+      <!-- スポット画像表示Modal -->
+      <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">スポット画像表示</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-body">
+              <%= image_tag comment.get_comment_image(300,300) %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+  <td>
+    <% if admin_signed_in? %>
+      <%= link_to "削除", admin_comment_path(spot_id: comment.spot.id, id: comment.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %>
+    <% elsif user_signed_in? && current_user == comment.user %>
+      <%= link_to "削除", spot_comment_path(spot_id: comment.spot.id, id: comment.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', remote: true  %>
+    <% end %>
+  </td>
+</tr>

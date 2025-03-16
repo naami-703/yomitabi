@@ -1,14 +1,17 @@
-<table>
+<table class="table">
   <% if books.present? %>
     <% if books.any? %>
-      <tr>
-        <th></th>
-        <th>タイトル</th>
-        <th>ジャンル</th>
-        <th>登録日</th>
-        <th></th>
-        <th></th>
-      <tr>
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>ジャンル</th>
+          <th>登録日</th>
+          <th></th>
+          <th></th>
+        <tr>
+      </thead>
+      <tbody>
       <% books.each do |book| %>
         <tr>
           <td>
@@ -37,6 +40,7 @@
           <% else %>
         </tr>
       <% end %>
+    </tbody>
     <% else %>
     <p>書籍登録がありません</p>
   <% end %>

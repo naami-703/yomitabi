@@ -2,10 +2,9 @@ class Public::Spots::CommentsController < ApplicationController
 
   def create
     @spot = Spot.find(params[:spot_id])
-    comment = current_user.comments.new(comment_params)
-    comment.spot_id = @spot.id
-    comment.save
-   # redirect_to request.referer
+    @comment = current_user.comments.new(comment_params)
+    @comment.spot_id = @spot.id
+    @comment.save
   end
   
   def destroy

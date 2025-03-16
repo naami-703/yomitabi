@@ -45,7 +45,7 @@
       </div>
 
       <!-- コメント＆スポット（右側） -->
-      <div class="col-md-10 d-flex flex-column">
+      <div class="col-md-9 d-flex flex-column">
         <div class="col-md-12">
 
           <!-- タブ表示 -->
@@ -82,9 +82,11 @@
                     <% end %>
                   </div>
                     <h4 class="h4_text">コメント一覧</h4>
-                      <div id="comment_list">
+                    <div id="comment_list">
                         <%= render "temp/spot_comment_index", spot: @spot, comments: @comments, user: @comments_users, book: @books %>
-                      </div>
+                      </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

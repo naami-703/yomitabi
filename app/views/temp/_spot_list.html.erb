@@ -1,14 +1,17 @@
-<table>
+<table class="table">
   <% if spots.present? %>
     <% if spots.any? %>
-      <tr>
-        <th></th>
-        <th>スポット名</th>
-        <th>住所</th>
-        <th>所在地</th>
-        <th>登録日</th>
-        <th></th>
-      <tr>
+    <thead>
+        <tr>
+          <th></th>
+          <th>スポット名</th>
+          <th>住所</th>
+          <th>所在地</th>
+          <th>登録日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
       <% spots.each do |spot| %>
         <tr>
           <td>
@@ -38,6 +41,7 @@
             <% else %>
           </tr>
         <% end %>
+      </tbody>
       <% else %>
       <p>スポット登録がありません</p>
     <% end %>

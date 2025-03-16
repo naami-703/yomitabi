@@ -88,19 +88,14 @@
             </div>
           </div>
         </div>
-
         <!-- 感想投稿一覧 -->
         <div id="book_comment_index" class="tab-pane fade">
-          <% @comments_book.each do |comment| %>
-            <%= render partial: "temp/book_comment_index", locals: { book: comment.book, comments: [comment], user: @user} %>
-          <% end %>
+          <%= render 'temp/book_comment_index', comments: @comments_book, user: @user %>
         </div>
         
         <!-- コメント投稿一覧 -->
         <div id="spot_comment_index" class="tab-pane fade">
-          <% @comments_spot.each do |comment| %>
-            <%= render partial: "temp/spot_comment_index", locals: { spot: comment.spot, comments: [comment], user: @user} %>
-          <% end %>
+           <%= render 'temp/spot_comment_index', comments: @comments_spot %>
         </div>
 
         <div id="bookmark_index" class="tab-pane fade">

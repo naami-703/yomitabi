@@ -11,10 +11,8 @@ class Book < ApplicationRecord
     search == "partial_match" ? Book.where("title LIKE ?", "%#{word}%") : Book.all
   end
   
-  # すべての投稿関連設定がすんだら削除
   has_one_attached :book_image, dependent: :destroy
 
-  # すべての投稿関連設定がすんだら削除
   def get_book_image(width,height)
     unless book_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

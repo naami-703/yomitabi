@@ -13,10 +13,8 @@ class Spot < ApplicationRecord
     search == "partial_match" ? Spot.where("name LIKE ?", "%#{word}%") : Spot.all
   end
 
-  # すべての投稿関連設定がすんだら削除
-  has_one_attached :spot_image, dependent: :destroy
+   has_one_attached :spot_image, dependent: :destroy
 
-  # すべての投稿関連設定がすんだら削除
   def get_spot_image(width,height)
     unless spot_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

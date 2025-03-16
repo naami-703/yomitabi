@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <div class="profile_image">
+      <% if comment.user == current_user %>
+        <%= link_to mypage_users_path do %>
+          <%= comment.user.name %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(comment.user) do %>
+          <%= comment.user.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td width="200">
+    <%= link_to book_path(comment.book) do %>
+      <%= comment.book.title %>
+    <% end %>
+  </td>
+  <td width="230"><%= comment.comment %></td>
+  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+  <td>
+    <% if admin_signed_in? %>
+      <%= link_to "削除", admin_book_comment_path(book_id: comment.book.id, id: comment.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %>
+    <% elsif user_signed_in? && current_user == comment.user %>
+    <%= link_to "削除", book_comment_path(book_id: comment.book.id, id: comment.id), method: :delete, class: 'btn btn-danger mb-3', role: 'button', remote: true %>
+  <% end %>
+</tr>
