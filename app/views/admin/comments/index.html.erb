@@ -8,26 +8,39 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <div class="d-flex flex-wrap">
-            <% @book_comments.each do |comment| %>
-              <table>
-                <td>投稿タイプ：感想</td>
-                <td>投稿者：<%= comment.user.name %></td>
-                <td>タイトル：<%= comment.book.title %></td>
-                <td>コメント：<%= comment.comment %></td>
-                <td>投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
-              </table>
-            <% end %>
-
-            <% @spot_comments.each do |comment| %>
-              <table>
-                <td>投稿タイプ：コメント</td>
-                <td>投稿者：<%= comment.user.name %></td>
-                <td>スポット名：<%= comment.spot.name %></td>
-                <td>コメント：<%= comment.comment %></td>
-                <td>投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>投稿タイプ</th>
+                  <th>投稿者</th>
+                  <th>タイトル/スポット名</th>
+                  <th>コメント</th>
+                  <th>投稿日</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <% @book_comments.each do |comment| %>
+                <tbody>
+                  <td>感想</td>
+                  <td><%= comment.user.name %></td>
+                  <td><%= comment.book.title %></td>
+                  <td><%= comment.comment %></td>
+                  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
+                </tbody>
               <% end %>
+
+              <% @spot_comments.each do |comment| %>
+                <tbody>
+                  <td>コメント</td>
+                  <td><%= comment.user.name %></td>
+                  <td><%= comment.spot.name %></td>
+                  <td><%= comment.comment %></td>
+                  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button' %></td>
+                </tbody>
+              <% end %>
+
             </table>
           </div>
         </div>
