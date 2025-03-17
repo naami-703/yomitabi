@@ -1,31 +1,25 @@
 <div class='container-fluid'>
-  <div class='row no-gutters bg-white'>
+  <div class='row no-gutters'>
 
     <div class='col-md-10 mx-auto text-center'>
       <h4 class="h4_text">新規書籍投稿</h4>
+      ★･･･必須項目
     </div>
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
-        <% if @book.errors.any? %>
-          <div id="error_explanation">
-              <%= pluralize(@book.errors.count, "error") %> 件のエラーがあります:
-            <ul>
-              <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+
+      <!-- エラーメッセージ -->
+      <%= render 'temp/error_message', model: @book %>
          
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
-            <%= f.label :タイトル %>
-            <%= f.text_field :title, size: "30x1" %><br /><br />
+            <%= f.label :タイトル %> ★
+            <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />
             <%= f.label :表紙 %>
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
-            <%= f.label :ジャンル選択 %>
+            <%= f.label :ジャンル選択 %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %>
           <% end %>

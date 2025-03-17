@@ -1,7 +1,7 @@
 <div class='container-fluid'>
-  <div class='row no-gutters bg-white'>
-
+  <div class='row no-gutters'>
     <div class="col-md-10 d-flex">
+
       <!-- 書籍詳細（左側） -->
       <div class="col-md-5">
         <h4 class="h4_text">書籍詳細</h4>
@@ -88,7 +88,7 @@
                       <h4 class="h4_text">感想投稿</h4>
                       <%= form_with model: [@book, @comment], local: false do |f| %>
                         <div style="display: flex; align-items: center;">
-                          <%= f.text_area :comment, size: "60x2", placeholder: "感想を入力", id: "comment_textarea" %>
+                          <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "感想を入力", id: "comment_textarea" %>
                           <div style="margin-bottom: 5px;">
                             <%= f.submit "投稿する", class: 'nav_button' %>
                           </div>
@@ -104,32 +104,27 @@
               </div>
             </div>
 
-            <!-- 関連スポット一覧 -->
+            <!-- 関連スポット -->
             <div id="spot_index" class="tab-pane fade">
               <div class="row">
                 <div class="col-md-12">
                   <div class="row">
-                    <% if @spots.present? %>
-                      <% @spots.each do |spot| %>
-                        <% spot = spot.spot %>
-                          <div class="col-md-4 mb-4">
-                            <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-                              <div class="card-body py-0">
-                              <% if spot %>
-                                <%= link_to spot_path(spot) do %>
-                                  <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
-                                <% end %>
-                                  <p class="card-title"><%= spot.name %></p>
-                                  <p class="card-title"><%= spot.address %></p>
-                                <% else %>
-                                  <p>関連スポットがありません</p>
-                            <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% else %>
-                    <% end %>
+                  
+                  <h4 class="h4_text">関連スポット追加</h4>
+                  <%= form_for @post_management, url: post_management_path(@post_management), method: :patch do |f| %>
+                    <%= f.hidden_field :post_type, value: "spot" %>
+                    <%= f.hidden_field :book_id, value: @book.id %>
+                    <%= f.label "スポット選択" %>
+                    <%= f.collection_select :spot_id, Spot.all, :id, :name, prompt: "登録済みのSpotを選択" %>
+                    <%= f.submit "登録済みのスポットを追加", class: "nav_button" %>
+                    <%= render 'temp/spot_select', post_management: @post_management %>
+                  <% end %>
+
+                  <h4 class="h4_text">関連スポットを新規作成</h4>
+                  <button type="button" class="nav_button" style="display: inline-block; width: auto;"><%= link_to "新たな関連スポットを追加", new_spot_path(book_id: @book.id) %></button>
+
+                  <h4 class="h4_text">関連スポット一覧</h4>
+                  <%= render 'temp/spot_index', spots: @spots_index %>
                   </div>
                 </div>
               </div>

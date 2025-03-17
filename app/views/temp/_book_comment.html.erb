@@ -1,16 +1,14 @@
 <tr id="book_comment_<%= comment.id %>">
   <td>
-    <div class="profile_image">
-      <% if comment.user == current_user %>
-        <%= link_to mypage_users_path do %>
-          <%= comment.user.name %>
-        <% end %>
-      <% else %>
-        <%= link_to user_path(comment.user) do %>
-          <%= comment.user.name %>
-        <% end %>
+    <% if comment.user == current_user %>
+      <%= link_to mypage_users_path do %>
+        <%= comment.user.name %>
       <% end %>
-    </div>
+    <% else %>
+      <%= link_to user_path(comment.user) do %>
+        <%= comment.user.name %>
+      <% end %>
+    <% end %>
   </td>
   <td width="200">
     <%= link_to book_path(comment.book) do %>

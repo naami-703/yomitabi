@@ -68,6 +68,16 @@
     color: white; /* マウスオーバー時の文字色 */
   }
 
+  .nav_button a {
+    color: white; 
+    text-decoration: none;
+  }
+  
+  .nav_button a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
 /* ヘッダーログイン・ログアウトボタン */
 .nav_button_login_logout {
   border: 2px solid #4e839d;

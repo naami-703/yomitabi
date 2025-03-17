@@ -109,7 +109,8 @@ ActiveRecord::Schema.define(version: 2025_03_11_052841) do
     t.integer "location_id"
     t.integer "book_id"
     t.string "name", null: false
-    t.string "address", null: false
+    t.integer "address_prefectures", null: false
+    t.string "address_city"
     t.string "post_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

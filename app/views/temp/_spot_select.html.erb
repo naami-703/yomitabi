@@ -1,0 +1,14 @@
+<% unless post_management.book %>
+  <h4 class="h4_text">新しいスポットを登録</h4>
+  <%= f.fields_for :spot, Spot.new do |s| %>
+      <%= s.hidden_field :post_type, value: "spot" %>
+      <%= s.label :スポット名 %> ★
+      <%= s.text_field :name, autofocus: true, size: "30x1" %><br /><br />
+      <%= s.label :住所（都道府県）%> ★
+      <%= s.select :address_prefectures, Spot.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />
+      <%= s.label :住所（市町村以降）%>
+      <%= s.text_field :address_city ,size: "40x1" %><br /><br />
+      <%= s.label :スポット画像 %>
+      <%= s.file_field :spot_image, accept: "image/*" %><br /><br />
+  <% end %>
+<% end %>

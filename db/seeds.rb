@@ -39,8 +39,8 @@ Book.find_or_create_by!(title: "四畳半神話大系") do |book|
   book.post_type = "book"
 end
 
-Spot.create!(name: "鴨川デルタ", user_id: 山田太郎.id, address: "京都府京都市左京区下鴨宮河町", post_type: "spot")
-Spot.create!(name: "三浦町カトリック教会", user_id: 佐藤花子.id, address: "長崎県佐世保市三浦町４−２５", post_type: "spot")
+Spot.create!(name: "鴨川デルタ", user_id: 山田太郎.id, address_prefectures: "26", address_city:"京都市左京区下鴨宮河町", post_type: "spot")
+Spot.create!(name: "三浦町カトリック教会", user_id: 佐藤花子.id, address_prefectures: "42", address_city:"佐世保市三浦町４−２５", post_type: "spot")
 
 apollo_book = Book.find_by(title: "坂道のアポロン")
 miura_spot = Spot.find_by(name: "三浦町カトリック教会")

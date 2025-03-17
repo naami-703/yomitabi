@@ -5,7 +5,8 @@ class CreateSpots < ActiveRecord::Migration[6.1]
       t.integer "location_id"
       t.integer "book_id"
       t.string "name", null: false
-      t.string "address", null: false
+      t.integer "address_prefectures", null: false
+      t.string "address_city"
       t.string "post_type", null: false
       t.timestamps
     end

@@ -4,6 +4,7 @@ class Public::SpotsController < ApplicationController
 
   def new
     @spot = Spot.new
+
   end
 
   def index
@@ -15,10 +16,11 @@ class Public::SpotsController < ApplicationController
     @comment = Comment.new
     @comments = Comment.where(spot_id: @spot.id).order(created_at: :desc)
     @user = @spot.user
+    post_managements = PostManagement.where(spot_id: @spot.id)
+    @books = post_managements.where(post_type: "spot").includes(:book) 
+    @books_index = @books.map(&:book).compact
 
     # 関連書籍プルダウン
-    post_managements = PostManagement.where(spot_id: @spot.id)
-    @books = post_managements.where(post_type: "spot")
     book_ids = @books.pluck(:book_id)
     @select_books = Book.where(id: book_ids)
   end
@@ -63,7 +65,7 @@ class Public::SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :spot_image, :address, :post_type, :book_id)
+    params.require(:spot).permit(:name, :spot_image, :address_prefectures, :address_city, :post_type, :book_id)
   end
 
   def ensure_correct_user

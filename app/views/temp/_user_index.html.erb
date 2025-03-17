@@ -1,15 +1,39 @@
-<table>
-  <% users.each do |user| %>
+<table class="table">
+  <thead>
     <tr>
-      <td>
-        <div class="profile_image">
-        <%= image_tag user.get_profile_image(100,100) %>
-        </div>
-      </td>
-      <td><%= link_to user.name, user_path(user.id) %></td>
-      <td>フォロー数</td>
-      <td>フォロワー数</td>
-    </tr>
-  <% end %>
+    <th></th>
+    <th>会員名</th>
+    <th>自己紹介</th>
+    <th>好きな本</th>
+    <th>フォロー数</th>
+    <th>フォロワー数</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <div class="profile_image">
+          <%= image_tag user.get_profile_image(100,100) %>
+          </div>
+        </td>
+        <td>
+          <% if user == current_user %>
+            <%= link_to mypage_users_path do %>
+              <%= user.name %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(user) do %>
+              <%= user.name %>
+            <% end %>
+          <% end %>  
+        </td>
+        <td><%= user.introduction %></td>
+        <td><%= user.favorite_books %></td>
+        <td>フォロー数</td>
+        <td>フォロワー数</td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 

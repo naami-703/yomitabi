@@ -1,32 +1,29 @@
-<div class='container-fluid container-sidber'>
-  <div class='row no-gutters  bg-white'>
+<div class='container-fluid'>
+  <div class='row no-gutters'>
 
     <div class='col-md-10  mx-auto text-center'>
       <h4 class="h4_text">新規スポット投稿</h4>
+      ★･･･必須項目
     </div>
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
-        <% if @spot.errors.any? %>
-          <div id="error_explanation">
-            <%= pluralize(@spot.errors.count, "error") %> 件のエラーがあります:
-            <ul>
-              <% @spot.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+
+        <!-- エラーメッセージ -->
+        <%= render 'temp/error_message', model: @spot %>
 
         <%= form_with model: @spot do |f| %>
           <%= f.hidden_field :post_type, value: "spot" %>
-          <%= f.label :スポット名 %>
-          <%= f.text_field :name, size: "30x1" %><br /><br />
-          <%= f.label :住所 %>
-          <%= f.text_field :address,size: "40x1" %><br /><br />
+          <%= f.hidden_field :book_id, value: @book.id %>
+          <%= f.label :スポット名 %> ★
+          <%= f.text_field :name, autofocus: true, size: "30x1" %><br /><br />
+          <%= f.label :住所（都道府県）%> ★
+          <%= f.select :address_prefectures, Spot.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />
+          <%= f.label :住所（市町村以降）%>
+          <%= f.text_field :address_city ,size: "40x1" %><br /><br />
           <%= f.label :スポット画像 %>
           <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
-          <%= f.label :関連書籍選択 %>
+          <%= f.label :関連書籍選択 %> ★
           <%= f.collection_select :book_id, Book.all, :id, :title, include_blank: "選択して下さい" %><br /><br />
           <%= f.submit 'スポット新規投稿', class: 'nav_button' %>
         <% end %>

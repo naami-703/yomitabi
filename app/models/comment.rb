@@ -5,18 +5,23 @@ class Comment < ApplicationRecord
   belongs_to :spot, optional: true
 
   validates :comment, presence: true
-  validates :book_id, presence: true
+  validates :book_id, presence: true 
 
   has_one_attached :comment_image
 
-  def get_comment_image(width,height)
-    unless comment_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      comment_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-      # comment_image.analyze_later if comment_image.attached? && !comment_image.analyzed?
-      comment_image.variant(resize_to_limit: [width, height]).processed
+  def get_comment_image(width, height)
+    return comment_image.variant(resize_to_limit: [width, height]).processed if commnet_image.attached?
+    ActionController::Base.helpers.asset_path('no_image.jpg')
   end
+
+  # def get_comment_image(width,height)
+  #   unless comment_image.attached?
+  #     file_path = Rails.root.join('app/assets/images/no_image.jpg')
+  #     comment_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  #   end
+  #     # comment_image.analyze_later if comment_image.attached? && !comment_image.analyzed?
+  #     comment_image.variant(resize_to_limit: [width, height]).processed
+  # end
 
   before_destroy :delete_image
 

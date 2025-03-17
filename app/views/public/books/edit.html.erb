@@ -1,28 +1,25 @@
 <div class='container-fluid'>
   <div class='row no-gutters bg-white'>
+
     <div class='col-md-10 mx-auto text-center'>
       <h4 class="h4_text">書籍情報編集</h4>
+      ★･･･必須項目
     </div>
+
     <div class="row">
       <div class='col-md-10 mx-auto text-center'>
-      <% if @book.errors.any? %>
-        <div id="error_explanation">
-          <%= pluralize(@book.errors.count, "error") %> 件のエラーがあります:
-          <ul>
-            <% @book.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      
+        <!-- エラーメッセージ -->
+        <%= render 'temp/error_message', model: @book %>
+        
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
-            <%= f.label :タイトル %><br />
-            <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br />
-            <%= f.label :表紙画像 %><br />
+            <%= f.label :タイトル %> ★
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br /><br />
+            <%= f.label :表紙画像 %>
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
-            <%= f.label :ジャンル選択 %>
+            <%= f.label :ジャンル選択 %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, autocomplete: "genre" %><br /><br />
             <%= f.submit '書籍情報更新', class: 'nav_button' %><br />
             <%= link_to "削除する", book_path(@book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>

@@ -1,5 +1,5 @@
 <div class='container-fluid'>
-  <div class='row no-gutters bg-white'>
+  <div class='row no-gutters'>
     <div class="col-md-10 d-flex">
 
       <!-- スポット詳細（左側） -->
@@ -12,11 +12,30 @@
           </tr>
           <tr>
           <th>住所</th>
-          <td><%= @spot.address %></td>
-        </tr>
+            <td><%= @spot.address_prefectures %><%= @spot.address_city %></td>
+          </tr>
           <tr>
             <th>スポット画像</th>
-            <td><%= image_tag @spot.get_spot_image(200,200),  { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %></td>
+            <td>
+              <%= image_tag @spot.get_spot_image(200,200),  { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %>
+              <!-- 画像表示Modal -->
+              <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                    </div>
+                    <div class="modal-body">
+                      <%= image_tag @spot.get_spot_image(300,300) %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </td>
           </tr>
           </table>
           <table class="element_table">
@@ -69,12 +88,15 @@
                     <div>
                     <% if user_signed_in? %>
                     <h4 class="h4_text">コメント投稿</h4>
+                    ★･･･必須項目
+                      
+                      <!-- コメント投稿 -->
                       <%= form_with model: [@spot, @comment], local: false do |f| %>
-                        <%= f.label :コメント： %>
-                        <%= f.text_area :comment, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
+                        <%= f.label :コメント： %> ★
+                        <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
                         <%= f.label :スポット画像： %>
                         <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %><br />
-                        <%= f.label :関連書籍選択： %>
+                        <%= f.label :関連書籍選択： %> ★
                         <%= f.collection_select :book_id, @select_books, :id, :title, prompt: "選択して下さい" %>
                         <%= f.submit "コメントする", class: 'nav_button' %>
                       <% end %>
@@ -92,50 +114,11 @@
               </div>
             </div>
 
+            <!-- 関連書籍一覧 -->
             <div id="book_index" class="tab-pane fade">
               <div class="row">
                 <div class="col-md-12">
-                  <div class="row"> 
-                    <h4 class="h4_text">関連書籍</h4>
-                    <div class="col-md-4 mb-4">
-                      <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
-                        <div class="card-body py-0">
-                          <% if @books.present? %>
-                            <% @books.each do |book| %>
-                              <% book = book.book %>
-                              <% if book %>
-                                <%= link_to book_path(book) do %>
-                                  <%= image_tag book.get_book_image(200, 200), class: "card-img-top" %>
-                                  <p class="card-title"><%= book.title %></p>
-                                <% end %>
-                              <% else %>
-                                <p>関連書籍がありません</p>
-                              <% end %>
-                            <% end %>
-                          <% else %>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 画像表示Modal -->
-          <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                </div>
-                <div class="modal-body">
-                  <%= image_tag @spot.get_spot_image(300,300) %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                  <%= render 'temp/book_index', books: @books_index %>
                 </div>
               </div>
             </div>

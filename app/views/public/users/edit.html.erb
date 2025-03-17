@@ -1,37 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mx-auto text-center">
 
-      <!-- error -->
-      <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <%= @user.errors.count %> 件のエラーがあります:
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-        </div>
-      <% end %>
-
-      <h3 class="h3_text">  ユーザー情報編集</h3>
-      <div class="field">
-      <%= form_with model: @user do |f| %>
-          <%= f.label :名前 %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", size: "30x1" %><br />
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30x1" %><br />
-          <%= f.label :プロフィール画像 %><br />
-          <%= f.file_field :profile_image, accept: "image/*" %><br />
-          <%= f.label :自己紹介 %><br />
-          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",size: "30x3" %><br />
-          <%= f.label :好きな本 %><br />
-          <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books",size: "30x3" %><br />
-          <%= f.submit "プロフィール更新", class: "nav_button"%><br />
-          <%= link_to '退会する', user_path(current_user), method: :delete, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
-        <% end %>
-      </div>
-
+    <div class="col-md-10 mx-auto text-center">
+      <h4 class="h4_text">  ユーザー情報編集</h4>
+      ★･･･必須項目
     </div>
+
+    <div class="row">
+      <div class='col-md-8 mx-auto text-center'>
+
+        <!-- エラーメッセージ -->
+        <%= render 'temp/error_message', model: @user %>
+
+        <div class="field">
+          <%= form_with model: @user do |f| %>
+            <%= f.label :名前 %> ★
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", size: "30x1" %><br /><br />
+            <%= f.label :email %> ★
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30x1" %><br /><br />
+            <%= f.label :プロフィール画像 %>
+            <%= f.file_field :profile_image, accept: "image/*" %><br /><br />
+            <%= f.label :自己紹介 %>
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",size: "30x3" %><br /><br />
+            <%= f.label :好きな本 %>
+            <%= f.text_area :favorite_books, autofocus: true, autocomplete: "favorite_books",size: "30x3" %><br /><br />
+            <%= f.submit "プロフィール更新", class: "nav_button"%><br />
+            <%= link_to '退会する', user_path(current_user), method: :delete, class: 'btn btn-danger mb-3', "data-confirm" => "本当に退会しますか？" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

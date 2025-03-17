@@ -5,13 +5,22 @@ class Public::PostManagementsController < ApplicationController
   end
 
   def create
-    @post_management = PostManagement.new(post_management_params)
-    @post_management.save
+    post_management = PostManagement.find_by(book_id: post_management_params[:book_id], spot_id: post_management_params[:spot_id])
+    if @post_management.save
+      redirect_to request.referer
+    else
+      flash[:error] = @post_management.errors.full_messages.to_sentence
+      redirect_to request.referer
+    end
   end
 
   def update
     @post_management = PostManagement.find(params[:id])
-    @post_management.update(post_management_params)
+    
+    new_post_management = PostManagement.new(post_management_params)
+    new_post_management.save
+    
+    redirect_to request.referer
   end
 
   def destroy
