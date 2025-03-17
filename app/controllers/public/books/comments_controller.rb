@@ -4,7 +4,7 @@ class Public::Books::CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = current_user.comments.new(comment_params)
     @comment.book_id = @book.id 
-    i@comment.save
+    @comment.save
   end
   
   def destroy

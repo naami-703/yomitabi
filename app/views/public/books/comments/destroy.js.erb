@@ -1,10 +1,1 @@
-<% if @comment.present? %>
-  // コメント削除
-  $("#book_comment_<%= @comment.id %>").remove();
-
-  // コメント一覧のみを更新（投稿フォームは保持）
-  $("#comment_list").html("<%= escape_javascript(render 'temp/book_comment_index', book: @book, comments: @comments) %>");
-<% else %>
-  // コメントが見つからなかった場合のエラーメッセージ
-  alert("コメントの削除に失敗しました。");
-<% end %>
+$("#book_comment_<%= @comment.id %>").remove();
