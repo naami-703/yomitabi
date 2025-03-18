@@ -3,8 +3,7 @@ class Public::SpotsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @spot = Spot.new
-
+    @spot = Spot.new(book_id: params[:book_id])
   end
 
   def index
@@ -13,12 +12,14 @@ class Public::SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
-    @comment = Comment.new
-    @comments = Comment.where(spot_id: @spot.id).order(created_at: :desc)
-    @user = @spot.user
+    @post_management = PostManagement.find_by(spot_id: @spot.id)
     post_managements = PostManagement.where(spot_id: @spot.id)
     @books = post_managements.where(post_type: "spot").includes(:book) 
     @books_index = @books.map(&:book).compact
+
+    @comment = Comment.new
+    @comments = Comment.where(spot_id: @spot.id).order(created_at: :desc)
+    @user = @spot.user
 
     # 関連書籍プルダウン
     book_ids = @books.pluck(:book_id)

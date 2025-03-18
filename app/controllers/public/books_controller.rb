@@ -3,7 +3,7 @@ class Public::BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @book = Book.new(book_id: params[:book_id])
+    @book = Book.new(spot_id: params[:spot_id])
   end
 
   def index
@@ -13,9 +13,9 @@ class Public::BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @post_management = PostManagement.find_by(book_id: @book.id)
-    @post_managements = PostManagement.where(book_id: @book.id)
-    @spots = @post_managements.where(post_type: "spot").includes(:spot) 
-    @spots_index = @spots.map(&:spot)
+    post_managements = PostManagement.where(book_id: @book.id)
+    @spots = post_managements.where(post_type: "spot").includes(:spot) 
+    @spots_index = @spots.map(&:spot).compact
 
     @comment = Comment.new
     @comments = Comment.where(book_id: @book.id).where(spot_id: nil).includes(:book).order(created_at: :desc)
@@ -27,7 +27,7 @@ class Public::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      PostManagement.create(post_type: @book.post_type)
+      PostManagement.create(post_type: @book.post_type, book_id: @book.id)
       redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
       render "new"

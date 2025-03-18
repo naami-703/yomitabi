@@ -1,5 +1,4 @@
 <% unless post_management.book %>
-  <h4 class="h4_text">新しいスポットを登録</h4>
   <%= f.fields_for :spot, Spot.new do |s| %>
       <%= s.hidden_field :post_type, value: "spot" %>
       <%= s.label :スポット名 %> ★

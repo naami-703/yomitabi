@@ -114,10 +114,26 @@
               </div>
             </div>
 
-            <!-- 関連書籍一覧 -->
+            <!-- 関連書籍 -->
             <div id="book_index" class="tab-pane fade">
               <div class="row">
                 <div class="col-md-12">
+                  <% if user_signed_in? %>
+                    <h4 class="h4_text">関連書籍追加</h4>
+                    <%= form_for @post_management, url: post_management_path(@post_management), method: :patch do |f| %>
+                      <%= f.hidden_field :post_type, value: "spot" %>
+                      <%= f.hidden_field :spot_id, value: @spot.id %>
+                      <%= f.label "書籍選択" %>
+                      <%= f.collection_select :book_id, Book.all, :id, :title, prompt: "登録済みの書籍を選択" %>
+                      <%= f.submit "登録済みの書籍を追加", class: "nav_button" %>
+                      <%= render 'temp/book_select', post_management: @post_management %>
+                    <% end %>
+
+                    <h4 class="h4_text">関連書籍を新規作成</h4>
+                    <button type="button" class="nav_button" style="display: inline-block; width: auto;"><%= link_to "新たな関連書籍を追加", new_book_path(spot_id: @spot.id) %></button>
+                  <% end %>
+
+                  <h4 class="h4_text">関連書籍一覧</h4>
                   <%= render 'temp/book_index', books: @books_index %>
                 </div>
               </div>

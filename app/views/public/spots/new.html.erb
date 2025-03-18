@@ -14,7 +14,6 @@
 
         <%= form_with model: @spot do |f| %>
           <%= f.hidden_field :post_type, value: "spot" %>
-          <%= f.hidden_field :book_id, value: @book.id %>
           <%= f.label :スポット名 %> ★
           <%= f.text_field :name, autofocus: true, size: "30x1" %><br /><br />
           <%= f.label :住所（都道府県）%> ★

@@ -21,6 +21,8 @@
             <%= f.file_field :book_image, accept: "image/*" %><br /><br />
             <%= f.label :ジャンル選択 %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
+            <%= f.label :関連スポット選択 %>
+            <%= f.collection_select :spot_id, Spot.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %>
           <% end %>
         </div>

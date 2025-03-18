@@ -1,0 +1,12 @@
+<% unless post_management.spot %>
+  <%= form_with model: @book do |f| %>
+    <%= f.hidden_field :post_type, value: "book" %>
+    <%= f.label :タイトル %> ★
+    <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />
+    <%= f.label :表紙 %>
+    <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+    <%= f.label :ジャンル選択 %> ★
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
+    <%= f.submit '書籍新規投稿', class: 'nav_button' %>
+  <% end %>
+  <% end %>
