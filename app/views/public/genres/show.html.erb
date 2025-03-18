@@ -4,11 +4,10 @@
       <div class="p-3 mb-2">
         <h4 class="h4_text"><%= @genre.name %>一覧</h4>
       </div>
-
       <div class="row">
         <div class="col-md-12 text-center">
           <div class="row"> 
-            <%= render "temp/book_index", books: @books, user: @user %>
+            <%= render "temp/book_index", books: @books %>
           </div>
         </div>
       </div>

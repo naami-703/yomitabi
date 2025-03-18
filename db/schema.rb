@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2025_03_11_052841) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "address_prefectures", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

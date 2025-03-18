@@ -1,7 +1,8 @@
 class Public::LocationsController < ApplicationController
 
-  def index
-
+  def show
+    @location = Location.find(params[:id])
+    @spots = @location.spots
   end
   
 end

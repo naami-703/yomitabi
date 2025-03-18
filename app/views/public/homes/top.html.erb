@@ -1,19 +1,19 @@
 <div class='container-fluid'>
   <div class='row no-gutters bg-white'>
     <div class='col-md-10 mx-auto'>
- 
+
+      <!-- tpo画像 -->
       <div class="row">
         <div class='col-md-12'>
         <img src="<%= asset_url('main_image.webp') %>" class="top_image" alt="top画像"><br>
         </div>
       </div>
 
-
       <div class="row">
       <h3 class="h3_text">新着書籍投稿</h3>
         <div class="col-md-12">
           <div class="row">         
-            <%= render "temp/book_index", books: @books_new, user: @user %>
+            <%= render "temp/book_index", books: @books_new %>
           </div>
         </div>
         <div class="col-md-12 text-right mb-5">
@@ -22,17 +22,18 @@
       </div>
 
       <div class="row">
-      <h3 class="h3_text">新着スポット投稿</h3>
+        <h3 class="h3_text">新着スポット投稿</h3>
         <div class="col-md-12">
           <div class="row"> 
-            <%= render "temp/spot_index", spots: @spots_new, user: @user %>
+            <%= render "temp/spot_index", spots: @spots_new %>
           </div>
         </div>
         <div class="col-md-12 text-right mb-5">
           <%= link_to 'すべてのスポット投稿を見る＞', spots_path, style: 'text-decoration: underline;' %>
         </div>
       </div>
-
+        
+    </div>
   </div>
 </div>
 

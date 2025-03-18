@@ -1,1 +1,37 @@
-所在地一覧
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+
+    <div class='col-md-5 mx-auto text-center'>
+      <h4 class="h4_text">地域名登録</h4> 
+      <%= render 'temp/error_message', model: @location %>
+      
+      <div class="field">
+        <%= form_with model: @location, url: admin_locations_path do |f| %>
+          <%= f.label :地域名 %><br />
+          <%= f.text_field :name, size: "30x1" %><br /><br />
+          <%= f.label :都道府県名%><br />
+          <%= f.select :address_prefectures, Location.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />
+          <%= f.submit '地域登録', class: 'nav_button' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='col-md-5 mx-auto '>
+      <h4 class="h4_text">登録済みの地域</h4>
+      <table>
+        <tr>
+          <th>地域名</th>
+          <th>都道府県</th>
+        </tr>
+        <% @locations.each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td><%= location.address_prefectures %></td>
+            <td><%= link_to "編集",  edit_admin_location_path(location), class: 'btn btn-success mb-3', role: 'button' %></td>
+            <td><%= link_to "削除", admin_location_path(location), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

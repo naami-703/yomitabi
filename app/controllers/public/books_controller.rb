@@ -27,7 +27,7 @@ class Public::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      PostManagement.create(post_type: @book.post_type, book_id: @book.id)
+      PostManagement.create(book_id: @book.id, spot_id:@book.spot_id, post_type: @book.post_type)
       redirect_to book_path(@book), notice: "書籍を新規登録しました。"
     else
       render "new"
@@ -40,22 +40,14 @@ class Public::BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-
     if params[:spot_id].present?
-      # 登録済みのSpotを選択した場合の処理
-      post_management = PostManagement.find_by(book_id: @book.id)
-  
-      if post_management
-        post_management.update(spot_id: params[:spot_id])
-      else
-        PostManagement.create(book_id: @book.id, spot_id: params[:spot_id])
-      end
-  
-      redirect_to book_path(@book), notice: "書籍情報を更新しました。"
-    else
-      # 未登録のSpot用の処理を記述
-  
-      if @book.update(book_params)
+      if @book.update(spot_params)
+        post_management = PostManagement.find_by(book_id: @book.id)
+        if post_management
+          post_management.update(spot_id: @book.spot_id, post_type: @book.post_type)
+        else
+          PostManagement.create(spot_id: @book.spot_id, book_id: @book.id, post_type: @book.post_type)
+        end
         redirect_to book_path(@book), notice: "書籍情報を更新しました。"
       else
         render :edit
@@ -72,7 +64,7 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :book_image, :genre_id, :post_type)
+    params.require(:book).permit(:title, :book_image, :genre_id, :post_type, :spot_id)
   end
 
   def ensure_correct_user

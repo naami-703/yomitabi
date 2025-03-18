@@ -1,0 +1,23 @@
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto text-center'>
+      <h4 class="h4_text">地域情報編集</h4>
+    </div>
+    <div class="row">
+      <div class='col-md-10 mx-auto text-center'>
+      <%= render 'temp/error_message', model: @location %>
+
+        <div class="field">
+          <%= form_with model: @location, url: admin_location_path(@location.id) do |f| %>
+          <%= f.label :地域名 %><br />
+          <%= f.text_field :name, autocomplete: "name", size: "30x1" %><br /><br />
+          <%= f.label :都道府県名%><br />
+          <%= f.select :address_prefectures, Location.address_prefectures.keys, { prompt: "選択してください" }, { autocomplete: "address_prefectures" } %><br /><br />
+          <%= f.submit '地域情報更新', class: 'nav_button' %><br />
+          <%= link_to "削除", admin_location_path(@location), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

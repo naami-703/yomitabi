@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books, only: [:index, :edit, :update, :destroy]
     resources :spots, only: [:index, :edit, :update, :destroy]
-    resources :locations, only: [:index, :create]
+    resources :locations, only: [:index, :create,:edit, :update, :destroy]
     resources :genres, only: [:index, :create]
     resources :users, only: [:index, :edit, :update, :destroy]
     resources :comments, only:[:index, :destroy]

@@ -23,8 +23,6 @@
             <%= f.text_field :address_city, autocomplete: "address_city" ,size: "40x1" %><br /><br />
             <%= f.label :スポット画像 %>
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
-            <%= f.label :関連書籍選択 %> ★
-            <%= f.collection_select :book_id, Book.all, :id, :title, autocomplete: "book" %><br /><br />
             <%= f.submit 'スポット情報更新', class: 'nav_button' %><br />
             <%= link_to "削除する", spot_path(@spot), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>

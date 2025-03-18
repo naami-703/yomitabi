@@ -33,4 +33,13 @@ class Spot < ApplicationRecord
     ActionController::Base.helpers.asset_path('no_image.jpg')
   end
 
+  before_save :set_location
+
+  private
+
+  # 都道府県に応じたLocationを設定
+  def set_location
+    self.location = Location.find_by(address_prefectures: self.address_prefectures)
+  end
+
 end

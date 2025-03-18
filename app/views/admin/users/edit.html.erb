@@ -5,16 +5,8 @@
     </div>
     <div class="row">
       <div class='col-md-10 mx-auto text-center'>
-      <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <%= pluralize(@user.errors.count, "error") %> 件のエラーがあります:
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'temp/error_message', model: @user %>
+
         <div class="field">
           <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
             <%= f.label :名前 %>
@@ -26,7 +18,7 @@
             <%= f.label :好きな本 %>
             <%= f.text_field :favorite_books, autofocus: true, autocomplete: "favorite_books", size: "30x3" %><br /><br />
             <%= f.submit '会員情報更新', class: 'nav_button' %><br />
-            <%= link_to "削除する", admin_user_path(@user), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to "削除", admin_user_path(@user), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>
       </div>

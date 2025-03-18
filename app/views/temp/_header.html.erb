@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
 
-        <!-- Customerログイン時のヘッダー -->
+        <!-- Userログイン時のヘッダー -->
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "<i class='fa-solid fa-book'></i> 書籍投稿".html_safe, new_book_path, class: "nav_button" %>
@@ -95,7 +95,7 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><%= link_to "<i class='fa-solid fa-book'></i> ジャンル一覧".html_safe, admin_genres_path, class:"dropdown-item" %></li>
-                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 所在地一覧".html_safe, admin_locations_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> 地域一覧".html_safe, admin_locations_path, class:"dropdown-item" %></li>
               </ul>
             </li>
           </ul>
@@ -103,7 +103,8 @@
       </div>
     </nav>
 
-  <% else %>
+  <!-- Userログイン時のヘッダー -->
+  <% elsif user_signed_in? %>
     <nav class = "navbar navbar-expand-lg bg_user_bottom">
       <div class = "container">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
@@ -134,16 +135,12 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-location-pin"></i> スポット所在地別一覧
+              <i class="fa-solid fa-location-pin"></i> スポット地域別一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 北海道</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 東北</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 関東</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中部</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 近畿</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 中国</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-pin"></i> 九州</a></li>
+                <% @locations.each do |location| %>
+                  <li><a class="dropdown-item" href="<%= location_path(location) %>" ><i class="fa-solid fa-book"></i> <%= location.name %></a></li>
+                <% end %>
               </ul>
             </li>
           </ul>
@@ -161,5 +158,50 @@
         </div>
       </div>
     </nav>
+
+    <!-- 非ログイン時のヘッダー -->
+  <% else %>
+    <nav class = "navbar navbar-expand-lg bg_user_bottom">
+      <div class = "container">
+        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                全件一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><%= link_to "<i class='fa-solid fa-book'></i> 書籍一覧".html_safe, books_path, class:"dropdown-item" %></li>
+                <li><%= link_to "<i class='fa-solid fa-location-pin'></i> スポット一覧".html_safe, spots_path, class:"dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-book"></i> 書籍ジャンル別一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <% @genres.each do |genre| %>
+                  <li><a class="dropdown-item" href="<%= genre_path(genre) %>" ><i class="fa-solid fa-book"></i> <%= genre.name %></a></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-location-pin"></i> スポット地域別一覧
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <% @locations.each do |location| %>
+                  <li><a class="dropdown-item" href="<%= location_path(location) %>" ><i class="fa-solid fa-book"></i> <%= location.name %></a></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   <% end %>
+
 </header>

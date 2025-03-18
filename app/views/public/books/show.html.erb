@@ -116,7 +116,7 @@
                       <%= f.hidden_field :post_type, value: "spot" %>
                       <%= f.hidden_field :book_id, value: @book.id %>
                       <%= f.label "スポット選択" %>
-                      <%= f.collection_select :spot_id, Spot.all, :id, :name, prompt: "登録済みのスポットを選択" %>
+                      <%= f.collection_select :spot_id, Spot.all, :id, :name, include_blank: "登録済みのスポットを選択" %>
                       <%= f.submit "登録済みのスポットを追加", class: "nav_button" %>
                       <%= render 'temp/spot_select', post_management: @post_management %>
                     <% end %>

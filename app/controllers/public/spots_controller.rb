@@ -30,10 +30,9 @@ class Public::SpotsController < ApplicationController
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
     if @spot.save
-      PostManagement.create(book_id: @spot.book_id, spot_id: @spot.id, post_type: @spot.post_type)
+      PostManagement.create(spot_id: @spot.id, book_id: @spot.book_id, post_type: @spot.post_type)
       redirect_to spot_path(@spot), notice: "スポットを新規登録しました。"
     else
-      @spots = Spot.all
       render "new"
     end
   end
@@ -51,9 +50,9 @@ class Public::SpotsController < ApplicationController
       else
         PostManagement.create(book_id: @spot.book_id, spot_id: @spot.id, post_type: @spot.post_type)
       end
-      redirect_to spot_path(@spot), notice: "スポット情報を更新しました。"
+        redirect_to spot_path(@spot), notice: "スポット情報を更新しました。"
     else
-      rend
+      render :edit
     end
   end
 

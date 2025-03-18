@@ -4,7 +4,7 @@
 
       <!-- スポット詳細（左側） -->
       <div class="col-md-5">
-      <h4 class="h4_text">スポット詳細</h4>
+        <h4 class="h4_text">スポット詳細</h4>
         <table class="spot_table">
           <tr>
             <th>スポット名</th>
@@ -13,6 +13,9 @@
           <tr>
           <th>住所</th>
             <td><%= @spot.address_prefectures %><%= @spot.address_city %></td>
+          </tr>
+          <th>地域</th>
+            <td><%= link_to @spot.location&.name, location_path(@spot.location) %></td>
           </tr>
           <tr>
             <th>スポット画像</th>
@@ -35,31 +38,31 @@
                   </div>
                 </div>
               </div>
-             </td>
+            </td>
           </tr>
-          </table>
-          <table class="element_table">
-            <tr>
-              <td>行きたい！ボタン</td>
-              <td>行ったよ！ボタン</td>
-            </tr>
+        </table>
+        <table class="element_table">
+          <tr>
+            <td>行きたい！ボタン</td>
+            <td>行ったよ！ボタン</td>
+          </tr>
+          <% if @spot.user == current_user %>
+          <tr>
+            <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_spot_path(@spot.id), class: 'nav_button' %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <td>
+              <div class="profile_image">
+                <%= image_tag @user.get_profile_image(100,100) %>
+              </div>
+            </td>
             <% if @spot.user == current_user %>
-            <tr>
-              <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_spot_path(@spot.id), class: 'nav_button' %></td>
-            </tr>
+            <td><%= link_to @spot.user.name, mypage_users_path %>さんが登録</td>
+            <% else %>
+            <td><%= link_to @spot.user.name, user_path(@user.id) %>さんが登録</td>
             <% end %>
-            <tr>
-              <td>
-                <div class="profile_image">
-                  <%= image_tag @user.get_profile_image(100,100) %>
-                </div>
-              </td>
-              <% if @spot.user == current_user %>
-              <td><%= link_to @spot.user.name, mypage_users_path %>さんが登録</td>
-              <% else %>
-              <td><%= link_to @spot.user.name, user_path(@user.id) %>さんが登録</td>
-              <% end %>
-            </tr>
+          </tr>
         </table>
       </div>
 
@@ -86,28 +89,26 @@
                 <div class="col-md-12">
                   <div class="row"> 
                     <div>
-                    <% if user_signed_in? %>
-                    <h4 class="h4_text">コメント投稿</h4>
-                    ★･･･必須項目
-                      
-                      <!-- コメント投稿 -->
-                      <%= form_with model: [@spot, @comment], local: false do |f| %>
-                        <%= f.label :コメント： %> ★
-                        <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
-                        <%= f.label :スポット画像： %>
-                        <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %><br />
-                        <%= f.label :関連書籍選択： %> ★
-                        <%= f.collection_select :book_id, @select_books, :id, :title, prompt: "選択して下さい" %>
-                        <%= f.submit "コメントする", class: 'nav_button' %>
+                      <% if user_signed_in? %>
+                      <h4 class="h4_text">コメント投稿</h4>
+                      ★･･･必須項目
+                        
+                        <!-- コメント投稿 -->
+                        <%= form_with model: [@spot, @comment], local: false do |f| %>
+                          <%= f.label :コメント： %> ★
+                          <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
+                          <%= f.label :スポット画像： %>
+                          <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %><br />
+                          <%= f.label :関連書籍選択： %> ★
+                          <%= f.collection_select :book_id, @select_books, :id, :title, prompt: "選択して下さい" %>
+                          <%= f.submit "コメントする", class: 'nav_button' %>
+                        <% end %>
+                      <% else %>
                       <% end %>
-                    <% else %>
-                    <% end %>
-                  </div>
+                    </div>
                     <h4 class="h4_text">コメント一覧</h4>
                     <div id="comment_list">
-                        <%= render "temp/spot_comment_index", spot: @spot, comments: @comments, user: @comments_users, book: @books %>
-                      </tbody>
-                      </table>
+                      <%= render "temp/spot_comment_index", spot: @spot, comments: @comments, user: @comments_users, book: @books %>
                     </div>
                   </div>
                 </div>
@@ -124,13 +125,10 @@
                       <%= f.hidden_field :post_type, value: "spot" %>
                       <%= f.hidden_field :spot_id, value: @spot.id %>
                       <%= f.label "書籍選択" %>
-                      <%= f.collection_select :book_id, Book.all, :id, :title, prompt: "登録済みの書籍を選択" %>
+                      <%= f.collection_select :book_id, Book.all, :id, :title, include_blank: "登録済みの書籍を選択" %>
                       <%= f.submit "登録済みの書籍を追加", class: "nav_button" %>
                       <%= render 'temp/book_select', post_management: @post_management %>
                     <% end %>
-
-                    <h4 class="h4_text">関連書籍を新規作成</h4>
-                    <button type="button" class="nav_button" style="display: inline-block; width: auto;"><%= link_to "新たな関連書籍を追加", new_book_path(spot_id: @spot.id) %></button>
                   <% end %>
 
                   <h4 class="h4_text">関連書籍一覧</h4>
@@ -138,8 +136,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          
+          </div> 
         </div>      
       </div>
 

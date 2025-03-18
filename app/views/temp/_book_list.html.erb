@@ -8,40 +8,39 @@
           <th>ジャンル</th>
           <th>登録日</th>
           <th></th>
-          <th></th>
         <tr>
       </thead>
       <tbody>
-      <% books.each do |book| %>
-        <tr>
-          <td>
-            <div class="book_image">
-              <% if admin_signed_in? %>
-                <%= image_tag book.get_book_image(100,100) %>
-              <% else %>
-                <%= link_to book_path(book) do %>
+        <% books.each do |book| %>
+          <tr>
+            <td>
+              <div class="book_image">
+                <% if admin_signed_in? %>
                   <%= image_tag book.get_book_image(100,100) %>
+                <% else %>
+                  <%= link_to book_path(book) do %>
+                    <%= image_tag book.get_book_image(100,100) %>
+                  <% end %>
                 <% end %>
+              </div>
+            </td>
+            <td><%= book.title %></td>
+            <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
+            <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              <% if admin_signed_in? %>
+                <%= link_to "編集", edit_admin_book_path(book), class: 'btn btn-success mb-3', role: 'button' %>
+                <%= link_to "削除", admin_book_path(book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
+              <% elsif user_signed_in? && current_user == book.user %>
+                <%= link_to "編集", edit_book_path(book), class: 'btn btn-success mb-3', role: 'button' %>
+                <%= link_to "削除", book_path(book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
               <% end %>
-            </div>
-          </td>
-          <td><%= book.title %></td>
-          <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
-          <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
-          <% if admin_signed_in? %>
-            <td><%= link_to "編集する", edit_admin_book_path(book), class: 'btn btn-success mb-3', role: 'button' %></td>
-            <td><%= link_to "削除する", admin_book_path(book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
-          <% elsif user_signed_in? && current_user == book.user %>
-            <td><%= link_to "編集する", edit_book_path(book), class: 'btn btn-success mb-3', role: 'button' %></td>
-            <td><%= link_to "削除する", book_path(book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
-          <% else %>
-          <% end %>
-          <% end %>
-          <% else %>
-        </tr>
-      <% end %>
-    </tbody>
-    <% else %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  <% else %>
     <p>書籍登録がありません</p>
   <% end %>
 </table>
