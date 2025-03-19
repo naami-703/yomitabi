@@ -4,7 +4,7 @@ class Admin::CommentsController < ApplicationController
   def index 
     @books = Book.all
     @spots = Spot.all
-    @book_comments = Comment.where(book_id: @books.pluck(:id)).order(created_at: :desc)
+    @book_comments = Comment.where(book_id: @books.pluck(:id), spot_id: nil).order(created_at: :desc)
     @spot_comments = Comment.where(spot_id: @spots.pluck(:id)).where.not(book_id: nil).order(created_at: :desc)
   end
   
