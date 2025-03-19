@@ -15,16 +15,20 @@
     </div>
 
     <div class='col-md-5 mx-auto '>
-      <h4 class="h4_text">ジャンル一覧</h4>
-      <table>
-        <tr>
-          <th>ジャンル名</th>
-        <tr>
-        <% @genres.each do |genre| %>
+      <h4 class="h4_text">登録済みのジャンル一覧</h4>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= genre.name %>
-          </tr>
-        <% end %>
+            <th>ジャンル名</th>
+          <tr>
+          </thead>
+          <tbody>
+            <% @genres.each do |genre| %>
+              <tr>
+                <td><%= genre.name %>
+              </tr>
+            <% end %>
+          </tbody>
       </table>
     </div>
   </div>

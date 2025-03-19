@@ -2,7 +2,7 @@
   <div class='row no-gutters bg-white'>
 
     <div class='col-md-5 mx-auto text-center'>
-      <h4 class="h4_text">地域名登録</h4> 
+      <h4 class="h4_text">地域登録</h4> 
       <%= render 'temp/error_message', model: @location %>
       
       <div class="field">
@@ -18,19 +18,25 @@
 
     <div class='col-md-5 mx-auto '>
       <h4 class="h4_text">登録済みの地域</h4>
-      <table>
-        <tr>
-          <th>地域名</th>
-          <th>都道府県</th>
-        </tr>
-        <% @locations.each do |location| %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= location.name %></td>
-            <td><%= location.address_prefectures %></td>
-            <td><%= link_to "編集",  edit_admin_location_path(location), class: 'btn btn-success mb-3', role: 'button' %></td>
-            <td><%= link_to "削除", admin_location_path(location), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+            <th>地域名</th>
+            <th>都道府県名</th>
+            <th></th>
+            <th></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= location.address_prefectures %></td>
+              <td><%= link_to "編集",  edit_admin_location_path(location), class: 'btn btn-success mb-3', role: 'button' %></td>
+              <td><%= link_to "削除", admin_location_path(location), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>

@@ -8,31 +8,35 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="row"> 
-          <table>
-            <tr>
-              <th></th>
-              <th>名前</th>
-              <th>自己紹介</th>
-              <th>好きな本</th>
-              <th>登録日</th>
-              <th></th>
-              <th></th>
-            <tr>
-            <% @users.each do |user| %>
+          <table class="table">
+            <thead>
               <tr>
-                <td>
-                  <div class="user_image">
-                  <%= image_tag user.get_profile_image(100,100) %>
-                  </div>
-                </td>
-                <td><%= user.name %></td>
-                <td><%= user.introduction %></td>
-                <td><%= user.favorite_books %></td>
-                <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= link_to "編集",  edit_admin_user_path(user), class: 'btn btn-success mb-3', role: 'button' %></td>
-                <td><%= link_to "削除", admin_user_path(user), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
-              </tr>
-            <% end %>
+                <th></th>
+                <th>名前</th>
+                <th>自己紹介</th>
+                <th>好きな本</th>
+                <th>登録日</th>
+                <th></th>
+                <th></th>
+              <tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <div class="user_image">
+                    <%= image_tag user.get_profile_image(100,100) %>
+                    </div>
+                  </td>
+                  <td><%= user.name %></td>
+                  <td><%= user.introduction %></td>
+                  <td><%= user.favorite_books %></td>
+                  <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to "編集",  edit_admin_user_path(user), class: 'btn btn-success mb-3', role: 'button' %></td>
+                  <td><%= link_to "削除", admin_user_path(user), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+                </tr>
+              <% end %>
+            </tbody>
           </table>
         </div>
       </div>

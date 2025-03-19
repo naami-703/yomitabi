@@ -12,7 +12,7 @@ class Admin::LocationsController < ApplicationController
       redirect_to admin_locations_path, notice: "地域を登録しました。"
     else
       flash.now[:alert] = "登録に失敗しました。"
-      render :index
+      render 'index'
     end
   end
 
@@ -25,7 +25,7 @@ class Admin::LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to admin_locations_path, notice: "所在地情報を更新しました。"
     else
-      render "edit"
+      render 'edit'
     end
   end
 
