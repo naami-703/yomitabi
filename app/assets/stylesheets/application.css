@@ -165,3 +165,8 @@
 .clickable-image {
   cursor: pointer;
 }
+
+/* ヘッダーボタン位置右寄せ　*/
+.ml-auto {
+  margin-left: auto;
+}
