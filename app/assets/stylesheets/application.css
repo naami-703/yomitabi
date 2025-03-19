@@ -35,7 +35,7 @@
  }
  
 /* ヘッダーロゴ */
- .logo_image {
+.logo_image {
    width: 85px;
    height: 85px;
    background-size: auto;
@@ -43,7 +43,7 @@
  }
 
 /* ヘッダーUserログイン時下段背景色 */
- .bg_user_bottom {
+.bg_user_bottom {
   background: #4e839d;
   color: white;
 }
@@ -53,6 +53,7 @@
   background: #bc8f8f;
   color: white;
 }
+
 /* ヘッダーボタン */
 .nav_button {
   background: #4e839d;
@@ -138,7 +139,6 @@
 .book_table {
   border: solid 1px;
   margin: 20px;
-
 }
 
 .book_table .th,td {
