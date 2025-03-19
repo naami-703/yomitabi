@@ -42,7 +42,7 @@ class Public::UsersController < ApplicationController
       flash[:notice] =  "更新に成功しました"
       redirect_to mypage_users_path
     else
-      render :edit
+      render 'edit'
     end
   end
 

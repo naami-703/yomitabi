@@ -52,7 +52,7 @@ class Public::SpotsController < ApplicationController
       end
         redirect_to spot_path(@spot), notice: "スポット情報を更新しました。"
     else
-      render :edit
+      render "edit"
     end
   end
 
