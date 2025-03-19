@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
 
     @books = @user.books
-    @genres = @books.pluck(:genre)
+    @genres = @books.pluck(:genres)
     @books_new = @books.order(created_at: :desc)
     @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc)
 
