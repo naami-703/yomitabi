@@ -27,7 +27,13 @@
             </td>
             <td><%= spot.name %></td>
             <td><%= spot.address_prefectures %><%= spot.address_city %></td>
-            <td><%= link_to spot.location&.name, location_path(spot.location) %></td>
+            <td>
+              <% if admin_signed_in? %>
+               <%= spot.location.name %>
+              <% else %>
+                <%= link_to spot.location.name, location_path(spot.location) %>
+              <% end %>
+            </td>
             <td><%= spot.created_at.strftime('%Y/%m/%d') %></td>
             <td>
               <% if admin_signed_in? %>

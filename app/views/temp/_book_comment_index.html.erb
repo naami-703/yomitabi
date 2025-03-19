@@ -1,18 +1,22 @@
-<% if comments.any? %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>投稿者</th>
-        <th>タイトル</th>
-        <th>コメント</th>
-        <th>投稿日</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="commentList">
-      <% comments.each do |comment| %>
-        <%= render 'temp/book_comment', comment: comment %>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+<table class="table">
+  <% if comments.present? %>
+    <% if comments.any? %>
+      <thead>
+        <tr>
+          <th>投稿者</th>
+          <th>タイトル</th>
+          <th>コメント</th>
+          <th>投稿日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="commentList">
+        <% comments.each do |comment| %>
+          <%= render 'temp/book_comment', comment: comment %>
+        <% end %>
+      </tbody>
+    <% end %>
+  <% else %>
+    <p>感想投稿がありません</p>
+  <% end %>
+</table>

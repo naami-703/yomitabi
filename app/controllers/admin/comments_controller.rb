@@ -5,7 +5,7 @@ class Admin::CommentsController < ApplicationController
     @books = Book.all
     @spots = Spot.all
     @book_comments = Comment.where(book_id: @books.pluck(:id)).order(created_at: :desc)
-    @spot_comments = Comment.where(spot_id: @spots.pluck(:id)).order(created_at: :desc)
+    @spot_comments = Comment.where(spot_id: @spots.pluck(:id)).where.not(book_id: nil).order(created_at: :desc)
   end
   
   def destroy

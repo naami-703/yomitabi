@@ -50,14 +50,17 @@
           <tr>
             <td>
               <div class="profile_image">
-                <%= image_tag @user.get_profile_image(100,100) %>
+                <% if @book.user == current_user %>
+                  <%= link_to mypage_users_path do %> 
+                    <%= image_tag @user.get_profile_image(80, 80) %>
+                  <% end %>
+                  <% else %>
+                    <%= link_to user_path(user) do %> 
+                  <% end %>
+                <% end %>
               </div>
             </td>
-            <% if @book.user == current_user %>
-            <td><%= link_to @book.user.name, mypage_users_path %>さんが登録</td>
-            <% else %>
-            <td><%= link_to @book.user.name, user_path(@user.id) %>さんが登録</td>
-            <% end %>
+            <td><%= @book.user.name %>さんが登録</td>
           </tr>
         </table>
       </div>

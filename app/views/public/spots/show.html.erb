@@ -15,7 +15,7 @@
             <td><%= @spot.address_prefectures %><%= @spot.address_city %></td>
           </tr>
           <th>地域</th>
-            <td><%= link_to @spot.location&.name, location_path(@spot.location) %></td>
+            <td><%= link_to @spot.location.name, location_path(@spot.location) %></td>
           </tr>
           <tr>
             <th>スポット画像</th>
@@ -54,14 +54,17 @@
           <tr>
             <td>
               <div class="profile_image">
-                <%= image_tag @user.get_profile_image(100,100) %>
+                <% if @spot.user == current_user %>
+                  <%= link_to mypage_users_path do %> 
+                    <%= image_tag @user.get_profile_image(80, 80) %>
+                  <% end %>
+                  <% else %>
+                    <%= link_to user_path(user) do %> 
+                  <% end %>
+                <% end %>
               </div>
             </td>
-            <% if @spot.user == current_user %>
-            <td><%= link_to @spot.user.name, mypage_users_path %>さんが登録</td>
-            <% else %>
-            <td><%= link_to @spot.user.name, user_path(@user.id) %>さんが登録</td>
-            <% end %>
+            <td><%= @spot.user.name %>さんが登録</td>
           </tr>
         </table>
       </div>

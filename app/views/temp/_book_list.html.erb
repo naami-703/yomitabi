@@ -25,7 +25,13 @@
               </div>
             </td>
             <td><%= book.title %></td>
-            <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
+            <td>
+              <% if admin_signed_in? %>
+                <%= book.genre.name %>
+              <% else %>
+                <%= link_to book.genre.name, genre_path(book.genre) %>
+              <% end %>
+            </td>
             <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
             <td>
               <% if admin_signed_in? %>

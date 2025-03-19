@@ -1,5 +1,6 @@
-<% if comments.any? %>
-  <table class="table">
+<table class="table">
+  <% if comments.present? %>
+    <% if comments.any? %>
     <thead>
       <tr>
         <th>投稿者</th>
@@ -13,7 +14,10 @@
     <tbody id="commentList">
       <% comments.each do |comment| %>
         <%= render 'temp/spot_comment', comment: comment %>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+        <% end %>
+      </tbody>
+    <% end %>
+  <% else %>
+    <p>コメント投稿がありません</p>
+  <% end %>
+</table>
