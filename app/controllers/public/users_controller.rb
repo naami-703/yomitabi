@@ -23,7 +23,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @books = @user.books
-    @genre = @books.pluck(:genre)
+    @genres = @books.map { |book| book.genre }
     @books_new = @books.order(created_at: :desc)
     @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc)
 
