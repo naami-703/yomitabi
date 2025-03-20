@@ -52,7 +52,7 @@
           <% @books.each do |book| %>
             <tr>
               <td>
-                <%= link_to book_path(book) do %> 
+                <%= link_to book_path(book), data: {"turbolinks"=>false} do %> 
                   <%= image_tag book.get_book_image(50, 50) %>
                 <% end %>
               </td>
@@ -80,7 +80,7 @@
               <tr>
                 <td>
                   <div class="profile_image">
-                    <%= link_to spot_path(spot) do %> 
+                    <%= link_to spot_path(spot), data: {"turbolinks"=>false} do %> 
                       <%= image_tag spot.get_spot_image(50, 50) %>
                     <% end %>
                   </div>

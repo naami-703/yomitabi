@@ -18,7 +18,7 @@
                 <% if admin_signed_in? %>
                   <%= image_tag book.get_book_image(100,100) %>
                 <% else %>
-                  <%= link_to book_path(book) do %>
+                  <%= link_to book_path(book), data: {"turbolinks"=>false} do %>
                     <%= image_tag book.get_book_image(100,100) %>
                   <% end %>
                 <% end %>

@@ -3,7 +3,7 @@
     <div class="col-md-3 mb-4">
       <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
         <div class="card-body py-0">
-          <%= link_to spot_path(spot) do %>
+          <%= link_to spot_path(spot), data: {"turbolinks"=>false} do %>
             <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
           <% end %>
           <p class="card-title"><%= spot.name %></p>

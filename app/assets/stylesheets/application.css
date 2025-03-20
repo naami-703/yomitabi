@@ -24,7 +24,7 @@
 
 /* 見出し設定 */
 .h4_text {
-  font-family: 'Kaushan', cursive, sans-serif;;
+  font-family: 'Kaushan', cursive, sans-serif;
   margin: 20px;
 }
 
@@ -166,7 +166,3 @@
   cursor: pointer;
 }
 
-/* ヘッダーボタン位置右寄せ　*/
-.ml-auto {
-  margin-left: auto;
-}
