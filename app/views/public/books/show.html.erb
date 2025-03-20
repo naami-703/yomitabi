@@ -4,49 +4,56 @@
 
       <!-- 書籍詳細（左側） -->
       <div class="col-md-5">
-        <h4 class="h4_text">書籍詳細</h4>
-          <table class="book_table">
-            <tr>
-              <th>タイトル</th>
-              <td><%= link_to @book.title, book_path(@book.id) %></td>
-            </tr>
-            <tr>
-              <th>表紙画像</th>
-              <td>
-                <%= image_tag @book.get_book_image(200,200), { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" }  %>
-                <!-- 画像表示Modal -->
-                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                      </div>
-                      <div class="modal-body">
-                      <%= image_tag @book.get_book_image(300,300) %>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                      </div>
+        <div class = "row">
+          <div class="col-md-5">
+            <h4 class="h4_text">書籍詳細</h4>
+          </div>
+          <div class="col-md-7">
+          <!-- ブックマークボタン -->
+            <div id="bookmark_buttons_<%= @book.id %>">
+              <%= render "temp/bookmark", book: @book %>
+            </div>
+          </div>
+        </div>
+        <table class="book_table">
+          <tr>
+            <th>タイトル</th>
+            <td><%= link_to @book.title, book_path(@book.id) %></td>
+          </tr>
+          <tr>
+            <th>表紙画像</th>
+            <td>
+              <%= image_tag @book.get_book_image(200,200), { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" }  %>
+              <!-- 画像表示Modal -->
+              <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                    </div>
+                    <div class="modal-body">
+                    <%= image_tag @book.get_book_image(300,300) %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
                     </div>
                   </div>
                 </div>
-              </td>
-            </tr>
-            <tr>
+              </div>
+            </td>
+          </tr>
+          <tr>
             <th>ジャンル</th>
             <td><%= link_to @book.genre.name, genre_path(@genre) %></td>
           </tr>
-          </table>
-          <table class="element_table">
+        </table>
+        <table class="element_table">
+          <% if @book.user == current_user %>
             <tr>
-              <td>ブックマークボタン</td>
-            <tr>
-            <% if @book.user == current_user %>
-              <tr>
-                <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_book_path(@book.id),  class: 'nav_button' %></td>
-              </tr>
-            <% end %>
+              <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_book_path(@book.id),  class: 'nav_button' %></td>
+            </tr>
+          <% end %>
           <tr>
             <td>
               <div class="profile_image">

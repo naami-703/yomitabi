@@ -46,6 +46,7 @@
             <th>表紙</th>
             <th>タイトル</th>
             <th>ブックマーク</th>
+            <th>登録日</th>
           </tr>
         </thead>
         <tbody>
@@ -57,8 +58,9 @@
                 <% end %>
               </td>
               <td><%= book.title %></td>
-              <td>ブックマーク数</td>
-            </tr>
+              <td><i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %></td>
+              <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
           <% end %>
         </tbody>
       <% end %>
@@ -73,6 +75,7 @@
               <th>住所</th>
               <th>行きたい！</th>
               <th>行ったよ！</th>
+              <th>登録日</th>
             </tr>
           </thead>
           <tbody>
@@ -89,6 +92,7 @@
                 <td><%= spot.address_prefectures %><%= spot.address_city %></td>
                 <td>行きたい！数</td>
                 <td>行ったよ！数</td>
+                <td><%= spot.created_at.strftime('%Y/%m/%d') %></td>
               </tr>
             <% end %>
           </tbody>

@@ -1,1 +1,32 @@
-<h3>ブックマーク登録一覧</h3>
+<table class="table">
+  <% if bookmarks_selected.present? %>
+    <% if bookmarks_selected.any? %>
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>ジャンル</th>
+          <th>登録日</th>
+        <tr>
+      </thead>
+      <tbody>
+        <% bookmarks_selected.each do |book| %>
+          <tr>
+            <td>
+              <div class="book_image">
+                <%= link_to book_path(book), data: {"turbolinks"=>false} do %>
+                  <%= image_tag book.get_book_image(100,100) %>
+                <% end %>
+              </div>
+            </td>
+            <td><%= book.title %></td>
+            <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
+            <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  <% else %>
+    <p>ブックマークがありません</p>
+  <% end %>
+</table>

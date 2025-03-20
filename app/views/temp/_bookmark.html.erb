@@ -1,0 +1,17 @@
+<% if book.bookmarked_by?(current_user) %>
+  <p>
+  <div class = "bookmark_button_selected">
+    <%= link_to book_bookmarks_path(book), method: :delete, remote: true, data: { turbo: false } do %>
+      <i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %> ブックマーク
+    <% end %>
+    </div>
+  </p>
+  <% else %>
+  <p>
+  <div class = "bookmark_button_nonselected">
+    <%= link_to book_bookmarks_path(book), method: :post, remote: true, data: { turbo: false } do %>
+      <i class="fa-regular fa-bookmark"></i> <%= book.bookmarks.count %> ブックマーク
+    <% end %>
+    </div>
+  </p>
+<% end %>

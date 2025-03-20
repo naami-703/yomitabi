@@ -4,6 +4,8 @@ class Spot < ApplicationRecord
   belongs_to :location, optional: true
   has_many :comments, dependent: :destroy
   has_many :post_managements,  dependent: :destroy
+  has_many :want_to_gos, dependent: :destroy
+  has_many :wents, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
   validates :address_prefectures, presence: true
@@ -31,6 +33,14 @@ class Spot < ApplicationRecord
   def get_spot_image(width, height)
     return spot_image.variant(resize_to_limit: [width, height]).processed if spot_image.attached?
     ActionController::Base.helpers.asset_path('no_image.jpg')
+  end
+
+  def want_to_gosed_by?(user)
+    want_to_gos.exists?(user_id: user.id)
+  end
+
+  def wented_by?(user)
+    wents.exists?(user_id: user.id)
   end
 
   before_save :set_location

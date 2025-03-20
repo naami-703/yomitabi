@@ -13,6 +13,10 @@ class Public::UsersController < ApplicationController
     @spots = @user.spots
     @spots_new = @spots.order(created_at: :desc)
     @comments_spot = @user.comments.where.not(spot_id: nil).order(created_at: :desc)
+
+    bookmarks = Bookmark.where(user_id: @user.id).pluck(:book_id)
+    @bookmarks_selected = Book.find(bookmarks)
+    @bookmarks_book = @bookmarks_selected.map { |book| book }
   end
 
   def index

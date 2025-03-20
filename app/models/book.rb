@@ -3,7 +3,8 @@ class Book < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :comments, dependent: :destroy
-  has_many :post_managements,  dependent: :destroy
+  has_many :post_managements, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :title, uniqueness: true, presence: true
 
@@ -16,6 +17,10 @@ class Book < ApplicationRecord
   def get_book_image(width, height)
     return book_image.variant(resize_to_limit: [width, height]).processed if book_image.attached?
     ActionController::Base.helpers.asset_path('no_image.jpg')
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 
 end

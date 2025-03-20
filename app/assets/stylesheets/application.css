@@ -30,7 +30,7 @@
 
 /* ヘッダー背景色 */
 .bg_custom {
-  background: #e7e7e6;
+  background: #F8F8FF;
   height :100px;
  }
  
@@ -44,7 +44,7 @@
 
 /* ヘッダーUserログイン時下段背景色 */
 .bg_user_bottom {
-  background: #4e839d;
+  background: #193278;
   color: white;
 }
 
@@ -56,7 +56,7 @@
 
 /* ヘッダーボタン */
 .nav_button {
-  background: #4e839d;
+  background: #193278;
   text-decoration: none;
   color: white;
   border-radius : 10px;
@@ -86,10 +86,10 @@
 
 /* ヘッダーログイン・ログアウトボタン */
 .nav_button_login_logout {
-  border: 2px solid #4e839d;
-  background: #e7e7e6;
+  border: 2px solid #193278;
+  background: #F8F8FF;
   text-decoration: none;
-  color: #4e839d;
+  color: #193278;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
@@ -97,7 +97,7 @@
 
   .nav_button_login_logout:hover {
     text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
-    color: #4e839d; /* マウスオーバー時の文字色 */
+    color: #193278; /* マウスオーバー時の文字色 */
   }
 
 /* top画像サイズ */
@@ -130,6 +130,7 @@
 /* 一覧画面カード画像サイズ */
 .card-img-top {
   height: 200px;
+  margin-top: 30px;
 }
 
 /* 一覧画面カードテキスト */
@@ -170,4 +171,144 @@
 .clickable-image {
   cursor: pointer;
 }
+
+/* ブックマークボタン（クリック済み） */
+.bookmark_button_selected {
+  display: inline-block;
+  background: #FF6600;
+  text-decoration: none;
+  color: white;
+  border-radius : 100px;
+  padding: 10px;
+}
+
+/* ブックマークボタン（未クリック） */
+.bookmark_button_nonselected {
+  display: inline-block;
+  border: 2px solid #FF6600;
+  background: #FFFFAA;
+  text-decoration: none;
+  color: #FF6600;
+  border-radius: 100px;
+  padding: 10px;
+  }
+
+  .bookmark_button_selected a, 
+  .bookmark_button_nonselected a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .bookmark_button_selected a:hover, 
+  .bookmark_button_nonselected a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ブックマークアイコン（カウント表示用） */
+.bookmark_icon {
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #FF6600;
+  }
+
+/* spot/show行きたい！行ったよ！ボタン横並び設定 */
+  .button-container {
+    display: flex;
+    gap: 10px; 
+    justify-content: flex-start; 
+    align-items: center;
+  }
+
+/* 行きたい！ボタン（クリック済み） */
+.want_to_go_button_selected {
+  display: inline-block;
+  background: #00CCCC;
+  text-decoration: none;
+  color: white;
+  border-radius : 100px;
+  padding: 10px;
+}
+
+  /* 行きたい！ボタン（未クリック） */
+.want_to_go_button_nonselected {
+  display: inline-block;
+  border: 2px solid #00CCCC;
+  background: #E6FFE9;
+  text-decoration: none;
+  color: #00CCCC;
+  border-radius: 100px;
+  padding: 10px;
+  }
+
+  .want_to_go_button_selected a, 
+  .want_to_go_button_nonselected a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .want_to_go_button_selected a:hover, 
+  .want_to_go_button_nonselected a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* 行きたい！アイコン（カウント表示用） */
+.want_to_go_icon {
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #00CCCC;
+  }
+
+    /* 行ったよ！ボタン（クリック済み） */
+.went_button_selected {
+  display: inline-block;
+  background: #FF44FF;
+  text-decoration: none;
+  color: white;
+  border-radius : 100px;
+  padding: 10px;
+}
+
+  /* 行ったよ！ボタン（未クリック） */
+.went_button_nonselected {
+  display: inline-block;
+  border: 2px solid #FF44FF;
+  background: #FFD5EC;
+  text-decoration: none;
+  color: #FF44FF;
+  border-radius: 100px;
+  padding: 10px;
+  }
+
+  .went_button_selected a, 
+  .went_button_nonselected a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .went_button_selected a:hover, 
+  .went_button_nonselected a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* 行ったよ！アイコン（カウント表示用） */
+.went_icon {
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #FF44FF;
+  }
 

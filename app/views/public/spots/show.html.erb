@@ -5,6 +5,16 @@
       <!-- スポット詳細（左側） -->
       <div class="col-md-5">
         <h4 class="h4_text">スポット詳細</h4>
+        <!-- 行きたい！ボタン -->
+        <div class="button-container">
+          <div id="want_to_go_buttons_<%= @spot.id %>">
+            <%= render "temp/want_to_go", spot: @spot %>
+          </div>
+          <!-- 行ったよ！ボタン -->
+          <div id="went_buttons_<%= @spot.id %>">
+            <%= render "temp/went", spot: @spot %>
+          </div>
+        </div>
         <table class="spot_table">
           <tr>
             <th>スポット名</th>
@@ -42,10 +52,6 @@
           </tr>
         </table>
         <table class="element_table">
-          <tr>
-            <td>行きたい！ボタン</td>
-            <td>行ったよ！ボタン</td>
-          </tr>
           <% if @spot.user == current_user %>
           <tr>
             <td><%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_spot_path(@spot.id), class: 'nav_button' %></td>

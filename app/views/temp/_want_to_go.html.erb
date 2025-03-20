@@ -1,0 +1,17 @@
+<% if spot.want_to_gosed_by?(current_user) %>
+  <p>
+  <div class = "want_to_go_button_selected">
+    <%= link_to spot_want_to_gos_path(spot), method: :delete, remote: true, data: { turbo: false } do %>
+      <i class="fa-solid fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %> 行きたい！
+    <% end %>
+    </div>
+  </p>
+  <% else %>
+  <p>
+  <div class = "want_to_go_button_nonselected">
+    <%= link_to spot_want_to_gos_path(spot), method: :post, remote: true, data: { turbo: false } do %>
+      <i class="fa-regular fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %> 行きたい！
+    <% end %>
+    </div>
+  </p>
+<% end %>

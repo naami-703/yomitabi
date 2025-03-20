@@ -1,0 +1,17 @@
+<% if spot.wented_by?(current_user) %>
+  <p>
+  <div class = "went_button_selected">
+    <%= link_to spot_went_path(spot), method: :delete, remote: true, data: { turbo: false } do %>
+      <i class="fa-solid fa-thumbs-up"></i> <%= spot.wents.count %> 行ったよ！
+    <% end %>
+    </div>
+  </p>
+  <% else %>
+  <p>
+  <div class = "went_button_nonselected">
+    <%= link_to spot_went_path(spot), method: :post, remote: true, data: { turbo: false } do %>
+      <i class="fa-regular fa-thumbs-up"></i> <%= spot.wents.count %> 行ったよ！
+    <% end %>
+    </div>
+  </p>
+<% end %>
