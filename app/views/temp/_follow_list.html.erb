@@ -1,0 +1,5 @@
+<% if users.exists? %>
+  <%= render "temp/user_index", users: users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

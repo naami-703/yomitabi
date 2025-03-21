@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:show]
     resources :locations, only: [:show]
     resources :post_managements, only: [:show, :create, :update, :destroy]
+    resource :relations, only: [:create, :destroy]
     
     get 'searches', to: 'searches#index'
   end

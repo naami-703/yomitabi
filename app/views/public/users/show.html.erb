@@ -1,69 +1,83 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-3 p-3">
-      <h3 class="h3_text"><%= @user.name %>さんの<br>ページ</h3>
+      <h4 class="h4_text"><%= @user.name %>さんの<br>ページ</h4>
     </div>
-      <div class="col-md-2 p-3">
-        <div class="profile_image">
-          <%= image_tag @user.get_profile_image(150, 150) %>
-        </div>
+
+    <!-- プロフィール画像 -->
+    <div class="col-md-2 p-3">
+      <div class="profile_image">
+        <%= image_tag @user.get_profile_image(150, 150) %>
       </div>
-      <div class="col-md-5 p-3">
-        <table class="profile_table">
-          <tr>
-            <td class="title">ユーザー名</td>
-            <td class="title"><%= @user.name %></td>
-         </tr>
-          <tr>
-            <td class="title">自己紹介</td>
-            <td class="body"><%= @user.introduction %></td>
-          </tr>
-          <tr>
-          <td class="title">好きな本</td>
-          <td class="body"><%= @user.favorite_books %></td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-2 p-3">
-        <span><i class="fa-solid fa-people-arrows"></i>フォローボタン</span><br>
-        <span><i class="fa-solid fa-people-arrows"></i>フォロー数：</span><br>
-        <span><i class="fa-solid fa-people-arrows"></i>フォロワー数：</span><br>
-      </div>
+    </div>
+
+    <!-- プロフィール紹介 -->
+    <div class="col-md-5 p-3">
+      <table class="profile_table">
+        <tr>
+          <td class="title">ユーザー名</td>
+          <td class="title"><%= @user.name %></td>
+      </tr>
+        <tr>
+          <td class="title">自己紹介</td>
+          <td class="body"><%= @user.introduction %></td>
+        </tr>
+        <tr>
+        <td class="title">好きな本</td>
+        <td class="body"><%= @user.favorite_books %></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- フォロー・フォロワー -->
+    <div class="col-md-2">
+      <table>
+        <tr>
+          <td><%= render 'temp/follow_btn', user: @user %></td>
+        </tr>
+        <tr>
+          <td><b>フォロー数：<%= @user.followings.count %></b></td>
+        </tr>
+        <tr>
+          <td><b>フォロワー数：<%= @user.followers.count %></b></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-md-12 ">
-      
+      <!-- タブ表示 -->
       <div class="tabs d-flex justify-content-between align-items-center">
-      <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="tab" href="#book_index"><i class="fa-solid fa-book"></i> 書籍</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#spot_index"><i class="fa-solid fa-location-pin"></i> スポット</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#book_comment_index"><i class="fa-solid fa-comment"></i> 感想</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#spot_comment_index"><i class="fa-solid fa-comment"></i> コメント</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#bookmar_index"><i class="fa-solid fa-bookmark"></i> ブックマーク</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#want_to_go_index"><i class="fa-solid fa-face-grin-hearts"></i> 行きたい！</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#went_index"><i class="fa-solid fa-thumbs-up"></i> 行ったよ！</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#follow_index"><i class="fa-solid fa-people-arrows"></i> フォロー</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#follower_index"><i class="fa-solid fa-people-arrows"></i> フォロワー</a>
-      </li>
-    </ul>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#book_index"><i class="fa-solid fa-book"></i> 書籍</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#spot_index"><i class="fa-solid fa-location-pin"></i> スポット</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#book_comment_index"><i class="fa-solid fa-comment"></i> 感想</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#spot_comment_index"><i class="fa-solid fa-comment"></i> コメント</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#bookmark_index"><i class="fa-solid fa-bookmark"></i> ブックマーク</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#want_to_go_index"><i class="fa-solid fa-face-grin-hearts"></i> 行きたい！</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#went_index"><i class="fa-solid fa-thumbs-up"></i> 行ったよ！</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#follow_index"><i class="fa-solid fa-people-arrows"></i> フォロー</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#follower_index"><i class="fa-solid fa-people-arrows"></i> フォロワー</a>
+          </li>
+        </ul>
       </div>
       
       <!-- 書籍投稿一覧 -->
@@ -99,24 +113,29 @@
           <%= render 'temp/spot_comment_index', comments: @comments_spot %>
         </div>
 
+        <!-- ブックマーク一覧 -->
         <div id="bookmark_index" class="tab-pane fade">
-          <%= render "temp/bookmark_index" %>
+          <%= render "temp/bookmark_index", bookmarks_selected: @bookmarks_selected %>
         </div>
 
+        <!-- 行きたい！一覧 -->
         <div id="want_to_go_index" class="tab-pane fade">
-          <%= render "temp/want_to_go_index" %>
+          <%= render "temp/want_to_go_index", want_to_gos_selected: @want_to_gos_selected %>
         </div>
 
+        <!-- 行ったよ！一覧 -->
         <div id="went_index" class="tab-pane fade">
-          <%= render "temp/went_index" %>
+          <%= render "temp/went_index", wents_selected: @wents_selected %>
         </div>
 
+        <!-- フォロー一覧 -->
         <div id="follow_index" class="tab-pane fade">
-          フォロー一覧
+          <%= render "temp/follow_list", users: @followings_users %>
         </div>
 
+        <!-- フォロワー一覧 -->
         <div id="follower_index" class="tab-pane fade">
-          フォロワー一覧
+          <%= render "temp/follow_list", users: @followers_users %>
         </div>
       </div>
     </div>

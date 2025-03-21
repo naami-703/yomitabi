@@ -1,4 +1,4 @@
-<table class="table  text-center">
+<table class="table text-center">
   <% if spots.present? %>
     <% if spots.any? %>
       <thead>
@@ -7,6 +7,8 @@
           <th>スポット名</th>
           <th>住所</th>
           <th>地域</th>
+          <th>行きたい！</th>
+          <th>行ったよ！</th>
           <th>登録日</th>
           <th></th>
         </tr>
@@ -33,6 +35,16 @@
               <% else %>
                 <%= link_to spot.location.name, location_path(spot.location) %>
               <% end %>
+            </td>
+            <td>
+              <div class="index_want_to_go_icon">
+                <i class="fa-solid fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %>
+              </div>
+            </td>
+            <td>
+              <div class="index_went_icon">
+                <i class="fa-solid fa-thumbs-up"></i> <%= spot.wents.count %>
+              </div>
             </td>
             <td><%= spot.created_at.strftime('%Y/%m/%d') %></td>
             <td>

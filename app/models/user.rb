@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
   # フォローを外すときの処理
   def unfollow(user_id)
-    relationss.find_by(follow_id: user_id).destroy
+    relations.find_by(follow_id: user_id).destroy
   end
   # フォローしているか判定
   def following?(user)
@@ -37,11 +37,8 @@ class User < ApplicationRecord
   end
 
   def get_profile_image(width,height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-      profile_image.variant(resize_to_limit: [width, height]).processed
+    return profile_image.variant(resize_to_limit: [width, height]).processed if profile_image.attached?
+    ActionController::Base.helpers.asset_path('no_image.jpg')
   end
 
   def self.looks(search, word)

@@ -1,0 +1,13 @@
+<% if current_user.following?(user) %>
+  <div class="followed_btn">
+    <%= link_to relations_path(user_id: user.id), method: :delete do %>
+      <i class="fa-solid fa-people-arrows"></i> フォローを外す
+    <% end %>
+  </div>
+<% else %>
+  <div class="following_btn">
+    <%= link_to relations_path(user_id: user.id), method: :post do %>
+      <i class="fa-solid fa-people-arrows"></i> フォローする
+    <% end %>
+  </div>
+<% end %>

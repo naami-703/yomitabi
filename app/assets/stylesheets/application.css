@@ -205,15 +205,20 @@
     color: inherit;
   }
 
-  /* ブックマークアイコン（カウント表示用） */
-.bookmark_icon {
-  position: absolute;
-  top: -1px;
-  right: 3px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 15px;
-  color: #FF6600;
+  /* ブックマークアイコン（カード内カウント表示用） */
+  .bookmark_icon {
+    position: absolute;
+    top: -1px;
+    right: 3px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #FF6600;
+    }
+
+/* ブックマークアイコン（リスト内カウント表示用） */
+  .index_bookmark_icon {
+    color: #FF6600;
   }
 
 /* spot/show行きたい！行ったよ！ボタン横並び設定 */
@@ -261,14 +266,19 @@
 .want_to_go_icon {
   position: absolute;
   top: -1px;
-  right: 3px;
+  right: 50px;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 15px;
   color: #00CCCC;
   }
 
-    /* 行ったよ！ボタン（クリック済み） */
+/* 行きたい！アイコン（リスト内カウント表示用） */
+.index_want_to_go_icon {
+  color: #00CCCC;
+}
+
+  /* 行ったよ！ボタン（クリック済み） */
 .went_button_selected {
   display: inline-block;
   background: #FF44FF;
@@ -311,4 +321,55 @@
   font-size: 15px;
   color: #FF44FF;
   }
+
+/* 行ったよ！アイコン（リスト内カウント表示用） */
+.index_went_icon {
+  color: #FF44FF;
+}
+
+/* フォロボタン（フォロー済み） */
+.followed_btn {
+  display: inline-block;
+  background: #8B008B;
+  text-decoration: none;
+  color: white;
+  border-radius : 100px;
+  padding: 10px;
+}
+
+  /* フォローボタン（未フォロー） */
+.following_btn {
+  display: inline-block;
+  border: 2px solid #8B008B;
+  background: #DDA0DD;
+  text-decoration: none;
+  color: #8B008B;
+  border-radius: 100px;
+  padding: 10px;
+  }
+
+  .followed_btn a, 
+  .following_btn a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .followed_btn a:hover, 
+  .following_btn a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+
+/* フォローアイコン（リスト内カウント表示用） */
+.follow_icon {
+  color: #8B008B;
+}
+
+.card-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;  /* 画像の比率を維持しつつ、枠内に収める */
+  background-color: white; /* 空いた部分を白で埋める */
+  display: block;
+}
 

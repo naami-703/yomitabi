@@ -1,13 +1,19 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-3 p-3">
-      <h3 class="h3_text">マイページ</h3>
+      <h4 class="h4_text">マイページ</h4>
+        <br><br>
+        <%= link_to "<i class='fa-solid fa-gears'></i> 会員情報編集".html_safe, edit_user_path(current_user), class: "nav_button" %>
     </div>
+
+    <!-- プロフィール画像 -->
     <div class="col-md-2 p-3">
       <div class="profile_image">
         <%= image_tag @user.get_profile_image(150, 150) %>
       </div>
     </div>
+
+    <!-- プロフィール紹介 -->
     <div class="col-md-5 p-3">
       <table class="profile_table">
         <tr>
@@ -24,12 +30,18 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-2 p-3">
-      <span><i class="fa-solid fa-people-arrows"></i> フォロー数：</span><br>
-      <span><i class="fa-solid fa-people-arrows"></i> フォロワー数：</span><br><br>
-      <%= link_to "<i class='fa-solid fa-gears'></i> 編集する".html_safe, edit_user_path(current_user), class: "nav_button" %><br>
+    
+    <!-- フォロー・フォロワー -->
+    <div class="col-md-2 mt-4">
+      <table>
+        <tr>
+          <td><b>フォロー数：<%= @user.followings.count %></b></td>
+        </tr>
+        <tr>
+          <td><b>フォロワー数：<%= @user.followers.count %></b></td>
+        </tr>
+      </table>
     </div>
-  </div>
 
   <div class="row">
     <div class="col-md-12 ">
@@ -88,6 +100,7 @@
             </div>
           </div>
         </div>
+        
         <!-- 感想投稿一覧 -->
         <div id="book_comment_index" class="tab-pane fade">
           <%= render 'temp/book_comment_index', comments: @comments_book, user: @user %>
@@ -100,23 +113,27 @@
 
         <!-- ブックマーク一覧 -->
         <div id="bookmark_index" class="tab-pane fade">
-          <%= render "temp/bookmark_index", bookmarks_selected: @bookmarks_selected, book: @bookmarks_book %>
+          <%= render "temp/bookmark_index", bookmarks_selected: @bookmarks_selected %>
         </div>
 
+        <!-- 行きたい！一覧 -->
         <div id="want_to_go_index" class="tab-pane fade">
-          行きたい！一覧
+          <%= render "temp/want_to_go_index", want_to_gos_selected: @want_to_gos_selected %>
         </div>
 
+        <!-- 行ったよ！一覧 -->
         <div id="went_index" class="tab-pane fade">
-          行ったよ！一覧
+          <%= render "temp/went_index", wents_selected: @wents_selected %>
         </div>
 
+        <!-- フォロー一覧 -->
         <div id="follow_index" class="tab-pane fade">
-          フォロー一覧
+          <%= render "temp/follow_list", users: @followings_users %>
         </div>
 
+        <!-- フォロワー一覧 -->
         <div id="follower_index" class="tab-pane fade">
-          フォロワー一覧
+          <%= render "temp/follow_list", users: @followers_users %>
         </div>
 
       </div>

@@ -33,7 +33,11 @@
                 <%= link_to book.genre.name, genre_path(book.genre) %>
               <% end %>
             </td>
-            <td><i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %></td>
+            <td>
+              <div class="index_bookmark_icon">
+                <i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %>
+              </div>
+            </td>
             <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
             <td>
               <% if admin_signed_in? %>

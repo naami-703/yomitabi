@@ -2,9 +2,18 @@
   <% spots.each do |spot| %>
     <div class="col-md-3 mb-4">
       <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
+      
+        <!-- アイコンを画像の上部外に配置 -->
+        <div class="want_to_go_icon">
+          <i class="fa-solid fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %>
+        </div>
+        <div class="went_icon">
+          <i class="fa-solid fa-thumbs-up"></i> <%= spot.wents.count %>
+        </div>
+
         <div class="card-body py-0">
           <%= link_to spot_path(spot), data: {"turbolinks"=>false} do %>
-            <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top" %>
+            <%= image_tag spot.get_spot_image(200, 200), class: "card-img-top card-image" %>
           <% end %>
           <p class="card-title"><%= spot.name %></p>
           <p class="card-title"><%= spot.address_prefectures %><%= spot.address_city %></p>

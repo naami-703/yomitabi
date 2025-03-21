@@ -1,104 +1,25 @@
 <div class='container-fluid'>
   <div class='row'>
     <div class='col-md-10 mx-auto text-center'>
-      <table class="table">
       
       <!--検索対象モデルがUserの時 -->
       <% if @range == "user" %>
-      <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
-        <thead>
-          <tr>
-            <th></th>
-            <th>名前</th>
-            <th>自己紹介</th>
-            <th>好きな本</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td>
-                <div class="profile_image">
-                  <% if user == current_user %>
-                    <%= link_to mypage_users_path do %> 
-                      <%= image_tag user.get_profile_image(50, 50) %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to user_path(user) do %> 
-                      <%= image_tag user.get_profile_image(50, 50) %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </td>
-              <td><%= user.name %></td>
-              <td><%= user.introduction %></td>
-              <td><%= user.favorite_books %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      <% end %>
-    
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <%= render 'temp/user_index', users: @users %>
+       <% end %>
+
       <!--検索対象モデルがBookの時 -->
       <% if @range == "book" %>
-      <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
-        <thead>
-          <tr>
-            <th>表紙</th>
-            <th>タイトル</th>
-            <th>ブックマーク</th>
-            <th>登録日</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @books.each do |book| %>
-            <tr>
-              <td>
-                <%= link_to book_path(book), data: {"turbolinks"=>false} do %> 
-                  <%= image_tag book.get_book_image(50, 50) %>
-                <% end %>
-              </td>
-              <td><%= book.title %></td>
-              <td><i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %></td>
-              <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
-              </tr>
-          <% end %>
-        </tbody>
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <%= render 'temp/book_list', books: @books %>
       <% end %>
-    
+
       <!--検索対象モデルがSpotの時 -->
       <% if @range == "spot" %>
         <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
-          <thead>
-            <tr>
-              <th>スポット画像</th>
-              <th>スポット名</th>
-              <th>住所</th>
-              <th>行きたい！</th>
-              <th>行ったよ！</th>
-              <th>登録日</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @spots.each do |spot| %>
-              <tr>
-                <td>
-                  <div class="profile_image">
-                    <%= link_to spot_path(spot), data: {"turbolinks"=>false} do %> 
-                      <%= image_tag spot.get_spot_image(50, 50) %>
-                    <% end %>
-                  </div>
-                </td>
-                <td><%= spot.name %></td>
-                <td><%= spot.address_prefectures %><%= spot.address_city %></td>
-                <td>行きたい！数</td>
-                <td>行ったよ！数</td>
-                <td><%= spot.created_at.strftime('%Y/%m/%d') %></td>
-              </tr>
-            <% end %>
-          </tbody>
+          <%= render 'temp/spot_list', spots: @spots %>
         <% end %> 
 
-      </table>
     </div>
   </div>
 </div>

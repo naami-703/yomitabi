@@ -4,6 +4,8 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @followings_users = @user.followings
+    @followers_users = @user.followers
 
     @books = @user.books
     @genres = @books.map { |book| book.genre }
@@ -16,7 +18,13 @@ class Public::UsersController < ApplicationController
 
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:book_id)
     @bookmarks_selected = Book.find(bookmarks)
-    @bookmarks_book = @bookmarks_selected.map { |book| book }
+
+    want_to_gos = WantToGo.where(user_id: @user.id).pluck(:spot_id)
+    @want_to_gos_selected = Spot.find(want_to_gos)
+
+    wents = Went.where(user_id: @user.id).pluck(:spot_id)
+    @wents_selected = Spot.find(wents)
+
   end
 
   def index
@@ -25,6 +33,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @followings_users = @user.followings
+    @followers_users = @user.followers
 
     @books = @user.books
     @genres = @books.map { |book| book.genre }
@@ -34,6 +44,16 @@ class Public::UsersController < ApplicationController
     @spots = @user.spots
     @spots_new = @spots.order(created_at: :desc)
     @comments_spot = @user.comments.where.not(spot_id: nil).order(created_at: :desc)
+
+    bookmarks = Bookmark.where(user_id: @user.id).pluck(:book_id)
+    @bookmarks_selected = Book.find(bookmarks)
+
+    want_to_gos = WantToGo.where(user_id: @user.id).pluck(:spot_id)
+    @want_to_gos_selected = Spot.find(want_to_gos)
+
+    wents = Went.where(user_id: @user.id).pluck(:spot_id)
+    @wents_selected = Spot.find(wents)
+
   end
   
   def edit
