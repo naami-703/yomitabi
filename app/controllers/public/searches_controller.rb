@@ -6,11 +6,11 @@ class Public::SearchesController < ApplicationController
     @word = params[:word]
 
     if @range == "user"
-      @users = User.looks(params[:search], params[:word])
+      @users = User.looks(params[:search], params[:word]).page(params[:page])
     elsif @range == "book"
-      @books = Book.looks(params[:search], params[:word])
+      @books = Book.looks(params[:search], params[:word]).page(params[:page])
     else
-      @spots = Spot.looks(params[:search], params[:word])
+      @spots = Spot.looks(params[:search], params[:word]).page(params[:page])
     end
   end
 

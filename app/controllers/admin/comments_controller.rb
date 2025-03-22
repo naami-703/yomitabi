@@ -2,8 +2,8 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index 
-    @books = Book.all
-    @spots = Spot.all
+    @books = Book.page(params[:page])
+    @spots = Spot.page(params[:page])
     @book_comments = Comment.where(book_id: @books.pluck(:id), spot_id: nil).order(created_at: :desc)
     @spot_comments = Comment.where(spot_id: @spots.pluck(:id)).where.not(book_id: nil).order(created_at: :desc)
   end

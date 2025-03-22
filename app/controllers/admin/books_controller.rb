@@ -2,7 +2,7 @@ class Admin::BooksController < ApplicationController
   before_action :authenticate_admin!
 
   def index 
-    @books = Book.all
+    @books = Book.page(params[:page])
   end
 
   def edit

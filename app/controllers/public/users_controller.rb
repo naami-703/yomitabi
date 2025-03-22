@@ -4,17 +4,17 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @followings_users = @user.followings
-    @followers_users = @user.followers
+    @followings_users = @user.followings.page(params[:page])
+    @followers_users = @user.followers.page(params[:page])
 
     @books = @user.books
     @genres = @books.map { |book| book.genre }
-    @books_new = @books.order(created_at: :desc)
-    @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc)
+    @books_new = @books.order(created_at: :desc).page(params[:page])
+    @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc).page(params[:page])
 
     @spots = @user.spots
-    @spots_new = @spots.order(created_at: :desc)
-    @comments_spot = @user.comments.where.not(spot_id: nil).order(created_at: :desc)
+    @spots_new = @spots.order(created_at: :desc).page(params[:page])
+    @comments_spot = @user.comments.where.not(spot_id: nil).order(created_at: :desc).page(params[:page])
 
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:book_id)
     @bookmarks_selected = Book.find(bookmarks)
@@ -28,21 +28,21 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @followings_users = @user.followings
-    @followers_users = @user.followers
+    @followings_users = @user.followings.page(params[:page])
+    @followers_users = @user.followers.page(params[:page])
 
     @books = @user.books
     @genres = @books.map { |book| book.genre }
-    @books_new = @books.order(created_at: :desc)
+    @books_new = @books.order(created_at: :desc).page(params[:page])
     @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc)
 
     @spots = @user.spots
-    @spots_new = @spots.order(created_at: :desc)
+    @spots_new = @spots.order(created_at: :desc).page(params[:page])
     @comments_spot = @user.comments.where.not(spot_id: nil).order(created_at: :desc)
 
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:book_id)

@@ -5,16 +5,20 @@
       <!-- スポット詳細（左側） -->
       <div class="col-md-5">
         <h4 class="h4_text">スポット詳細</h4>
-        <!-- 行きたい！ボタン -->
-        <div class="button-container">
-          <div id="want_to_go_buttons_<%= @spot.id %>">
-            <%= render "temp/want_to_go", spot: @spot %>
+
+        <% if user_signed_in? %>
+          <!-- 行きたい！ボタン -->
+          <div class="button-container">
+            <div id="want_to_go_buttons_<%= @spot.id %>">
+              <%= render "temp/want_to_go", spot: @spot %>
+            </div>
+            <!-- 行ったよ！ボタン -->
+            <div id="went_buttons_<%= @spot.id %>">
+              <%= render "temp/went", spot: @spot %>
+            </div>
           </div>
-          <!-- 行ったよ！ボタン -->
-          <div id="went_buttons_<%= @spot.id %>">
-            <%= render "temp/went", spot: @spot %>
-          </div>
-        </div>
+        <% end %>
+        
         <table class="spot_table">
           <tr>
             <th>スポット名</th>

@@ -3,10 +3,12 @@
     <div class="col-md-3 mb-4">
       <div class="card mx-auto mt-4 aspect-ratio" style="height: auto; position: relative;">
         
-      <!-- アイコンを画像の上部外に配置 -->
-        <div class="bookmark_icon">
-          <i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %>
-        </div>
+        <!-- アイコンを画像の上部外に配置 -->
+        <% if user_signed_in? %>
+          <div class="bookmark_icon">
+            <i class="fa-solid fa-bookmark"></i> <%= book.bookmarks.count %>
+          </div>
+        <% end %>
         
         <div class="card-body py-0">
           <%= link_to book_path(book), data: {"turbolinks"=>false} do %>

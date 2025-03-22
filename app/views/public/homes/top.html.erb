@@ -10,25 +10,25 @@
       </div>
 
       <div class="row">
-      <h3 class="h3_text">新着書籍投稿</h3>
+      <h4 class="h4_text">新着書籍投稿</h4>
         <div class="col-md-12">
           <div class="row">         
             <%= render "temp/book_index", books: @books_new %>
           </div>
         </div>
-        <div class="col-md-12 text-right mb-5">
+        <div class="col-md-12 text-end mb-5">
           <%= link_to 'すべての書籍投稿を見る＞', books_path, style: 'text-decoration: underline;' %>
         </div>
       </div>
 
       <div class="row">
-        <h3 class="h3_text">新着スポット投稿</h3>
+        <h4 class="h4_text">新着スポット投稿</h4>
         <div class="col-md-12">
           <div class="row"> 
             <%= render "temp/spot_index", spots: @spots_new %>
           </div>
         </div>
-        <div class="col-md-12 text-right mb-5">
+        <div class="col-md-12 text-end mb-5">
           <%= link_to 'すべてのスポット投稿を見る＞', spots_path, style: 'text-decoration: underline;' %>
         </div>
       </div>

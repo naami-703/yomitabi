@@ -1,1 +1,31 @@
-admin_top
+<div class='container-fluid'>
+  <div class='row no-gutters bg-white'>
+    <div class='col-md-10 mx-auto'>
+
+      <div class="row">
+      <h4 class="h4_text">新着書籍投稿</h4>
+        <div class="col-md-12">
+          <div class="row">         
+            <%= render "temp/book_list", books: @books_new %>
+          </div>
+        </div>
+        <div class="col-md-12 text-end mb-5">
+          <%= link_to 'すべての書籍投稿を見る＞', admin_books_path, style: 'text-decoration: underline;' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <h4 class="h4_text">新着スポット投稿</h4>
+        <div class="col-md-12">
+          <div class="row"> 
+            <%= render "temp/spot_list", spots: @spots_new %>
+          </div>
+        </div>
+        <div class="col-md-12 text-end mb-5">
+          <%= link_to 'すべてのスポット投稿を見る＞', admin_spots_path, style: 'text-decoration: underline;' %>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+</div>

@@ -4,12 +4,14 @@
       <div class="card mx-auto mt-4 aspect-ratio" style="height: auto;">
       
         <!-- アイコンを画像の上部外に配置 -->
-        <div class="want_to_go_icon">
-          <i class="fa-solid fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %>
-        </div>
-        <div class="went_icon">
-          <i class="fa-solid fa-thumbs-up"></i> <%= spot.wents.count %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="want_to_go_icon">
+            <i class="fa-solid fa-face-grin-hearts"></i> <%= spot.want_to_gos.count %>
+          </div>
+          <div class="went_icon">
+            <i class="fa-solid fa-thumbs-up"></i> <%= spot.wents.count %>
+          </div>
+        <% end %>
 
         <div class="card-body py-0">
           <%= link_to spot_path(spot), data: {"turbolinks"=>false} do %>

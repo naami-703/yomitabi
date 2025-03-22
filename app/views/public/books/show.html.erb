@@ -10,9 +10,11 @@
           </div>
           <div class="col-md-7">
           <!-- ブックマークボタン -->
-            <div id="bookmark_buttons_<%= @book.id %>">
-              <%= render "temp/bookmark", book: @book %>
-            </div>
+          <% if user_signed_in? %>
+              <div id="bookmark_buttons_<%= @book.id %>">
+                <%= render "temp/bookmark", book: @book %>
+              </div>
+            <% end%>
           </div>
         </div>
         <table class="book_table">
