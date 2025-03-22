@@ -20,5 +20,7 @@ module Yomitabi
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    require 'rakuten_web_service'
   end
 end

@@ -3,7 +3,7 @@ class Public::BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @book = Book.new(spot_id: params[:spot_id])
+    @book = Book.new(spot_id: params[:spot_id], title: params[:title], author: params[:author], image_url: params[:image_url])
   end
 
   def index
@@ -40,7 +40,6 @@ class Public::BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    #if params[:spot_id].present?
       if @book.update(book_params)
         post_management = PostManagement.find_by(book_id: @book.id)
         if post_management
@@ -52,7 +51,6 @@ class Public::BooksController < ApplicationController
       else
         render "edit"
       end
-    #end
   end
 
   def destroy
@@ -61,10 +59,16 @@ class Public::BooksController < ApplicationController
     redirect_to mypage_users_path
   end
 
+  def search
+    if params[:keyword]
+      @books = RakutenWebService::Books::Book.search(title: params[:keyword])
+    end
+  end
+  
   private
 
   def book_params
-    params.require(:book).permit(:title, :book_image, :genre_id, :post_type)
+    params.require(:book).permit(:title, :author, :image_url, :genre_id, :post_type)
   end
 
   def ensure_correct_user

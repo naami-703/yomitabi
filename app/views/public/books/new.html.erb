@@ -2,26 +2,44 @@
   <div class='row no-gutters'>
 
     <div class='col-md-10 mx-auto text-center'>
-      <h4 class="h4_text">新規書籍投稿</h4>
-      ★･･･必須項目
+      <h4 class="h4_text">タイトルから検索</h4>
     </div>
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
 
-      <!-- エラーメッセージ -->
-      <%= render 'temp/error_message', model: @book %>
-         
+        <!-- 書籍検索 -->
+        <div class = "search-box" >
+          <%= form_with url: search_books_path, method: :get, local: true do |f| %> 
+              <div class = "form-group" >
+                  <%= f.text_field :keyword, size: "30x1" %><br><br>
+                  <%= f.submit 'タイトルを検索', class: "nav_button" %>
+              </div>
+          <% end %>
+            <% if @books.present? %> 
+            <%= render 'temp/books_search', books: @books %>
+          <% end %>
+
+        <!-- エラーメッセージ -->
+        <%= render 'temp/error_message', model: @book %>
+
+        <!-- 書籍手動登録 -->
+        <div class='col-md-10 mx-auto text-center'>
+          <h4 class="h4_text">投稿内容</h4>
+          ★･･･必須項目
+        </div>
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
+            <%= f.hidden_field :image_url %><br /><br />
+            <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
             <%= f.label :タイトル %> ★
             <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />
-            <%= f.label :表紙 %>
-            <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+            <%= f.label :著者 %>
+            <%= f.text_field :author, size: "20x1" %><br /><br />
             <%= f.label :ジャンル選択 %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
-            <%= f.submit '書籍新規投稿', class: 'nav_button' %>
+            <%= f.submit '書籍新規投稿', class: 'nav_button' %><br /><br />
           <% end %>
         </div>
       </div>

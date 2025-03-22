@@ -16,7 +16,7 @@
             <td>
               <div class="book_image">
                 <%= link_to book_path(book), data: {"turbolinks"=>false} do %>
-                  <%= image_tag book.get_book_image(100,100) %>
+                  <%= image_tag book.image_url.presence || asset_path("no_image.jpg") %>
                 <% end %>
               </div>
             </td>

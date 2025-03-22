@@ -15,13 +15,14 @@
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
+            <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
             <%= f.label :タイトル %> ★
             <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br /><br />
-            <%= f.label :表紙画像 %>
-            <%= f.file_field :book_image, accept: "image/*" %><br /><br />
+            <%= f.label :著者 %>
+            <%= f.text_field :author, autocomplete: "author", size: "20x1" %><br /><br />
             <%= f.label :ジャンル選択 %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, autocomplete: "genre" %><br /><br />
-            <%= f.submit '書籍情報更新', class: 'nav_button' %><br />
+            <%= f.submit '書籍情報更新', class: 'nav_button' %><br /><br />
             <%= link_to "削除する", book_path(@book), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>

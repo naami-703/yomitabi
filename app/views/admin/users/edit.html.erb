@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class='col-md-10 mx-auto text-center'>
-      <%= render 'temp/error_message', model: @user %>
+        <%= render 'temp/error_message', model: @user %>
 
         <div class="field">
           <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>

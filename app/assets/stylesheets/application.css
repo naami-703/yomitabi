@@ -25,6 +25,9 @@
 /* 見出し設定 */
 .h4_text {
   font-family: 'Kaushan', cursive, sans-serif;
+  border-bottom: 2px solid #193278;
+  display: inline-block;
+  padding: 5px;
   margin: 20px;
 }
 

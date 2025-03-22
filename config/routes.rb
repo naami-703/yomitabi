@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       end
     end
     resources :books do
+      collection do
+        get 'search'
+      end
       resources :comments, controller: 'books/comments',only:[:index, :create, :destroy]
       resource :bookmarks, only:[:create, :destroy]
     end

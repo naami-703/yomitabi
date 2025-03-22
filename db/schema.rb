@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(version: 2025_03_11_052841) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "genre_id"
+    t.integer "user_id", null: false
+    t.integer "genre_id", null: false
     t.integer "spot_id"
     t.string "title", null: false
+    t.string "author"
+    t.string "image_url"
     t.string "post_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
