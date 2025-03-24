@@ -60,7 +60,9 @@ class Public::BooksController < ApplicationController
   end
 
   def search
-    if params[:keyword]
+    if params[:keyword].blank?
+      redirect_to request.referer
+    elsif params[:keyword]
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
     end
   end

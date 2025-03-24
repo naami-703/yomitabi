@@ -1,6 +1,6 @@
 <% if model.errors.any? %>
 <div id="error_explanation">
-  <%= pluralize(model.errors.count, "error") %> 件のエラーがあります:
+  <%= model.errors.count %> 件のエラーがあります:
   <ul>
     <% model.errors.full_messages.each do |message| %>
       <li><%= message %></li>

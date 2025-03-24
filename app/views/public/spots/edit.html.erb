@@ -15,15 +15,15 @@
         <div class="field">
           <%= form_with model: @spot do |f| %>
             <%= f.hidden_field :post_type, value: "spot" %>
-            <%= f.label :スポット名 %> ★
+            <%= f.label :name, "スポット名" %> ★
             <%= f.text_field :name, autofocus: true, autocomplete: "title", size: "30x1" %><br /><br />
-            <%= f.label :住所（都道府県） %> ★
+            <%= f.label :address_prefectures, "住所（都道府県）" %> ★
             <%= f.select :address_prefectures, Spot.address_prefectures.keys, { include_blank: true }, { autocomplete: "address_prefectures" } %><br /><br />
-            <%= f.label :住所（市町村以降）%>
+            <%= f.label :address_city, "住所（市町村以降）"%>
             <%= f.text_field :address_city, autocomplete: "address_city" ,size: "40x1" %><br /><br />
-            <%= f.label :スポット画像 %>
+            <%= f.label :spot_image, "スポット画像" %>
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
-            <%= f.submit 'スポット情報更新', class: 'nav_button' %><br />
+            <%= f.submit 'スポット情報更新', class: 'nav_button' %><br /><br />
             <%= link_to "削除する", spot_path(@spot), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>

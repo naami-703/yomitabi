@@ -1,7 +1,7 @@
 <% if current_user.following?(user) %>
   <div class="followed_btn">
     <%= link_to relations_path(user_id: user.id), method: :delete do %>
-      <i class="fa-solid fa-people-arrows"></i> フォロー済み
+      <i class="fa-solid fa-people-arrows"></i> フォロー中
     <% end %>
   </div>
 <% else %>

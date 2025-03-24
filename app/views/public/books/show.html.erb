@@ -90,6 +90,7 @@
                   <div class="row"> 
                     <% if user_signed_in? %>
                       <h4 class="h4_text">感想投稿</h4>
+                      <!-- 投稿フォーム -->
                       <%= form_with model: [@book, @comment], local: false do |f| %>
                         <div style="display: flex; align-items: center;">
                           <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "感想を入力", id: "comment_textarea" %>
@@ -101,7 +102,7 @@
                     <% end %>
                     <h4 class="h4_text">感想一覧</h4>
                     <div id="comment_list">
-                      <%= render 'temp/book_comment_index', comments: @comments, user: @user %>
+                      <%= render 'temp/book_comment_index', comments: @comments %>
                     </div>
                   </div>
                 </div>
@@ -119,7 +120,7 @@
                     <%= form_for @post_management, url: post_management_path(@post_management), method: :patch do |f| %>
                       <%= f.hidden_field :post_type, value: "spot" %>
                       <%= f.hidden_field :book_id, value: @book.id %>
-                      <%= f.label "スポット選択" %>
+                      <%= f.label :spot_id, "スポット選択" %>
                       <%= f.collection_select :spot_id, Spot.all, :id, :name, include_blank: "登録済みのスポットを選択" %>
                       <%= f.submit "登録済みのスポットを追加", class: "nav_button" %>
                       <%= render 'temp/spot_select', post_management: @post_management %>

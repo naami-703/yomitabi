@@ -40,7 +40,6 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">画像表示</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                     </div>
                     <div class="modal-body">
@@ -106,14 +105,13 @@
                       <% if user_signed_in? %>
                       <h4 class="h4_text">コメント投稿</h4>
                       ★･･･必須項目
-                        
-                        <!-- コメント投稿 -->
+                        <!-- 投稿フォーム -->
                         <%= form_with model: [@spot, @comment], local: false do |f| %>
-                          <%= f.label :コメント： %> ★
+                          <%= f.label :comment, "コメント：" %> ★
                           <%= f.text_area :comment, autofocus: true, size: "60x2", placeholder: "コメントを入力", id: "comment_textarea" %><br />
-                          <%= f.label :スポット画像： %>
+                          <%= f.label :comment_image, "スポット画像：" %>
                           <%= f.file_field :comment_image, accept: "image/*", id: "comment_image" %><br />
-                          <%= f.label :関連書籍選択： %> ★
+                          <%= f.label :book_id, "関連書籍選択：" %> ★
                           <%= f.collection_select :book_id, @select_books, :id, :title, prompt: "選択して下さい" %>
                           <%= f.submit "コメントする", class: 'nav_button' %>
                         <% end %>
@@ -122,7 +120,7 @@
                     </div>
                     <h4 class="h4_text">コメント一覧</h4>
                     <div id="comment_list">
-                      <%= render "temp/spot_comment_index", spot: @spot, comments: @comments, user: @comments_users, book: @books %>
+                      <%= render "temp/spot_comment_index", comments: @comments %>
                     </div>
                   </div>
                 </div>
@@ -138,7 +136,7 @@
                     <%= form_for @post_management, url: post_management_path(@post_management), method: :patch do |f| %>
                       <%= f.hidden_field :post_type, value: "spot" %>
                       <%= f.hidden_field :spot_id, value: @spot.id %>
-                      <%= f.label "書籍選択" %>
+                      <%= f.label :book_id, "書籍選択" %>
                       <%= f.collection_select :book_id, Book.all, :id, :title, include_blank: "登録済みの書籍を選択" %>
                       <%= f.submit "登録済みの書籍を追加", class: "nav_button" %>
                       <%= render 'temp/book_select', post_management: @post_management %>

@@ -20,17 +20,15 @@
   <td width="180"><%= comment.comment %></td>
   <td>
   <div class="comment_image">
-  <% modal_id = "imageModal#{comment.id}" %> <!-- 各コメントごとに異なるIDを設定 -->
+  <% modal_id = "imageModal#{comment.id}" %>
   
   <%= image_tag comment.get_comment_image(80,80), 
-      { data: { bs_toggle: "modal", bs_target: "##{modal_id}" }, class: "clickable-image" } %>
-
-  <!-- スポット画像表示Modal -->
+    { data: { bs_toggle: "modal", bs_target: "##{modal_id}" }, class: "clickable-image" } %>
+  <!-- 画像表示Modal -->
   <div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">スポット画像表示</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
         </div>
         <div class="modal-body">

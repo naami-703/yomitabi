@@ -1,18 +1,17 @@
 ja:
   activerecord:
     models:
-      book: "本"
-    attributes:
-      book:
-        title: "タイトル"
-        genre: "ジャンル"
-        models:
       spot: "スポット"
+      book: "本"
     attributes:
       spot:
         name: "スポット名"
         book_id: "関連書籍"
         address_prefectures: "都道府県"
+      book:
+        title: "タイトル"
+        genre: "ジャンル"
+        isbn: "書籍"
   date:
     abbr_day_names:
     - 日

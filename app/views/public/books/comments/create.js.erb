@@ -1,5 +1,10 @@
-// コメント一覧を再描画
-$("#commentList").prepend(`<%=j render 'temp/book_comment', comment: @comment %>`);
+<% if @book.comments.where(spot_id: nil).count == 1 %>
+  // 初回コメント時はリスト全体を作成
+  $("#comment_list").html(`<%= j render 'temp/book_comment_index', comments: @book.comments.where(spot_id: nil) %>`);
+<% else %>
+  // 2回目以降は `.prepend()` で追加
+  $("#commentList").prepend(`<%= j render 'temp/book_comment', comment: @comment %>`);
+<% end %>
 
 // 投稿フォームを空にする
 $('#comment_textarea').val('');

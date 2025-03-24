@@ -16,11 +16,13 @@
                   <%= f.submit 'タイトルを検索', class: "nav_button" %>
               </div>
           <% end %>
-            <% if @books.present? %> 
+          
+          <!-- 検索結果画面 -->
+          <% if @books.present? %> 
             <%= render 'temp/books_search', books: @books %>
           <% end %>
 
-        <!-- 書籍手動登録 -->
+        <!-- 書籍手動登録・選択書籍情報 -->
         <div class='col-md-10 mx-auto text-center'>
           <h4 class="h4_text">投稿内容</h4>
           ★･･･必須項目
@@ -33,11 +35,11 @@
             <%= f.hidden_field :image_url %>
             <%= f.hidden_field :isbn %>
             <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
-            <%= f.label :タイトル %> ★
+            <%= f.label :title, "タイトル" %> ★
             <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />
-            <%= f.label :著者 %>
+            <%= f.label :author, "著者" %>
             <%= f.text_field :author, size: "20x1" %><br /><br />
-            <%= f.label :ジャンル選択 %> ★
+            <%= f.label :genre_id, "ジャンル選択" %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %><br /><br />
           <% end %>
