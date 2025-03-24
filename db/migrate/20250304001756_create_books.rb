@@ -7,6 +7,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string "title", null: false
       t.string "author"
       t.string "image_url"
+      t.string "isbn"
       t.string "post_type", null: false
       t.timestamps
     end

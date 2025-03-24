@@ -15,6 +15,7 @@
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
+            <%= f.hidden_field :isbn, autocomplete: "isbn" %><br /><br />
             <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
             <%= f.label :タイトル %> ★
             <%= f.text_field :title, autofocus: true, autocomplete: "title", size: "30x1" %><br /><br />

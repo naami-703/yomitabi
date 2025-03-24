@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2025_03_11_052841) do
     t.string "title", null: false
     t.string "author"
     t.string "image_url"
+    t.string "isbn"
     t.string "post_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

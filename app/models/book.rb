@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   validates :title, uniqueness: true, presence: true
+  validates :isbn, uniqueness: true
   
   def self.looks(search, word)
     search == "partial_match" ? Book.where("title LIKE ?", "%#{word}%") : Book.all

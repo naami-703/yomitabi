@@ -3,7 +3,7 @@ class Public::BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @book = Book.new(spot_id: params[:spot_id], title: params[:title], author: params[:author], image_url: params[:image_url])
+    @book = Book.new(spot_id: params[:spot_id], title: params[:title], author: params[:author], image_url: params[:image_url], isbn: params[:isbn])
   end
 
   def index
@@ -68,7 +68,7 @@ class Public::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :image_url, :genre_id, :post_type)
+    params.require(:book).permit(:title, :author, :image_url, :isbn, :genre_id, :post_type)
   end
 
   def ensure_correct_user

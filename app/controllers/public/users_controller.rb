@@ -8,7 +8,6 @@ class Public::UsersController < ApplicationController
     @followers_users = @user.followers.page(params[:page])
 
     @books = @user.books
-    @genres = @books.map { |book| book.genre }
     @books_new = @books.order(created_at: :desc).page(params[:page])
     @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc).page(params[:page])
 
@@ -37,7 +36,6 @@ class Public::UsersController < ApplicationController
     @followers_users = @user.followers.page(params[:page])
 
     @books = @user.books
-    @genres = @books.map { |book| book.genre }
     @books_new = @books.order(created_at: :desc).page(params[:page])
     @comments_book = @user.comments.where.not(book_id: nil).where(spot_id: nil).order(created_at: :desc)
 

@@ -14,6 +14,7 @@
               <th></th>
               <th>タイトル</th>
               <th>著者</th>
+              <th>ISBN</th>
               <th></th>
             <tr>
           </thead>
@@ -21,10 +22,11 @@
             <% @books.each do |book| %>
               <tr>
                 <td width="15%"><%= image_tag(book.large_image_url) %></td>
-                <td width="35%"><%= book.title %></td>
-                <td width="35%"><%= book.author %></td>
+                <td width="30%"><%= book.title %></td>
+                <td width="20%"><%= book.author %></td>
+                <td width="20%"><%= book.isbn %></td>
                 <td width="15%">
-                  <%= link_to "選択", new_book_path(title: book.title, author: book.author, image_url: book.large_image_url), class: "nav_button" %>
+                  <%= link_to "選択", new_book_path(title: book.title, author: book.author, isbn: book.isbn, image_url: book.large_image_url), class: "nav_button" %>
                 </td>
               </tr>
             <% end %>

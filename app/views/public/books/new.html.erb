@@ -20,18 +20,18 @@
             <%= render 'temp/books_search', books: @books %>
           <% end %>
 
-        <!-- エラーメッセージ -->
-        <%= render 'temp/error_message', model: @book %>
-
         <!-- 書籍手動登録 -->
         <div class='col-md-10 mx-auto text-center'>
           <h4 class="h4_text">投稿内容</h4>
           ★･･･必須項目
+          <!-- エラーメッセージ -->
+          <%= render 'temp/error_message', model: @book %>
         </div>
         <div class="field">
           <%= form_with model: @book do |f| %>
             <%= f.hidden_field :post_type, value: "book" %>
-            <%= f.hidden_field :image_url %><br /><br />
+            <%= f.hidden_field :image_url %>
+            <%= f.hidden_field :isbn %>
             <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
             <%= f.label :タイトル %> ★
             <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />

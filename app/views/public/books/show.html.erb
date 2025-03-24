@@ -29,10 +29,13 @@
             </td>
           </tr>
           <tr>
-          <th>著者</th>
-          <td><%= @book.author %></td>
-        </tr>
-
+            <th>著者</th>
+            <td><%= @book.author %></td>
+          </tr>
+          <tr>
+            <th>ISBN</th>
+            <td><%= @book.isbn %></td>
+          </tr>
           <tr>
             <th>ジャンル</th>
             <td><%= link_to @book.genre.name, genre_path(@genre) %></td>

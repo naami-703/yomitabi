@@ -10,7 +10,7 @@
           </div>
         <% end %>
         
-        <div class="card-body py-0">
+        <div class="card-body py-0 mt-4">
           <%= link_to book_path(book), data: {"turbolinks"=>false} do %>
             <div class: "card-img-top card-image">
               <%= image_tag book.image_url.presence || asset_path("no_image.jpg") %>
