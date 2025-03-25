@@ -7,10 +7,10 @@
       
       <div class="field">
         <%= form_with model: @location, url: admin_locations_path do |f| %>
-          <%= f.label :地域名 %><br />
-          <%= f.text_field :name, size: "30x1" %><br /><br />
-          <%= f.label :都道府県名%><br />
-          <%= f.select :address_prefectures, Location.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />
+          <%= f.label :name, "地域名" %><br />
+          <%= f.text_field :name %><br /><br />
+          <%= f.label :address_prefectures, "都道府県名" %><br />
+          <%= f.select :address_prefectures, Location.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />  
           <%= f.submit '地域登録', class: 'nav_button' %>
         <% end %>
       </div>

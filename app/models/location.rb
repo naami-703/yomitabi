@@ -2,8 +2,8 @@ class Location < ApplicationRecord
 
   has_many :spots
 
-  validates :name, length:{in:2..10},presence: true
-  validates :address_prefectures, presence: true, uniqueness: true
+  validates :name, length:{in:2..10}, presence: true
+  validates :address_prefectures, uniqueness: true
 
   # 都道府県プルダウン
   enum address_prefectures:{

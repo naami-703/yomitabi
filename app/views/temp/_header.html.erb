@@ -138,8 +138,8 @@
               <i class="fa-solid fa-location-pin"></i> スポット地域別一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <% @locations.each do |location| %>
-                  <li><a class="dropdown-item" href="<%= location_path(location) %>" ><i class="fa-solid fa-book"></i> <%= location.name %></a></li>
+                <% @locations.pluck(:name).uniq.each do |location_name| %>
+                  <li><a class="dropdown-item" href="<%= location_path(Location.find_by(name: location_name)) %>" ><i class="fa-solid fa-book"></i> <%= location_name %></a></li>
                 <% end %>
               </ul>
             </li>
@@ -193,8 +193,8 @@
               <i class="fa-solid fa-location-pin"></i> スポット地域別一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <% @locations.each do |location| %>
-                  <li><a class="dropdown-item" href="<%= location_path(location) %>" ><i class="fa-solid fa-book"></i> <%= location.name %></a></li>
+                <% @locations.pluck(:name).uniq.each do |location_name| %>
+                  <li><a class="dropdown-item" href="<%= location_path(Location.find_by(name: location_name)) %>" ><i class="fa-solid fa-book"></i> <%= location_name %></a></li>
                 <% end %>
               </ul>
             </li>
