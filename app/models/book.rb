@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   has_many :post_managements, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :title, uniqueness: true, presence: true
+  validates :title, length:{in:2..50}, uniqueness: true, presence: true
   validates :isbn, uniqueness: true
   
   def self.looks(search, word)

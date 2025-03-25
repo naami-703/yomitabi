@@ -12,6 +12,9 @@ ja:
         title: "タイトル"
         genre: "ジャンル"
         isbn: "書籍"
+      user:
+        name: "名前"
+        email: "メールアドレス"
   date:
     abbr_day_names:
     - 日

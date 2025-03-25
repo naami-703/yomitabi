@@ -7,8 +7,8 @@ class Spot < ApplicationRecord
   has_many :want_to_gos, dependent: :destroy
   has_many :wents, dependent: :destroy
 
-  validates :name, uniqueness: true, presence: true
-  validates :address_prefectures, presence: true
+  validates :name, length:{in:2..20}, uniqueness: true, presence: true
+  validates :address_prefectures, length:{in:2..10}, presence: true
   validates :book_id, presence: true
 
   has_one_attached :spot_image, dependent: :destroy

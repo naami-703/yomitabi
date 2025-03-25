@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :book, optional: true
   belongs_to :spot, optional: true
 
-  validates :comment, presence: true
+  validates :comment, length:{in:2..50},presence: true
   validates :book_id, presence: true 
 
   has_one_attached :comment_image

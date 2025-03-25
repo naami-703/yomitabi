@@ -1,6 +1,6 @@
 <% if @spot.comments.count == 1 %>
   // 初回コメント時はリスト全体を作成
-  $("#comment_list").html(`<%= j render 'temp/spot_comment_index', comments: @comments %>`);
+  $("#comment_list").html(`<%= j render 'temp/spot_comment_index', comments: @spot.comments %>`);
 <% else %>
   // 2回目以降は `.prepend()` で追加
   $("#commentList").prepend(`<%= j render 'temp/spot_comment', comment: @comment %>`);
