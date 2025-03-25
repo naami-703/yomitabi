@@ -2,7 +2,8 @@ class Admin::BooksController < ApplicationController
   before_action :authenticate_admin!
 
   def index 
-    @books = Book.page(params[:page])
+    books = Book.all
+    @books = books.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def edit

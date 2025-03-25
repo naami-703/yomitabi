@@ -2,7 +2,8 @@ class Admin::SpotsController < ApplicationController
   before_action :authenticate_admin!
 
   def index 
-    @spots = Spot.page(params[:page])
+    spots = Spot.all
+    @spots = spots.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def edit
