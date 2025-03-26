@@ -54,6 +54,8 @@
             </td>
           </tr>
         </table>
+
+        <!-- 登録者情報 -->
         <table class="element_table">
           <% if @spot.user == current_user %>
           <tr>
@@ -142,7 +144,6 @@
                       <%= render 'temp/book_select', post_management: @post_management %>
                     <% end %>
                   <% end %>
-
                   <h4 class="h4_text">関連書籍一覧</h4>
                   <%= render 'temp/book_index', books: @books_index %>
                 </div>

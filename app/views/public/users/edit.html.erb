@@ -8,10 +8,9 @@
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
-
         <!-- エラーメッセージ -->
         <%= render 'temp/error_message', model: @user %>
-
+        <!-- 入力フォーム -->
         <div class="field">
           <%= form_with model: @user do |f| %>
             <%= f.label :名前 %> ★

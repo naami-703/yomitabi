@@ -14,7 +14,6 @@ class Public::PostManagementsController < ApplicationController
 
   def update
     @post_management = PostManagement.find(params[:id])
-    
     new_post_management = PostManagement.new(post_management_params)
     new_post_management.save
   end

@@ -8,10 +8,9 @@
 
     <div class="row">
       <div class='col-md-8 mx-auto text-center'>
-
         <!-- エラーメッセージ -->
         <%= render 'temp/error_message', model: @spot %>
-
+        <!-- 入力フォーム -->
         <%= form_with model: @spot do |f| %>
           <%= f.hidden_field :post_type, value: "spot" %>
           <%= f.label :name, "スポット名" %> ★

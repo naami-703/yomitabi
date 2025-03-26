@@ -1,19 +1,19 @@
 <table class="table">
   <% if comments.present? %>
     <% if comments.any? %>
-    <thead>
-      <tr>
-        <th>投稿者</th>
-        <th>スポット</th>
-        <th>コメント</th>
-        <th>スポット画像</th>
-        <th>投稿日</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="commentList">
-      <% comments.each do |comment| %>
-        <%= render 'temp/spot_comment', comment: comment %>
+      <thead>
+        <tr>
+          <th>投稿者</th>
+          <th>スポット</th>
+          <th>コメント</th>
+          <th>スポット画像</th>
+          <th>投稿日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="commentList">
+        <% comments.each do |comment| %>
+          <%= render 'temp/spot_comment', comment: comment %>
         <% end %>
       </tbody>
     <% end %>

@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :book, optional: true
   belongs_to :spot, optional: true
 
-  validates :comment, length:{in:2..50},presence: true
+  validates :comment, length:{in:2..50}, presence: true
   validates :book_id, presence: true 
 
   has_one_attached :comment_image
@@ -18,8 +18,8 @@ class Comment < ApplicationRecord
 
   private
 
+  # 画像が関連付けられていれば削除
   def delete_image
-    # 画像が関連付けられていれば削除
     comment_image.purge if comment_image.attached?
   end
 

@@ -22,8 +22,7 @@
   <div class="comment_image">
   <% modal_id = "imageModal#{comment.id}" %>
   
-  <%= image_tag comment.get_comment_image(80,80), 
-    { data: { bs_toggle: "modal", bs_target: "##{modal_id}" }, class: "clickable-image" } %>
+  <%= image_tag comment.get_comment_image(80,80), { data: { bs_toggle: "modal", bs_target: "##{modal_id}" }, class: "clickable-image" } %>
   <!-- 画像表示Modal -->
   <div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

@@ -18,13 +18,15 @@
             <%= link_to mypage_users_path do %>
               <div class="profile_image">
                 <%= image_tag user.get_profile_image(100,100) %>
+              </div>
             <% end %>
           <% else %>
+            <div class="profile_image">
             <%= link_to user_path(user) do %>
               <%= image_tag user.get_profile_image(100,100) %>
+            </div>
             <% end %>
           <% end %>  
-          </div>
         </td>
         <td><%= user.name %></td>
         <td><%= user.introduction %></td>
