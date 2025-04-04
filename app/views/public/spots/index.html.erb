@@ -4,13 +4,22 @@
       <div class="p-3 mb-2">
         <h4 class="h4_text">スポット一覧</h4>
       </div>
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <div class="row"> 
-            <%= render "temp/spot_index", spots: @spots %>
-            <%= paginate @spots %>
-          </div>
-        </div>
+
+      <div class="row"> 
+
+      <!-- 並び替え -->
+      <table>
+        <tr>
+          <td width="1%"><%= link_to '古い順', spots_path(old: "true") %></td>
+          <td width="1%"><%= link_to '新しい順', spots_path(new: "true") %></td>
+          <td width="2%"><%= link_to '行きたい！の多い順', spots_path(want_to_go: "true") %></td>
+          <td width="10%"><%= link_to '行ったよ！の多い順', spots_path(went: "true") %></td>
+        </tr>
+      </table>
+    
+      <!-- スポット一覧 -->
+      <%= render "temp/spot_index", spots: @spots %>
+      <%= paginate @spots %>
       </div>
     </div>
   </div>

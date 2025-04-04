@@ -7,7 +7,23 @@ class Public::SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.page(params[:page])
+    spots_want_to_gos = Spot.includes(:want_to_gos)
+    spots_wents = Spot.includes(:wents)
+
+    if params[:new]
+      @spots = Spot.order(created_at: :desc).page(params[:page])
+    elsif params[:old]
+      @spots = Spot.order(created_at: :asc).page(params[:page])
+    elsif params[:want_to_go]
+      sorted_spots = spots_want_to_gos.sort_by { |spot| -spot.want_to_gos.size }
+      @spots = Kaminari.paginate_array(sorted_spots).page(params[:page])
+    elsif params[:went]
+      sorted_spots = spots_wents.sort_by { |spot| -spot.wents.size }
+      @spots = Kaminari.paginate_array(sorted_spots).page(params[:page])
+    else
+      @spots = Spot.page(params[:page])
+    end
+
   end
 
   def show
