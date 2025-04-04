@@ -5,6 +5,17 @@
         <h4 class="h4_text">書籍一覧</h4>
       </div>
       <div class="row">
+
+      <!-- 並び替え -->
+      <table>
+        <tr>
+          <td width="1%"><%= link_to '古い順', books_path(old: "true") %></td>
+          <td width="1%"><%= link_to '新しい順', books_path(new: "true") %></td>
+          <td width="10%"><%= link_to 'ブックマークの多い順', books_path(bookmark: "true") %></td>
+        </tr>
+      </table>
+
+      <!-- 書籍一覧 -->
         <div class="col-md-12 text-center">
           <%= render "temp/book_index", books: @books %>
           <%= paginate @books %>

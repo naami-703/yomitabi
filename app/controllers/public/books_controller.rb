@@ -7,7 +7,18 @@ class Public::BooksController < ApplicationController
   end
 
   def index
-    @books = Book.page(params[:page])
+    books = Book.includes(:bookmarks)
+
+    if params[:new]
+      @books = Book.order(created_at: :desc).page(params[:page])
+    elsif params[:old]
+      @books = Book.order(created_at: :asc).page(params[:page])
+    elsif params[:bookmark]
+      sorted_books = books.sort_by { |book| -book.bookmarks.size }
+      @books = Kaminari.paginate_array(sorted_books).page(params[:page])
+    else
+      @books = Book.page(params[:page])
+    end
   end
 
   def show
