@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relations, class_name: "Relation", foreign_key: "follow_id", dependent: :destroy
   has_many :followings, through: :relations, source: :follow
   has_many :followers, through: :reverse_of_relations, source: :follower
+  has_many :notifications, dependent: :destroy
 
   # フォローしたときの処理
   def follow(user_id)
@@ -43,6 +44,11 @@ class User < ApplicationRecord
 
   def self.looks(search, word)
     search == "partial_match" ? User.where("name LIKE ?", "%#{word}%") : User.all
+  end
+
+  # フォロー通知
+  user.followers.each do |follower|
+    notification.create(user_id: follower_id)
   end
   
 end
