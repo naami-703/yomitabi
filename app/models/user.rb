@@ -47,8 +47,10 @@ class User < ApplicationRecord
   end
 
   # フォロー通知
-  user.followers.each do |follower|
-    notification.create(user_id: follower_id)
+  after_create do
+    user.followers.each do |follower|
+      notification.create(user_id: follower_id)
+    end
   end
   
 end
