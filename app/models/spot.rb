@@ -6,6 +6,7 @@ class Spot < ApplicationRecord
   has_many :post_managements,  dependent: :destroy
   has_many :want_to_gos, dependent: :destroy
   has_many :wents, dependent: :destroy
+  has_many :notification, as: :notifiable, dependent: :destroy
 
   validates :name, length:{in:2..20}, uniqueness: true, presence: true
   validates :address_prefectures, length:{in:2..10}, presence: true
@@ -50,6 +51,13 @@ class Spot < ApplicationRecord
   # 都道府県に応じたLocationを設定
   def set_location
     self.location = Location.find_by(address_prefectures: self.address_prefectures)
+  end
+
+  # 投稿通知
+  after_create do
+    user.followers.each do |follower|
+      Notification.create(user_id: follower.id, notifiable: self)
+    end
   end
 
 end

@@ -1,2 +1,0 @@
-module Spots::WantToGosHelper
-end

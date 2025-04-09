@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_managements, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :notification, as: :notifiable/ dependent: :destroy
+  has_many :notification, as: :notifiable, dependent: :destroy
 
   validates :title, length:{in:2..50}, uniqueness: true, presence: true
   validates :isbn, uniqueness: true
@@ -20,8 +20,8 @@ class Book < ApplicationRecord
  
   # 投稿通知
   after_create do
-    user.bookmarks.each do |bookmark|
-      create_notification(user_id: book.user_id)
+    user.followers.each do |follower|
+      Notification.create(user_id: follower.id, notifiable: self)
     end
-
+  end
 end

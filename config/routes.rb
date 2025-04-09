@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :locations, only: [:show]
     resources :post_managements, only: [:show, :create, :update, :destroy]
     resource :relations, only: [:create, :destroy]
+    resources :notifications, only: [:update]
     
     get 'searches', to: 'searches#index'
   end

@@ -1,2 +1,0 @@
-module Books::CommentHelper
-end

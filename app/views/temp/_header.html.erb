@@ -36,6 +36,23 @@
           <li class="nav-item">
             <%= link_to "<i class='fa-solid fa-arrow-right-from-bracket'></i> ログアウト".html_safe, destroy_user_session_path, method: :delete, class: "nav_button_login_logout" %>
           </li>
+          <!-- 通知表示 -->
+          <li class="nav-item dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            <span class="badge bg-danger"><i class="fa-solid fa-bell"></i> <%= current_user.notifications.where(read: false).count %></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <% if current_user.notifications.where(read: false).any? %>
+              <li><small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small></li>
+              <% current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+                <li><%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %></li>
+              <% end %>
+            <% else %>
+              <li><span class="dropdown-item disabled">未読の通知はありません</span></li>
+            <% end %>
+          </ul>
+        </li>
 
           <!-- Adminログイン時のヘッダー -->
           <% elsif admin_signed_in? %>  
