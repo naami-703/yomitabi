@@ -5,8 +5,8 @@ class Public::NotificationsController < ApplicationController
     notification = current_user.notifications.find(params[:id])
     notification.update(read: true)
     case notification.notifiable_type
-      when "User"
-        redirect_to user_path(notification.notifiable)
+      when "Relation"
+        redirect_to user_path(notification.notifiable.follower)
       when "Book"
         redirect_to book_path(notification.notifiable)
       when "Spot"

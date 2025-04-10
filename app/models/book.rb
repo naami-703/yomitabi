@@ -17,11 +17,17 @@ class Book < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
+
+  # book投稿時の通知作成
+  after_create :send_book_notification
+
+  private
  
   # 投稿通知
-  after_create do
+  def send_book_notification
     user.followers.each do |follower|
       Notification.create(user_id: follower.id, notifiable: self)
-    end
   end
+  end
+
 end

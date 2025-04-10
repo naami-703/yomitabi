@@ -1,8 +1,8 @@
 module Public::NotificationsHelper
   def notification_message(notification)
     case notification.notifiable_type
-    when "User"
-      "#{notification.notifiable.user.name}さんにフォローされました"
+    when "Relation"
+      "#{notification.notifiable.follower.name}さんにフォローされました"
     when "Book"
       "フォローしている#{notification.notifiable.user.name}さんが#{notification.notifiable.title}を投稿しました"
     when "Spot"

@@ -44,17 +44,19 @@ class Spot < ApplicationRecord
     wents.exists?(user_id: user.id)
   end
 
+  # spot投稿時の通知作成
+  after_create :send_spot_notification
   before_save :set_location
-
-  private
 
   # 都道府県に応じたLocationを設定
   def set_location
     self.location = Location.find_by(address_prefectures: self.address_prefectures)
   end
 
+  private
+
   # 投稿通知
-  after_create do
+  def send_spot_notification
     user.followers.each do |follower|
       Notification.create(user_id: follower.id, notifiable: self)
     end
