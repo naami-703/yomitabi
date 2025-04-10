@@ -14,6 +14,9 @@ class Spot < ApplicationRecord
 
   has_one_attached :spot_image, dependent: :destroy
 
+  geocoded_by :address_city
+  after_validation :geocode
+
   # 都道府県プルダウン
   enum address_prefectures:{
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 2025_04_07_042458) do
     t.string "name", null: false
     t.integer "address_prefectures", null: false
     t.string "address_city"
+    t.float "latitude"
+    t.float "longitude"
     t.string "post_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -69,3 +69,5 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem 'rakuten_web_service'
+gem "dotenv-rails"
+gem "geocoder"
