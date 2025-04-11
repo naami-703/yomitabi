@@ -8,6 +8,7 @@ ja:
         name: "スポット名"
         book_id: "関連書籍"
         address_prefectures: "都道府県"
+        address_googlemap: "googleMAP検索欄"
       book:
         title: "タイトル"
         genre: "ジャンル"

@@ -411,7 +411,9 @@ span.current{
   color: #777777;
 }
 
+/* GoogkwMAP表示 */
 #map {
   height: 300px;
-  width: 300px
+  width: 300px;
+  margin: 20px;
 }

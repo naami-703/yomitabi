@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     resources :post_managements, only: [:show, :create, :update, :destroy]
     resource :relations, only: [:create, :destroy]
     resources :notifications, only: [:update]
-    
     get 'searches', to: 'searches#index'
   end
 
@@ -43,6 +42,7 @@ Rails.application.routes.draw do
   }
 
   get "/admin", to: "admin/homes#top", as: "admin/top"
+  get 'admin/searches', to: 'admin/searches#index', as: "admin/searches"
 
   namespace :admin do
     resources :books, only: [:index, :edit, :update, :destroy]

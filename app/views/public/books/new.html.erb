@@ -12,7 +12,7 @@
         <div class = "search-box" >
           <%= form_with url: search_books_path, method: :get, local: true do |f| %> 
               <div class = "form-group" >
-                  <%= f.text_field :keyword, size: "30x1" %><br><br>
+                  <%= f.text_field :keyword, placeholder: "タイトル入力", size: "30x1" %><br><br>
                   <%= f.submit 'タイトルを検索', class: "nav_button" %>
               </div>
           <% end %>
@@ -36,9 +36,9 @@
             <%= f.hidden_field :isbn %>
             <%= image_tag @book.image_url.presence || asset_path("no_image.jpg") %><br /><br />
             <%= f.label :title, "タイトル" %> ★
-            <%= f.text_field :title, autofocus: true, size: "30x1" %><br /><br />
+            <%= f.text_field :title, autofocus: true, placeholder: "タイトル", size: "30x1" %><br /><br />
             <%= f.label :author, "著者" %>
-            <%= f.text_field :author, size: "20x1" %><br /><br />
+            <%= f.text_field :author, placeholder: "著者名", size: "20x1" %><br /><br />
             <%= f.label :genre_id, "ジャンル選択" %> ★
             <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br /><br />
             <%= f.submit '書籍新規投稿', class: 'nav_button' %><br /><br />

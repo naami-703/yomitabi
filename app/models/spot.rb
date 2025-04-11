@@ -1,4 +1,9 @@
 class Spot < ApplicationRecord
+  # スポット名から緯度経度算出
+  geocoded_by :address_googlemap
+  after_validation :geocode, if: ->(obj) { obj.address_googlemap.present? && (obj.latitude.blank? || obj.longitude.blank?) }
+  # 緯度経度から住所算出
+  after_save :set_address_from_googlemap
 
   belongs_to :user
   belongs_to :location, optional: true
@@ -10,11 +15,12 @@ class Spot < ApplicationRecord
 
   validates :name, length:{in:2..20}, uniqueness: true, presence: true
   validates :address_prefectures, length:{in:2..10}, presence: true
+  validates :address_googlemap, length:{in:2..50}, presence: true
   validates :book_id, presence: true
 
   has_one_attached :spot_image, dependent: :destroy
 
-  geocoded_by :address_city
+  geocoded_by :address_googlemap
   after_validation :geocode
 
   # 都道府県プルダウン
@@ -54,6 +60,13 @@ class Spot < ApplicationRecord
   # 都道府県に応じたLocationを設定
   def set_location
     self.location = Location.find_by(address_prefectures: self.address_prefectures)
+  end
+
+  def set_address_from_googlemap
+    if latitude.present? && longitude.present? && address_googlemap == name
+      calculated_address = Geocoder.address([latitude, longitude])
+      update_column(:address_googlemap, calculated_address) if calculated_address.present?
+    end
   end
 
   private

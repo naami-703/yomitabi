@@ -3,14 +3,14 @@
     <% if spots.any? %>
       <thead>
         <tr>
-          <th></th>
-          <th>スポット名</th>
-          <th>住所</th>
-          <th>地域</th>
-          <th>行きたい！</th>
-          <th>行ったよ！</th>
-          <th>登録日</th>
-          <th></th>
+          <th width= "10%"></th>
+          <th width= "20%">スポット名</th>
+          <th width= "20%">住所</th>
+          <th width= "10%">地域</th>
+          <th width= "10%">行きたい！</th>
+          <th width= "10%">行ったよ！</th>
+          <th width= "10%">登録日</th>
+          <th width= "10%"></th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
               </div>
             </td>
             <td><%= spot.name %></td>
-            <td><%= spot.address_prefectures %><%= spot.address_city %></td>
+            <td><%= spot.address_googlemap %></td>
             <td>
               <% if admin_signed_in? %>
                <%= spot.location.name %>

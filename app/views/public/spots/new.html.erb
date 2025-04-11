@@ -14,11 +14,11 @@
         <%= form_with model: @spot do |f| %>
           <%= f.hidden_field :post_type, value: "spot" %>
           <%= f.label :name, "スポット名" %> ★
-          <%= f.text_field :name, autofocus: true, size: "30x1" %><br /><br />
-          <%= f.label :address_prefectures, "住所（都道府県）"%> ★
+          <%= f.text_field :name, autofocus: true, placeholder: "スポット名", size: "30x1" %><br /><br />
+          <%= f.label :address_prefectures, "都道府県選択"%> ★
           <%= f.select :address_prefectures, Spot.address_prefectures.keys, include_blank: "選択して下さい" %><br /><br />
-          <%= f.label :address_city, "住所（市町村以降）"%>
-          <%= f.text_field :address_city, size: "40x1" %><br /><br />
+          <%= f.label :address_googlemap, "googleMAP検索" %>★
+          <%= f.text_field :address_googlemap, placeholder: "場所名または住所", size: "40x1" %><br /><br />
           <%= f.label :spot_image, "スポット画像" %>
           <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
           <%= f.label :book_id, "関連書籍選択" %> ★

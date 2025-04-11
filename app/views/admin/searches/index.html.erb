@@ -1,0 +1,25 @@
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='col-md-10 mx-auto text-center'>
+      
+      <!--検索対象モデルがUserの時 -->
+      <% if @range == "user" %>
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <%= render 'temp/user_index', users: @users %>
+       <% end %>
+
+      <!--検索対象モデルがBookの時 -->
+      <% if @range == "book" %>
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <%= render 'temp/book_list', books: @books %>
+      <% end %>
+
+      <!--検索対象モデルがSpotの時 -->
+      <% if @range == "spot" %>
+        <h4 class="h4_text">"<%= @word %>" の検索結果</h4>
+          <%= render 'temp/spot_list', spots: @spots %>
+        <% end %> 
+
+    </div>
+  </div>
+</div>

@@ -116,6 +116,16 @@
               </ul>
             </li>
           </ul>
+          <form class="d-flex" role="admin/search" action="<%= admin_searches_path %>" method="GET">
+          <select name="range">
+            <option value="book">書籍</option>
+            <option value="spot">スポット</option>
+            <option value="user">会員</option>
+          </select>
+            <input class="form-control me-2" type="search" name="word" placeholder="タイトル、スポット、会員" aria-label="Search">
+            <input type="hidden" name="search" value="partial_match"> 
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
@@ -162,7 +172,7 @@
             </li>
           </ul>
 
-          <form class="d-flex" role="search" action="/searches" method="GET">
+          <form class="d-flex" role="search" action="admin/searches" method="GET">
           <select name="range">
             <option value="book">書籍</option>
             <option value="spot">スポット</option>

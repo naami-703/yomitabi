@@ -21,7 +21,7 @@
         
         <table class="spot_table">
           <tr>
-            <th>スポット名</th>
+            <th width = "30%">スポット名</th>
             <td><%= link_to @spot.name, spot_path(@spot.id) %></td>
           </tr>
             <th>地域</th>
@@ -29,46 +29,46 @@
           </tr>
           <tr>
           <th>住所</th>
-            <td><%= @spot.address_prefectures %><%= @spot.address_city %></td>
+            <td><%= @spot.address_googlemap %></td>
           </tr>
           <tr>
-          <th>地図</th>
-            <td>
-            <!-- Googleマップ表示エリア(地図を表示) -->
-            <div id="map"></div>
-            <!-- Googleマップ表示用の Javascript -->
-            <script>
-              function initMap(){
-                // 地図の位置情報(緯度・経度)を取得
-                let mapPosition = {lat: <%= @spot.latitude || 0 %> , lng: <%= @spot.longitude || 0 %> };
-                let map = new google.maps.Map(document.getElementById('map'), {
-                  zoom: 15,
-                  center: mapPosition
-                });
-                let transitLayer = new google.maps.TransitLayer();
-                transitLayer.setMap(map);
-    
-                let contentString = '【住所】<%= @spot.address_city %>';
-                let infowindow = new google.maps.InfoWindow({
-                  content: contentString
-                });
-    
-                let marker = new google.maps.Marker({
-                  position: mapPosition,
-                  map: map,
-                  title: contentString
-                });
-    
-                marker.addListener('click', function(){
-                  infowindow.open(map, marker);
-                });
-              }
-              </script>
+            <th colspan="2">
+              <!-- Googleマップ表示エリア(地図を表示) -->
+              <div id="map">
+              <!-- Googleマップ表示用の Javascript -->
+              <script>
+                function initMap(){
+                  // 地図の位置情報(緯度・経度)を取得
+                  let mapPosition = {lat: <%= @spot.latitude || 0 %> , lng: <%= @spot.longitude || 0 %> };
+                  let map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: mapPosition
+                  });
+                  let transitLayer = new google.maps.TransitLayer();
+                  transitLayer.setMap(map);
+      
+                  let contentString = '【住所】<%= @spot.address_googlemap %>';
+                  let infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                  });
+      
+                  let marker = new google.maps.Marker({
+                    position: mapPosition,
+                    map: map,
+                    title: contentString
+                  });
+      
+                  marker.addListener('click', function(){
+                    infowindow.open(map, marker);
+                  });
+                }
+                </script>
     
               <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&v=weekly&libraries=geometry&modules=marker&callback=initMap" async defer></script>
-              <td>
-            </tr>
-            <tr>
+              </div>
+            </th>
+          </tr>
+          <tr>
             <th>スポット画像</th>
             <td>
               <%= image_tag @spot.get_spot_image(200,200),  { data: { bs_toggle: "modal", bs_target: "#imageModal" }, class: "clickable-image" } %>
@@ -91,6 +91,7 @@
             </td>
           </tr>
         </table>
+      
 
         <!-- 登録者情報 -->
         <table class="element_table">

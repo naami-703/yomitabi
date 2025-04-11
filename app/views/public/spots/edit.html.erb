@@ -16,10 +16,10 @@
             <%= f.hidden_field :post_type, value: "spot" %>
             <%= f.label :name, "スポット名" %> ★
             <%= f.text_field :name, autofocus: true, autocomplete: "title", size: "30x1" %><br /><br />
-            <%= f.label :address_prefectures, "住所（都道府県）" %> ★
+            <%= f.label :address_prefectures, "都道府県選択" %> ★
             <%= f.select :address_prefectures, Spot.address_prefectures.keys, { include_blank: true }, { autocomplete: "address_prefectures" } %><br /><br />
-            <%= f.label :address_city, "住所（市町村以降）"%>
-            <%= f.text_field :address_city, autocomplete: "address_city" ,size: "40x1" %><br /><br />
+            <%= f.label :address_googlemap, "googleMAP検索"%>★
+            <%= f.text_field :address_googlemap, autocomplete: "address_googlemap" ,size: "40x1" %><br /><br />
             <%= f.label :spot_image, "スポット画像" %>
             <%= f.file_field :spot_image, accept: "image/*" %><br /><br />
             <%= f.submit 'スポット情報更新', class: 'nav_button' %><br /><br />
