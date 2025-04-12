@@ -91,16 +91,6 @@
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><%= link_to "<i class='fa-solid fa-book'></i> 書籍一覧".html_safe, admin_books_path, class:"dropdown-item" %></li>
                 <li><%= link_to "<i class='fa-solid fa-location-pin'></i> スポット一覧".html_safe, admin_spots_path, class:"dropdown-item" %></li>
-                <li><%= link_to "<i class='fa-solid fa-comment'></i> 感想・コメント一覧".html_safe, admin_comments_path, class:"dropdown-item" %></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <button class="btn dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-                会員情報編集
-              </button>
-              <ul class="dropdown-menu dropdown-menu-dark">
                 <li><%= link_to "<i class='fa-solid fa-user'></i> 会員一覧".html_safe, admin_users_path, class:"dropdown-item" %></li>
               </ul>
             </li>
@@ -186,7 +176,7 @@
       </div>
     </nav>
 
-    <!-- 非ログイン時のヘッダー -->
+  <!-- 非ログイン時のヘッダー -->
   <% else %>
     <nav class = "navbar navbar-expand-lg bg_user_bottom nav_button">
       <div class = "container">

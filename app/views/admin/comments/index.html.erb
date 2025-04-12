@@ -19,7 +19,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <% @book_comments.each do |comment| %>
+              <% @comments_book.each do |comment| %>
                 <tbody>
                   <td>感想</td>
                   <td><%= comment.user.name %></td>
@@ -30,7 +30,7 @@
                 </tbody>
               <% end %>
 
-              <% @spot_comments.each do |comment| %>
+              <% @comments_spot.each do |comment| %>
                 <tbody>
                   <td>コメント</td>
                   <td><%= comment.user.name %></td>

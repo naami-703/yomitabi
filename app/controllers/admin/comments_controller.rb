@@ -2,21 +2,20 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index 
-    books = Book.all
-    spots = Spot.all
-    @book_comments = Comment.where(book_id: books.pluck(:id), spot_id: nil).order(created_at: :desc).page(params[:page]).per(12)
-    @spot_comments = Comment.where(spot_id: spots.pluck(:id)).where.not(book_id: nil).order(created_at: :desc).page(params[:page]).per(12)
+    @user = User.find(params[:user]) 
+    @comments_book = Comment.where(user_id: @user.id, spot_id: nil).where.not(book_id: nil).order(created_at: :desc).page(params[:page]).per(12)
+    @comments_spot = Comment.where(user_id: @user.id).where.not(spot_id: nil).order(created_at: :desc).page(params[:page]).per(12)
   end
   
   def destroy
-    @book_comment = Comment.find_by(id: params[:id])
-    @spot_comment = Comment.find_by(id: params[:id])
-    if @book_comment
-       @book_comment.destroy
+    @comments_book = Comment.find_by(id: params[:id])
+    @comments_spot = Comment.find_by(id: params[:id])
+    if @comments_book
+       @comments_book.destroy
     end
     
-    if @spot_comment
-       @spot_comment.destroy
+    if @comments_spot
+       @comments_spot.destroy
     end
     
     redirect_to request.referer
