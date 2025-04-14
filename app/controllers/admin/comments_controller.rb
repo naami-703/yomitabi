@@ -3,6 +3,7 @@ class Admin::CommentsController < ApplicationController
 
   def index 
     @user = User.find(params[:user]) 
+    @commments = Comment.where(user_id: @user.id)
     @comments_book = Comment.where(user_id: @user.id, spot_id: nil).where.not(book_id: nil).order(created_at: :desc).page(params[:page]).per(12)
     @comments_spot = Comment.where(user_id: @user.id).where.not(spot_id: nil).order(created_at: :desc).page(params[:page]).per(12)
   end

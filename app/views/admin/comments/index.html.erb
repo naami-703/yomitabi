@@ -9,38 +9,42 @@
         <div class="col-md-12 text-center">
           <div class="d-flex flex-wrap">
             <table class="table">
-              <thead>
-                <tr>
-                  <th>投稿タイプ</th>
-                  <th>投稿者</th>
-                  <th>タイトル/スポット名</th>
-                  <th>コメント</th>
-                  <th>投稿日</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <% @comments_book.each do |comment| %>
-                <tbody>
-                  <td>感想</td>
-                  <td><%= comment.user.name %></td>
-                  <td><%= comment.book.title %></td>
-                  <td><%= comment.comment %></td>
-                  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
-                </tbody>
-              <% end %>
+              <% if comments.present? %>
+                <% if comments.any? %>
+                <thead>
+                  <tr>
+                    <th>投稿タイプ</th>
+                    <th>投稿者</th>
+                    <th>タイトル/スポット名</th>
+                    <th>コメント</th>
+                    <th>投稿日</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <% @comments_book.each do |comment| %>
+                  <tbody>
+                    <td>感想</td>
+                    <td><%= comment.user.name %></td>
+                    <td><%= comment.book.title %></td>
+                    <td><%= comment.comment %></td>
+                    <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+                  </tbody>
+                <% end %>
 
-              <% @comments_spot.each do |comment| %>
-                <tbody>
-                  <td>コメント</td>
-                  <td><%= comment.user.name %></td>
-                  <td><%= comment.spot.name %></td>
-                  <td><%= comment.comment %></td>
-                  <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
-                </tbody>
+                <% @comments_spot.each do |comment| %>
+                  <tbody>
+                    <td>コメント</td>
+                    <td><%= comment.user.name %></td>
+                    <td><%= comment.spot.name %></td>
+                    <td><%= comment.comment %></td>
+                    <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= link_to "削除", admin_comment_path(comment), method: :delete, class: 'btn btn-danger mb-3', role: 'button', "data-confirm" => "本当に削除しますか？" %></td>
+                  </tbody>
+                <% end %>
+              <% else %>
+                <p>感想・コメント投稿がありません</p>
               <% end %>
-
             </table>
           </div>
         </div>
