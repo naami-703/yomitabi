@@ -1,4 +1,4 @@
-class Public::BookmarksController < ApplicationController
+class Public::BookmarksController < Public::ApplicationController
   
   def create
     @book = Book.find(params[:book_id])

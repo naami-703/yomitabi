@@ -1,4 +1,4 @@
-class Public::NotificationsController < ApplicationController
+class Public::NotificationsController < Public::ApplicationController
  before_action :authenticate_user!
 
   def update

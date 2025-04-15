@@ -4,6 +4,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  before_action :set_genres
+  before_action :set_regions
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -59,5 +62,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def set_genres
+    @genres = Genre.all
+  end
+
+  def set_regions
+    @all_region_names = Location.distinct.pluck(:name)
+  end
 
 end

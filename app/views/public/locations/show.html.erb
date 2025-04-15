@@ -2,17 +2,17 @@
   <div class='row no-gutters bg-white'>
     <div class='col-md-10 mx-auto'>
       <div class="p-3 mb-2">
-        <h4 class="h4_text"><%= @location.name %>地区 スポット一覧</h4>
+        <h4 class="h4_text"><%= @region_name %>地区 スポット一覧</h4>
       </div>
 
       <div class="row"> 
       <!-- 並び替え -->
       <table>
         <tr>
-          <td width="1%"><%= link_to '古い順', spots_path(@location, old: "true") %></td>
-          <td width="1%"><%= link_to '新しい順', spots_path(@location, new: "true") %></td>
-          <td width="2%"><%= link_to '行きたい！の多い順', spots_path(@location, want_to_go: "true") %></td>
-          <td width="10%"><%= link_to '行ったよ！の多い順', spots_path(@location, went: "true") %></td>
+          <td width="1%"><%= link_to '古い順', location_path(@region_name, old: "true") %></td>
+          <td width="1%"><%= link_to '新しい順', location_path(@region_name, new: "true") %></td>
+          <td width="2%"><%= link_to '行きたい！の多い順', location_path(@region_name, want_to_go: "true") %></td>
+          <td width="10%"><%= link_to '行ったよ！の多い順', location_path(@region_name, went: "true") %></td>
         </tr>
       </table>
       

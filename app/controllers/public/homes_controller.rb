@@ -1,4 +1,4 @@
-class Public::HomesController < ApplicationController
+class Public::HomesController < Public::ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
 
   def top

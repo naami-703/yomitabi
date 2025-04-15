@@ -1,4 +1,4 @@
-class Public::WentsController < ApplicationController
+class Public::WentsController < Public::ApplicationController
   
   def create
     @spot = Spot.find(params[:spot_id])

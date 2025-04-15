@@ -1,4 +1,4 @@
-class Public::RelationsController < ApplicationController
+class Public::RelationsController < Public::ApplicationController
   before_action :authenticate_user!
   
   def create

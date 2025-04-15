@@ -25,7 +25,7 @@
             <td><%= link_to @spot.name, spot_path(@spot.id) %></td>
           </tr>
             <th>地域</th>
-            <td><%= link_to @spot.location.name, location_path(@spot.location) %></td>
+            <td><%= link_to @spot.location.name, location_path(@spot.location.name) %></td>
           </tr>
           <tr>
           <th>住所</th>

@@ -1,4 +1,4 @@
-class Public::PostManagementsController < ApplicationController
+class Public::PostManagementsController < Public::ApplicationController
 
   def show
     @post_management = PostManagement.find(params[:id])

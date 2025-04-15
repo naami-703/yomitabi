@@ -1,4 +1,4 @@
-class Public::GenresController < ApplicationController
+class Public::GenresController < Public::ApplicationController
 
   def show
     @genre = Genre.find(params[:id])

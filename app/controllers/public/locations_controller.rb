@@ -1,9 +1,10 @@
-class Public::LocationsController < ApplicationController
+class Public::LocationsController < Public::ApplicationController
 
   def show
-    @location = Location.find(params[:id])
-    spots = @location.spots.includes(:want_to_gos, :wents)
-
+    @region_name = params[:id]
+    @locations = Location.where(name: @region_name)
+    spots = Spot.where(location_id: @locations.ids).includes(:want_to_gos, :wents)
+  
     if params[:new]
       @spots = spots.order(created_at: :desc).page(params[:page])
     elsif params[:old]

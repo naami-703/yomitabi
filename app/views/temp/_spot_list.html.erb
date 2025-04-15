@@ -33,7 +33,7 @@
               <% if admin_signed_in? %>
                <%= spot.location.name %>
               <% else %>
-                <%= link_to spot.location.name, location_path(spot.location) %>
+                <%= link_to spot.location.name, location_path(spot.location.name) %>
               <% end %>
             </td>
             <td>
