@@ -51,7 +51,6 @@ class Public::UsersController < ApplicationController
 
     wents = Went.where(user_id: @user.id).pluck(:spot_id)
     @wents_selected = Spot.find(wents)
-
   end
   
   def edit

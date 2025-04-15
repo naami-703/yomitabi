@@ -51,17 +51,17 @@ class Public::BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-      if @book.update(book_params)
-        post_management = PostManagement.find_by(book_id: @book.id)
-        if post_management
-          post_management.update(spot_id: @book.spot_id, post_type: @book.post_type)
-        else
-          PostManagement.create(spot_id: @book.spot_id, book_id: @book.id, post_type: @book.post_type)
-        end
-        redirect_to book_path(@book), notice: "書籍情報を更新しました。"
+    if @book.update(book_params)
+      post_management = PostManagement.find_by(book_id: @book.id)
+      if post_management
+        post_management.update(spot_id: @book.spot_id, post_type: @book.post_type)
       else
-        render "edit"
+        PostManagement.create(spot_id: @book.spot_id, book_id: @book.id, post_type: @book.post_type)
       end
+      redirect_to book_path(@book), notice: "書籍情報を更新しました。"
+    else
+      render "edit"
+    end
   end
 
   def destroy

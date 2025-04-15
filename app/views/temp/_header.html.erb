@@ -144,7 +144,9 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <% @genres.each do |genre| %>
-                  <li><a class="dropdown-item" href="<%= genre_path(genre) %>" ><i class="fa-solid fa-book"></i> <%= genre.name %></a></li>
+                  <li><a class="dropdown-item" href="<%= genre_path(genre) %>" >
+                    <i class="fa-solid fa-book"></i> <%= genre.name %></a>
+                  </li>
                 <% end %>
               </ul>
             </li>
@@ -155,10 +157,14 @@
               <i class="fa-solid fa-location-pin"></i> スポット地域別一覧
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <% @locations.pluck(:name).uniq.each do |location_name| %>
-                  <li><a class="dropdown-item" href="<%= location_path(Location.find_by(name: location_name)) %>" ><i class="fa-solid fa-book"></i> <%= location_name %></a></li>
-                <% end %>
-              </ul>
+              <% @locations.uniq.pluck(:id, :name).each do |id, name| %>
+                <li>
+                  <%= link_to location_path(id), class: "dropdown-item" do %>
+                    <i class="fa-solid fa-book"></i> <%= name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
             </li>
           </ul>
 
